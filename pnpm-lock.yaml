@@ -5,14 +5,14 @@ specifiers:
   '@rollup/plugin-node-resolve': 13.0.6
   '@rollup/plugin-typescript': 8.3.0
   '@types/jest': 27.0.2
-  '@types/lodash': ^4
+  '@types/lodash': 4.14.176
   '@types/node': 16.11.6
   axios: 0.24.0
   camelcase-keys: 7.0.1
   esbuild: 0.13.12
   gh-pages: 3.2.3
   jest: 27.3.1
-  lodash: ^4
+  lodash: 4.17.21
   rollup: 2.58.3
   rollup-plugin-dts: 4.0.0
   rollup-plugin-peer-deps-external: 2.2.4
@@ -31,7 +31,7 @@ devDependencies:
   '@rollup/plugin-node-resolve': 13.0.6_rollup@2.58.3
   '@rollup/plugin-typescript': 8.3.0_eadbb6348e5d71a0a94215fbea4eae9e
   '@types/jest': 27.0.2
-  '@types/lodash': 4.14.168
+  '@types/lodash': 4.14.176
   '@types/node': 16.11.6
   axios: 0.24.0
   esbuild: 0.13.12
@@ -736,8 +736,8 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
-  /@types/lodash/4.14.168:
-    resolution: {integrity: sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==}
+  /@types/lodash/4.14.176:
+    resolution: {integrity: sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==}
     dev: true
 
   /@types/node/16.11.6:
