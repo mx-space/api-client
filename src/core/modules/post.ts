@@ -6,13 +6,13 @@ import { HTTPClient } from '../client'
 export class PostClient implements IClient {
   constructor(private client: HTTPClient) {}
 
-  base = '/posts'
+  base = 'posts'
 
   name = 'post'
   getPosts(page: number = 1, perPage: number = 10) {
-    return this.client
-      .proxy(`/${this.base}?page=${page}&size=${perPage}`)
-      .get<PostResponse>()
+    return this.client.proxy(this.base).get<PostResponse>({
+      params: { page, size: perPage },
+    })
   }
 
   getPost(categoryName: string, slug: string): RequestProxyResult<PostModel>

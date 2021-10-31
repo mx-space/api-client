@@ -13,14 +13,37 @@ export class HTTPClient {
   constructor(private _endpoint: string, private _instance: RequestInstance) {
     this._endpoint = _endpoint.replace(/\/*$/, '')
     this._proxy = this.buildRoute(this)()
+
+    this.initGetClient()
   }
 
+  private initGetClient() {
+    const clientsName = ['post', 'note']
+
+    for (const name of clientsName) {
+      Object.defineProperty(this, name, {
+        get() {
+          const client = Reflect.get(this, `_${name}`)
+          if (!client) {
+            throw new ReferenceError(
+              `${
+                name.charAt(0).toUpperCase() + name.slice(1)
+              } Client not inject yet, please inject with client.injectClients(...)`,
+            )
+          }
+          return client
+        },
+        configurable: false,
+        enumerable: false,
+      })
+    }
+  }
   public injectClients<T extends { new (client: HTTPClient): IClient }>(
     ...Clients: T[]
   ) {
     for (const Client of Clients) {
       const cl = new Client(this)
-      Object.defineProperty(this, cl.name, {
+      Object.defineProperty(this, `_${cl.name}`, {
         get() {
           return cl
         },
@@ -81,15 +104,19 @@ export class HTTPClient {
 
     return () => {
       const route = ['']
+
       const handler: any = {
         get(target: any, name: Method) {
           if (reflectors.includes(name)) return () => route.join('/')
           if (methods.includes(name)) {
             return async (options: RequestOptions) => {
+              const url = that.resolveFullPath(route.join('/'))
+              route.length = 0
+
               const res = await manager.request({
                 method: name,
                 ...options,
-                url: that.resolveFullPath(route.join('/')),
+                url,
               })
 
               const data = res.data
@@ -137,6 +164,7 @@ export class HTTPClient {
 }
 
 export function createRestInstance<T extends RequestInstance>(instance: T) {
+  // TODO: add support other network lib
   return (endpoint: string) => {
     return new HTTPClient(endpoint, instance)
   }
