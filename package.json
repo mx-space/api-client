@@ -31,21 +31,26 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.0.6",
-    "@types/jest": "27.0.2",
     "@rollup/plugin-typescript": "8.3.0",
-    "@types/lodash-es": "4.17.5",
+    "@types/jest": "27.0.2",
+    "@types/lodash": "^4",
     "@types/node": "16.11.6",
+    "axios": "0.24.0",
     "esbuild": "0.13.12",
     "gh-pages": "3.2.3",
     "jest": "27.3.1",
+    "lodash": "^4",
     "rollup": "2.58.3",
     "rollup-plugin-dts": "4.0.0",
-    "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-peer-deps-external": "2.2.4",
+    "rollup-plugin-terser": "7.0.2",
     "ts-jest": "27.0.7",
     "tslib": "2.3.1",
     "typescript": "4.4.4",
     "vite": "2.6.13",
     "vite-tsconfig-paths": "3.3.17"
+  },
+  "dependencies": {
+    "camelcase-keys": "7.0.1"
   }
 }

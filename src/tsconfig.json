@@ -5,5 +5,8 @@
     "outDir": "../esm",
     "baseUrl": ".",
     "jsx": "react"
-  }
+  },
+  "include": [
+    "./**/*.ts"
+  ]
 }

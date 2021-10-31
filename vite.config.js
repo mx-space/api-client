@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
-const { resolve } = require('path')
 import tsconfigPaths from 'vite-tsconfig-paths'
+const { resolve } = require('path')
 
 export default defineConfig({
   base: '',
+  server: { port: 2323 },
   plugins: [
     tsconfigPaths({
       projects: [
