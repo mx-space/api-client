@@ -3,7 +3,8 @@ import isPlainObject from 'lodash/isPlainObject'
 import { IClient } from '~/interfaces/client'
 import { RequestInstance, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
-import { PostClient } from './modules/post'
+import { allClientName } from './clients'
+import { PostClient } from './clients/post'
 
 export class HTTPClient {
   private _proxy: IRequestHandler
@@ -18,7 +19,7 @@ export class HTTPClient {
   }
 
   private initGetClient() {
-    const clientsName = ['post', 'note']
+    const clientsName = allClientName
 
     for (const name of clientsName) {
       Object.defineProperty(this, name, {
@@ -38,12 +39,13 @@ export class HTTPClient {
       })
     }
   }
+
   public injectClients<T extends { new (client: HTTPClient): IClient }>(
     ...Clients: T[]
   ) {
     for (const Client of Clients) {
       const cl = new Client(this)
-      Object.defineProperty(this, `_${cl.name}`, {
+      Object.defineProperty(this, `_${cl.name.toLowerCase()}`, {
         get() {
           return cl
         },
@@ -90,6 +92,7 @@ export class HTTPClient {
   }
 
   private buildRoute(manager: this): () => IRequestHandler {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     const noop = () => {}
     const methods = ['get', 'post', 'delete', 'patch', 'put']
     const reflectors = [
@@ -100,6 +103,7 @@ export class HTTPClient {
       Symbol.toPrimitive,
       Symbol.for('util.inspect.custom'),
     ]
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this
 
     return () => {
@@ -153,7 +157,7 @@ export class HTTPClient {
         },
         // @ts-ignore
         apply(target: any, _, args) {
-          route.push(...args.filter((x: string) => x != null)) // eslint-disable-line eqeqeq
+          route.push(...args.filter((x: string) => x !== null))
           return new Proxy(noop, handler)
         },
       }

@@ -48,6 +48,8 @@
     "prepackage": "rm -rf lib && rm -rf build && rm -rf esm",
     "release": "vv",
     "dev": "vite",
+    "build:vite": "vite build",
+    "preview": "vite preview --port 2323",
     "deploy": "vite build && gh-pages -d dist",
     "test": "jest --env=jsdom --colors --coverage test",
     "test:watch": "jest --env=jsdom --colors --coverage test --watch"

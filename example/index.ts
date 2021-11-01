@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createRestInstance } from '~/core/client'
-import { PostClient } from '~/core/modules/post'
+import { PostClient } from '~/core/clients/post'
 
 // for test
 const client = createRestInstance(axios)('https://api.innei.ren/v2')

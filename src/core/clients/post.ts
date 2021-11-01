@@ -9,7 +9,7 @@ export class PostClient implements IClient {
   base = 'posts'
 
   name = 'post'
-  getPosts(page: number = 1, perPage: number = 10) {
+  getPosts(page = 1, perPage = 10) {
     return this.client.proxy(this.base).get<PostResponse>({
       params: { page, size: perPage },
     })
