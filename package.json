@@ -13,6 +13,17 @@
       "pre-commit": "lint-staged"
     }
   },
+  "bump": {
+    "before": [
+      "git pull --rebase",
+      "pnpm i",
+      "npm run package"
+    ],
+    "after": [
+      "sh ./scripts/create-tags.sh",
+      "npm publish --access=public"
+    ]
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ./.prettierignore --write ",
@@ -44,6 +55,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-ts": "0.3.4",
     "@innei-util/prettier": "0.1.3",
+    "@innei/bump-version": "0.1.4",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.0.6",
     "@rollup/plugin-typescript": "8.3.0",
