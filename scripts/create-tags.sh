@@ -7,7 +7,7 @@ if [[ "$BRANCH" != "master" ]]; then
 fi
 
 tag=v$(json -f package.json version)
-yarn changelog
+# yarn changelog
 git add .
 git commit -a -m "release: $tag" &>/dev/null
 git push
