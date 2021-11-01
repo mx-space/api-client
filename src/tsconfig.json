@@ -6,7 +6,5 @@
     "baseUrl": ".",
     "jsx": "react"
   },
-  "include": [
-    "./**/*.ts"
-  ]
+  "include": ["./**/*.ts"]
 }
