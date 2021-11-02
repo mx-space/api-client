@@ -16,7 +16,7 @@ export class PostClient implements IClient {
   }
 
   getPost(categoryName: string, slug: string): RequestProxyResult<PostModel>
-  getPost(id: ID): RequestProxyResult<PostModel>
+  getPost(id: string): RequestProxyResult<PostModel>
   getPost(idOrCategoryName: string, slug?: string): any {
     if (arguments.length == 1) {
       return this.client.proxy(this.base)(idOrCategoryName).get<PostModel>()
