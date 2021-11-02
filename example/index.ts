@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { createRestInstance } from '~/core/client'
+import { createClient } from '~/core/client'
 import { PostClient } from '~/core/clients/post'
 
 // for test
-const client = createRestInstance(axios)('https://api.innei.ren/v2')
+const client = createClient(axios)('https://api.innei.ren/v2')
 const code = document.querySelector('#json')
 client.injectClients(PostClient)
 

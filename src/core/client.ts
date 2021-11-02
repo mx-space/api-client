@@ -1,18 +1,21 @@
 import camelcaseKeys from 'camelcase-keys'
 import isPlainObject from 'lodash/isPlainObject'
 import { IClient } from '~/interfaces/client'
-import { RequestInstance, RequestOptions } from '~/interfaces/instance'
+import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
-import { allClientName } from './clients'
+import { allClientName, NoteClient } from './clients'
 import { PostClient } from './clients/post'
 
 export class HTTPClient {
   private _proxy: IRequestHandler
   // define all clients
   post!: PostClient
+  note!: NoteClient
 
-  constructor(private _endpoint: string, private _instance: RequestInstance) {
-    this._endpoint = _endpoint.replace(/\/*$/, '')
+  constructor(private _endpoint: string, private _instance: IRequestAdapter) {
+    this._endpoint = _endpoint
+      .replace(/\/*$/, '')
+      .replace('localhost', '127.0.0.1')
     this._proxy = this.buildRoute(this)()
 
     this.initGetClient()
@@ -42,7 +45,15 @@ export class HTTPClient {
 
   public injectClients<T extends { new (client: HTTPClient): IClient }>(
     ...Clients: T[]
+  ): void
+  public injectClients<T extends { new (client: HTTPClient): IClient }>(
+    Clients: T[],
+  ): void
+  public injectClients<T extends { new (client: HTTPClient): IClient }>(
+    Clients: T[],
+    ...rest: T[]
   ) {
+    Clients = Array.isArray(Clients) ? Clients : [Clients, ...rest]
     for (const Client of Clients) {
       const cl = new Client(this)
       Object.defineProperty(this, `_${cl.name.toLowerCase()}`, {
@@ -167,9 +178,9 @@ export class HTTPClient {
   }
 }
 
-export function createRestInstance<T extends RequestInstance>(instance: T) {
+export function createClient<T extends IRequestAdapter>(adapter: T) {
   // TODO: add support other network lib
   return (endpoint: string) => {
-    return new HTTPClient(endpoint, instance)
+    return new HTTPClient(endpoint, adapter)
   }
 }

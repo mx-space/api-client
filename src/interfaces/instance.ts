@@ -6,7 +6,7 @@ export interface RequestOptions {
   [key: string]: any
 }
 
-export interface RequestInstance {
+export interface IRequestAdapter {
   get<P = unknown>(url: string, options?: RequestOptions): Promise<P>
 
   post<P = unknown>(url: string, options?: RequestOptions): Promise<P>
