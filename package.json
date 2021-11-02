@@ -57,7 +57,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-ts": "latest",
     "@innei-util/prettier": "latest",
-    "@innei/bump-version": "0.1.4",
+    "@innei/bump-version": "0.1.5",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.0.6",
     "@rollup/plugin-typescript": "8.3.0",
