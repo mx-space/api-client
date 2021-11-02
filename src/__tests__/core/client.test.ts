@@ -2,6 +2,7 @@ import axios from 'axios'
 import { createClient } from '~/core'
 import { allClientName, allClients, PostClient } from '~/core/clients'
 
+// axios wrapper test
 const generateClient = () => createClient(axios)('http://127.0.0.1:2323')
 describe('test client', () => {
   it('should create new client with axios', () => {

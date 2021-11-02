@@ -1,10 +1,12 @@
 import camelcaseKeys from 'camelcase-keys'
-import isPlainObject from 'lodash/isPlainObject'
 import { IClient } from '~/interfaces/client'
 import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
+import { isPlainObject } from '~/utils'
+import { attachRequestMethod } from './attachRequest'
 import { allClientName, NoteClient } from './clients'
 import { PostClient } from './clients/post'
+import { RequestError } from './error'
 
 export class HTTPClient {
   private _proxy: IRequestHandler
@@ -19,6 +21,8 @@ export class HTTPClient {
     this._proxy = this.buildRoute(this)()
 
     this.initGetClient()
+
+    attachRequestMethod(this)
   }
 
   private initGetClient() {
@@ -74,19 +78,6 @@ export class HTTPClient {
     return this._instance
   }
 
-  public get(path: string, params?: any) {
-    return this._instance.get(this.resolveFullPath(path), {
-      params,
-    })
-  }
-
-  private resolveFullPath(path: string) {
-    if (!path.startsWith('/')) {
-      path = '/' + path
-    }
-    return `${this._endpoint}${path}`
-  }
-
   public request(options: {
     url: string
     method?: string
@@ -100,6 +91,13 @@ export class HTTPClient {
 
   public get proxy() {
     return this._proxy
+  }
+
+  public resolveFullPath(path: string) {
+    if (!path.startsWith('/')) {
+      path = '/' + path
+    }
+    return `${this.endpoint}${path}`
   }
 
   private buildRoute(manager: this): () => IRequestHandler {
@@ -127,12 +125,27 @@ export class HTTPClient {
             return async (options: RequestOptions) => {
               const url = that.resolveFullPath(route.join('/'))
               route.length = 0
-
-              const res = await manager.request({
-                method: name,
-                ...options,
-                url,
-              })
+              let res: any
+              try {
+                res = await manager.request({
+                  method: name,
+                  ...options,
+                  url,
+                })
+              } catch (e: any) {
+                throw new RequestError(
+                  e.message,
+                  e.code ||
+                    e.status ||
+                    e.statusCode ||
+                    e.response?.status ||
+                    e.response?.statusCode ||
+                    e.response?.code ||
+                    500,
+                  url,
+                  e,
+                )
+              }
 
               const data = res.data
               if (!data) {
@@ -141,16 +154,7 @@ export class HTTPClient {
 
               const transform =
                 Array.isArray(data) || isPlainObject(data)
-                  ? (() => {
-                      const transform = camelcaseKeys(data, { deep: true })
-
-                      return {
-                        ...transform,
-                        get data() {
-                          return transform.data ?? transform
-                        },
-                      }
-                    })()
+                  ? camelcaseKeys(data, { deep: true })
                   : data
 
               Object.defineProperty(transform, 'raw', {
@@ -160,6 +164,7 @@ export class HTTPClient {
                 enumerable: false,
                 configurable: false,
               })
+
               return transform
             }
           }

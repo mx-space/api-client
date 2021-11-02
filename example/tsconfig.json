@@ -2,9 +2,19 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "noImplicitAny": true,
+    "types": [
+      "react/next",
+      "react-dom/next"
+    ],
+    "jsx": "preserve",
     "paths": {
-      "~/*": ["../src/*"],
-      "~": ["../src"]
+      "~/*": [
+        "../src/*"
+      ],
+      "~": [
+        "../src"
+      ]
     }
   }
 }
