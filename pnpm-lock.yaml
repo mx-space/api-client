@@ -11,7 +11,7 @@ specifiers:
   '@types/lodash': 4.14.176
   '@types/node': 16.11.6
   '@types/react': 17.0.34
-  '@types/react-dom': 17.0.10
+  '@types/react-dom': 17.0.11
   '@zerollup/ts-transform-paths': 1.7.18
   axios: 0.24.0
   camelcase-keys: 7.0.1
@@ -50,7 +50,7 @@ devDependencies:
   '@types/lodash': 4.14.176
   '@types/node': 16.11.6
   '@types/react': 17.0.34
-  '@types/react-dom': 17.0.10
+  '@types/react-dom': 17.0.11
   '@zerollup/ts-transform-paths': 1.7.18_typescript@4.4.4
   axios: 0.24.0
   dts-bundle-generator: 5.9.0
@@ -890,8 +890,8 @@ packages:
     resolution: {integrity: sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==}
     dev: true
 
-  /@types/react-dom/17.0.10:
-    resolution: {integrity: sha512-8oz3NAUId2z/zQdFI09IMhQPNgIbiP8Lslhv39DIDamr846/0spjZK0vnrMak0iB8EKb9QFTTIdg2Wj2zH5a3g==}
+  /@types/react-dom/17.0.11:
+    resolution: {integrity: sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==}
     dependencies:
       '@types/react': 17.0.34
     dev: true
