@@ -10,6 +10,21 @@ describe('test client', () => {
     expect(client).toBeDefined()
   })
 
+  test.only('client `get` method', async () => {
+    jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+      if (url === 'http://127.0.0.1:2323/a/a?foo=bar') {
+        return Promise.resolve({ data: { ok: 1 } })
+      }
+
+      return Promise.resolve({ data: null })
+    })
+
+    const client = generateClient()
+    const data = await client.proxy.a.a.get({ params: { foo: 'bar' } })
+
+    expect(data).toStrictEqual({ ok: 1 })
+  })
+
   it('should throw error if not inject other client', () => {
     const client = generateClient()
     allClientName.forEach((name) => {

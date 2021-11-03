@@ -30,6 +30,7 @@ specifiers:
   rollup-plugin-peer-deps-external: 2.2.4
   rollup-plugin-terser: 7.0.2
   ts-jest: 27.0.7
+  tsconfig-replace-paths: 0.0.10
   tslib: 2.3.1
   ttypescript: 1.5.12
   typescript: 4.4.4
@@ -68,6 +69,7 @@ devDependencies:
   rollup-plugin-peer-deps-external: 2.2.4_rollup@2.59.0
   rollup-plugin-terser: 7.0.2_rollup@2.59.0
   ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
+  tsconfig-replace-paths: 0.0.10
   tslib: 2.3.1
   ttypescript: 1.5.12_typescript@4.4.4
   typescript: 4.4.4
@@ -833,6 +835,13 @@ packages:
     resolution: {integrity: sha512-c5ciR06jK8u9BstrmJyO97m+klJrrhCf9u3rLu3DEAJBirxRqSCvDQoYKmxuYwQI5SZChAWu+tq9oVlGRuzPAg==}
     dev: true
 
+  /@types/glob/7.2.0:
+    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+    dependencies:
+      '@types/minimatch': 3.0.5
+      '@types/node': 16.11.6
+    dev: true
+
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
@@ -872,6 +881,10 @@ packages:
 
   /@types/lodash/4.14.176:
     resolution: {integrity: sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==}
+    dev: true
+
+  /@types/minimatch/3.0.5:
+    resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: true
 
   /@types/node/16.11.6:
@@ -1532,6 +1545,10 @@ packages:
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+    dev: true
+
+  /commander/3.0.2:
+    resolution: {integrity: sha512-Gar0ASD4BDyKC4hl4DwHqDrmvjoxWKZigVnAbn5H1owvm4CxCPdb0HQDehwNYMJpla5+M2tPmPARzhtYuwpHow==}
     dev: true
 
   /commander/4.1.1:
@@ -2504,6 +2521,20 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
+    dev: true
+
+  /globby/10.0.2:
+    resolution: {integrity: sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@types/glob': 7.2.0
+      array-union: 2.1.0
+      dir-glob: 3.0.1
+      fast-glob: 3.2.7
+      glob: 7.1.7
+      ignore: 5.1.8
+      merge2: 1.4.1
+      slash: 3.0.0
     dev: true
 
   /globby/11.0.4:
@@ -4685,6 +4716,15 @@ packages:
       json5: 1.0.1
       minimist: 1.2.5
       strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-replace-paths/0.0.10:
+    resolution: {integrity: sha512-yg5VDsg7bsau03CygHQa491ag1lTtq7Owt9XW98o5V0eyLh2gVzEZQKT2owqM/I7SCwnzo3ko3N9XpnBvJZ3rg==}
+    hasBin: true
+    dependencies:
+      commander: 3.0.2
+      globby: 10.0.2
+      json5: 2.2.0
     dev: true
 
   /tslib/1.14.1:

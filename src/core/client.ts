@@ -84,9 +84,10 @@ export class HTTPClient {
     data?: any
     params?: any
   }) {
-    return (this._instance as any)[
-      String(options.method || 'get').toLowerCase()
-    ](options.url, options)
+    return (this as any)[String(options.method || 'get').toLowerCase()](
+      options.url,
+      options,
+    )
   }
 
   public get proxy() {
