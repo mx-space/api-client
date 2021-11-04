@@ -10,19 +10,36 @@ describe('test client', () => {
     expect(client).toBeDefined()
   })
 
-  test.only('client `get` method', async () => {
-    jest.spyOn(axios, 'get').mockImplementation((url, config) => {
-      if (url === 'http://127.0.0.1:2323/a/a?foo=bar') {
-        return Promise.resolve({ data: { ok: 1 } })
-      }
+  describe('client `get` method', () => {
+    test('case 1', async () => {
+      jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+        if (url === 'http://127.0.0.1:2323/a/a?foo=bar') {
+          return Promise.resolve({ data: { ok: 1 } })
+        }
 
-      return Promise.resolve({ data: null })
+        return Promise.resolve({ data: null })
+      })
+
+      const client = generateClient()
+      const data = await client.proxy.a.a.get({ params: { foo: 'bar' } })
+
+      expect(data).toStrictEqual({ ok: 1 })
     })
 
-    const client = generateClient()
-    const data = await client.proxy.a.a.get({ params: { foo: 'bar' } })
+    test('case 2', async () => {
+      jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+        if (url === 'http://127.0.0.1:2323/a/a') {
+          return Promise.resolve({ data: { ok: 1 } })
+        }
 
-    expect(data).toStrictEqual({ ok: 1 })
+        return Promise.resolve({ data: null })
+      })
+
+      const client = generateClient()
+      const data = await client.proxy.a.a.get()
+
+      expect(data).toStrictEqual({ ok: 1 })
+    })
   })
 
   it('should throw error if not inject other client', () => {

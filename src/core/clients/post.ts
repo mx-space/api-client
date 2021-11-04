@@ -9,13 +9,29 @@ export class PostClient implements IClient {
   base = 'posts'
 
   name = 'post'
+
+  /**
+   * 获取文章列表分页
+   * @param page
+   * @param perPage
+   * @returns
+   */
   getPosts(page = 1, perPage = 10) {
     return this.client.proxy(this.base).get<PostResponse>({
       params: { page, size: perPage },
     })
   }
 
+  /**
+   * 根据分类和路径查找文章
+   * @param categoryName
+   * @param slug
+   */
   getPost(categoryName: string, slug: string): RequestProxyResult<PostModel>
+  /**
+   * 根据 ID 查找文章
+   * @param id
+   */
   getPost(id: string): RequestProxyResult<PostModel>
   getPost(idOrCategoryName: string, slug?: string): any {
     if (arguments.length == 1) {

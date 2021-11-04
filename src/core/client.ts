@@ -84,7 +84,7 @@ export class HTTPClient {
     data?: any
     params?: any
   }) {
-    return (this as any)[String(options.method || 'get').toLowerCase()](
+    return (this as any)['$$' + String(options.method || 'get').toLowerCase()](
       options.url,
       options,
     )
@@ -94,7 +94,7 @@ export class HTTPClient {
     return this._proxy
   }
 
-  public resolveFullPath(path: string) {
+  private resolveFullPath(path: string) {
     if (!path.startsWith('/')) {
       path = '/' + path
     }

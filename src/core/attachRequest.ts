@@ -1,7 +1,7 @@
 import type { HTTPClient } from '.'
 
 export function attachRequestMethod<T extends HTTPClient>(target: T) {
-  Object.defineProperty(target, 'get', {
+  Object.defineProperty(target, '$$get', {
     value: function (url: string, options?: any) {
       // HINT: method get only accept search params;
       const { params = {} } = options
@@ -11,11 +11,11 @@ export function attachRequestMethod<T extends HTTPClient>(target: T) {
     },
   })
 
-  // Object.defineProperty(target, 'post', {
-  //   value: function (path: string, options?: any) {
-  //     return target.instance.post(resolveFullPath(path), options)
-  //   },
-  // })
+  Object.defineProperty(target, '$$post', {
+    value: function (path: string, options?: any) {
+      return target.instance.post(path, options)
+    },
+  })
 }
 
 function handleSearchParams(obj: any) {
