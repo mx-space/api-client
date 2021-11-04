@@ -30,7 +30,7 @@ specifiers:
   rollup-plugin-peer-deps-external: 2.2.4
   rollup-plugin-terser: 7.0.2
   ts-jest: 27.0.7
-  tsconfig-replace-paths: 0.0.10
+  tsconfig-replace-paths: 0.0.11
   tslib: 2.3.1
   ttypescript: 1.5.12
   typescript: 4.4.4
@@ -69,7 +69,7 @@ devDependencies:
   rollup-plugin-peer-deps-external: 2.2.4_rollup@2.59.0
   rollup-plugin-terser: 7.0.2_rollup@2.59.0
   ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
-  tsconfig-replace-paths: 0.0.10
+  tsconfig-replace-paths: 0.0.11
   tslib: 2.3.1
   ttypescript: 1.5.12_typescript@4.4.4
   typescript: 4.4.4
@@ -4718,8 +4718,8 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tsconfig-replace-paths/0.0.10:
-    resolution: {integrity: sha512-yg5VDsg7bsau03CygHQa491ag1lTtq7Owt9XW98o5V0eyLh2gVzEZQKT2owqM/I7SCwnzo3ko3N9XpnBvJZ3rg==}
+  /tsconfig-replace-paths/0.0.11:
+    resolution: {integrity: sha512-BX10vOJL/kTZExQwj22FJgxCpneNYKfXvujBKGFpnvaKWl4/9Cpd678ZvKF+CX5NdxbKphscwtc8QzFA7zhVsA==}
     hasBin: true
     dependencies:
       commander: 3.0.2
