@@ -1,3 +1,3 @@
 export * from './client'
-export * from './clients'
+export * from './controllers'
 export * from './error'

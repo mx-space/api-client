@@ -1,6 +1,10 @@
 import axios from 'axios'
 import { createClient } from '~/core'
-import { allClientName, allClients, PostClient } from '~/core/clients'
+import {
+  allContollerNames,
+  allControllers,
+  PostController,
+} from '~/core/controllers'
 
 // axios wrapper test
 const generateClient = () => createClient(axios)('http://127.0.0.1:2323')
@@ -44,7 +48,7 @@ describe('test client', () => {
 
   it('should throw error if not inject other client', () => {
     const client = generateClient()
-    allClientName.forEach((name) => {
+    allContollerNames.forEach((name) => {
       expect(() => (client as any)[name].name).toThrow(
         name.charAt(0).toUpperCase() +
           name.slice(1) +
@@ -56,8 +60,8 @@ describe('test client', () => {
   it('should work if inject client', () => {
     const client = generateClient()
 
-    client.injectClients(allClients)
-    allClientName.forEach((name) => {
+    client.injectControllers(allControllers)
+    allContollerNames.forEach((name) => {
       expect(() => (client as any)[name].name).toBeDefined()
     })
   })
@@ -65,7 +69,7 @@ describe('test client', () => {
   it('should inject single client worked', () => {
     const client = generateClient()
 
-    client.injectClients(PostClient)
+    client.injectControllers(PostController)
     expect(client.post.name).toBeDefined()
   })
 })

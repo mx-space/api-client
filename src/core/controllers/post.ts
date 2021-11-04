@@ -1,14 +1,18 @@
-import { IClient } from '~/interfaces/client'
+import { IController } from '~/interfaces/controller'
 import { RequestProxyResult } from '~/interfaces/request'
 import { PostModel, PostResponse } from '~/models/post'
 import { HTTPClient } from '../client'
 
-export class PostClient implements IClient {
+export class PostController implements IController {
   constructor(private client: HTTPClient) {}
 
   base = 'posts'
 
   name = 'post'
+
+  private get proxy() {
+    return this.client.proxy(this.base)
+  }
 
   /**
    * 获取文章列表分页
@@ -17,7 +21,7 @@ export class PostClient implements IClient {
    * @returns
    */
   getPosts(page = 1, perPage = 10) {
-    return this.client.proxy(this.base).get<PostResponse>({
+    return this.proxy.get<PostResponse>({
       params: { page, size: perPage },
     })
   }
@@ -35,11 +39,23 @@ export class PostClient implements IClient {
   getPost(id: string): RequestProxyResult<PostModel>
   getPost(idOrCategoryName: string, slug?: string): any {
     if (arguments.length == 1) {
-      return this.client.proxy(this.base)(idOrCategoryName).get<PostModel>()
+      return this.proxy(idOrCategoryName).get<PostModel>()
     } else {
-      return this.client
-        .proxy(this.base)(idOrCategoryName)(slug)
-        .get<PostModel>()
+      return this.proxy(idOrCategoryName)(slug).get<PostModel>()
     }
+  }
+
+  /**
+   * 获取最新的文章
+   */
+  getLatest() {
+    return this.proxy.latest.get<PostModel>()
+  }
+
+  /**
+   * 点赞
+   */
+  thumbsUp(id: string) {
+    return this.proxy('_thumbs-up').get<void>({ params: { id } })
   }
 }

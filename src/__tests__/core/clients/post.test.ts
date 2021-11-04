@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { createClient } from '~/core'
-import { PostClient } from '~/core/clients'
+import { PostController } from '~/core/controllers'
 
 jest.mock('axios')
 describe('test post client', () => {
   const client = createClient(axios)('https://api.innei.ren/v2')
-  client.injectClients(PostClient)
+  client.injectControllers(PostController)
 
   it('should get post list', async () => {
     jest.spyOn(axios, 'get').mockResolvedValue({
@@ -32,5 +32,15 @@ describe('test post client', () => {
 
     expect(data).toStrictEqual({ title: '1' })
     expect(data.raw).toBeDefined()
+  })
+
+  it('should thumbs-up post', async () => {
+    jest.spyOn(axios, 'get').mockResolvedValue({
+      data: null,
+    })
+
+    const data = await client.post.thumbsUp('1')
+
+    expect(data).toBeNull()
   })
 })

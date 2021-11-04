@@ -17,16 +17,18 @@ export function attachRequestMethod<T extends HTTPClient>(target: T) {
     },
   })
 }
-
-function handleSearchParams(obj: any) {
+// FIXME: only support string value
+function handleSearchParams(obj: URLSearchParams | Record<string, string>) {
   if (!obj && typeof obj !== 'object') {
-    throw new TypeError('params muse be object.')
+    throw new TypeError('params must be object.')
   }
 
+  if (obj instanceof URLSearchParams) {
+    return obj.toString()
+  }
   const search = new URLSearchParams()
 
   Object.entries<any>(obj).forEach(([k, v]) => {
-    // FIXME: deep level handle
     search.set(k, v)
   })
 

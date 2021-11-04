@@ -1,19 +1,24 @@
-import { RequestOptions } from './instance'
+import type { RequestOptions } from './instance'
+type NoStringIndex<T> = { [K in keyof T as string extends K ? never : K]: T[K] }
 
 export type Method = 'get' | 'delete' | 'post' | 'put' | 'patch'
 
-export interface IRequestHandler<T = RequestOptions> {
+export interface IRequestHandler {
   (id?: string): IRequestHandler
   // @ts-ignore
-  get<P = unknown>(options?: T): RequestProxyResult<P>
+  get<P = unknown>(
+    options?: Omit<NoStringIndex<RequestOptions>, 'data'>,
+  ): RequestProxyResult<P>
   // @ts-ignore
-  post<P = unknown>(options?: T): RequestProxyResult<P>
+  post<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
   // @ts-ignore
-  patch<P = unknown>(options?: T): RequestProxyResult<P>
+  patch<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
   // @ts-ignore
-  delete<P = unknown>(options?: T): RequestProxyResult<P>
+  delete<P = unknown>(
+    options?: Omit<NoStringIndex<RequestOptions>, 'data'>,
+  ): RequestProxyResult<P>
   // @ts-ignore
-  put<P = unknown>(options?: T): RequestProxyResult<P>
+  put<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
   [key: string]: IRequestHandler
 }
 

@@ -1,18 +1,18 @@
 import camelcaseKeys from 'camelcase-keys'
-import { IClient } from '~/interfaces/client'
+import { IController } from '~/interfaces/controller'
 import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { isPlainObject } from '~/utils'
 import { attachRequestMethod } from './attachRequest'
-import { allClientName, NoteClient } from './clients'
-import { PostClient } from './clients/post'
+import { allContollerNames, NoteController } from './controllers'
+import { PostController } from './controllers/post'
 import { RequestError } from './error'
 
 export class HTTPClient {
   private _proxy: IRequestHandler
   // define all clients
-  post!: PostClient
-  note!: NoteClient
+  post!: PostController
+  note!: NoteController
 
   constructor(private _endpoint: string, private _instance: IRequestAdapter) {
     this._endpoint = _endpoint
@@ -26,7 +26,7 @@ export class HTTPClient {
   }
 
   private initGetClient() {
-    const clientsName = allClientName
+    const clientsName = allContollerNames
 
     for (const name of clientsName) {
       Object.defineProperty(this, name, {
@@ -47,18 +47,18 @@ export class HTTPClient {
     }
   }
 
-  public injectClients<T extends { new (client: HTTPClient): IClient }>(
-    ...Clients: T[]
+  public injectControllers<T extends { new (client: HTTPClient): IController }>(
+    ...Controller: T[]
   ): void
-  public injectClients<T extends { new (client: HTTPClient): IClient }>(
-    Clients: T[],
+  public injectControllers<T extends { new (client: HTTPClient): IController }>(
+    Controller: T[],
   ): void
-  public injectClients<T extends { new (client: HTTPClient): IClient }>(
-    Clients: T[],
+  public injectControllers<T extends { new (client: HTTPClient): IController }>(
+    Controller: T[],
     ...rest: T[]
   ) {
-    Clients = Array.isArray(Clients) ? Clients : [Clients, ...rest]
-    for (const Client of Clients) {
+    Controller = Array.isArray(Controller) ? Controller : [Controller, ...rest]
+    for (const Client of Controller) {
       const cl = new Client(this)
       Object.defineProperty(this, `_${cl.name.toLowerCase()}`, {
         get() {
@@ -185,7 +185,6 @@ export class HTTPClient {
 }
 
 export function createClient<T extends IRequestAdapter>(adapter: T) {
-  // TODO: add support other network lib
   return (endpoint: string) => {
     return new HTTPClient(endpoint, adapter)
   }

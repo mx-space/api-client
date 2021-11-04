@@ -1,4 +1,4 @@
-export interface IClient {
+export interface IController {
   base: string
 
   name: string

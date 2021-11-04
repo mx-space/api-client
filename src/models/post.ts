@@ -21,7 +21,6 @@ export interface PostModel {
   modified: string
   created: string
   category: CategoryModel
-  datumID: string
 }
 
 export interface CategoryModel {
@@ -31,5 +30,5 @@ export interface CategoryModel {
   name: string
   slug: string
   created: Date
-  categoryID: string
+  categoryId: string
 }
