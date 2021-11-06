@@ -1,64 +1,48 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
-import ReactJson from 'react-json-view'
+import { ApiView } from 'components/ApiView'
+import React from 'react'
 import { createClient } from '~/core/client'
-import { PostController } from '~/core/controllers'
-// use the component in your app!
+import { allControllers } from '~/core/controllers'
 
+const client = createClient(axios)('https://api.innei.ren/v2')
+client.injectControllers(allControllers)
+
+axios.interceptors.response.use(
+  (r) => r,
+  (err) => {
+    console.log('err:')
+    console.dir(err)
+    return Promise.reject(err)
+  },
+)
 function App() {
   return (
     <div className="App">
-      <p>Post List</p>
-      <PostPayload1 />
+      <ApiView apiCallFn={() => client.post.getList(1, 1)} desc="Post List" />
+      <ApiView
+        apiCallFn={() =>
+          client.post.getPost(
+            'website',
+            'host-an-entire-Mix-Space-using-Docker',
+          )
+        }
+        desc="Single Post"
+      />
 
-      <p>Latest Post</p>
-      <PostPayload2 />
+      <ApiView apiCallFn={() => client.post.getLatest()} desc="Latest Post" />
+      {/* Note */}
+      <ApiView apiCallFn={() => client.note.getLatest()} desc="Latest Note" />
+      <ApiView
+        apiCallFn={() => client.note.getMiddleList('6166c860035bf29e2c32ec40')}
+        desc="Middle List of Note"
+      />
+      <ApiView
+        apiCallFn={() => client.note.likeIt('6166c860035bf29e2c32ec40')}
+        desc="Like Note"
+      />
+
+      <ApiView apiCallFn={() => client.note.getList(1, 5)} desc="Note List" />
     </div>
-  )
-}
-
-function PostPayload1() {
-  const [json, setJson] = React.useState<any>({})
-  useEffect(() => {
-    // for test
-    const client = createClient(axios)('https://api.innei.ren/v2')
-
-    client.injectControllers(PostController)
-
-    client.post
-      .getPost('website', 'host-an-entire-Mix-Space-using-Docker')
-      .then((res) => {
-        setJson(res)
-      })
-  }, [])
-
-  return (
-    <>
-      <ReactJson src={json} collapsed />
-    </>
-  )
-}
-
-function PostPayload2() {
-  const [json, setJson] = React.useState<any>({})
-  useEffect(() => {
-    // for test
-    const client = createClient(axios)('https://api.innei.ren/v2')
-
-    client.injectControllers(PostController)
-
-    client.post
-      .getLatest()
-
-      .then((res) => {
-        setJson(res)
-      })
-  }, [])
-
-  return (
-    <>
-      <ReactJson src={json} collapsed />
-    </>
   )
 }
 

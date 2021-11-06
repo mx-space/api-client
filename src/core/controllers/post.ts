@@ -1,6 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { RequestProxyResult } from '~/interfaces/request'
-import { PostModel, PostResponse } from '~/models/post'
+import { PaginateResult } from '~/models/base'
+import { PostModel } from '~/models/post'
 import { HTTPClient } from '../client'
 
 export class PostController implements IController {
@@ -20,8 +21,8 @@ export class PostController implements IController {
    * @param perPage
    * @returns
    */
-  getPosts(page = 1, perPage = 10) {
-    return this.proxy.get<PostResponse>({
+  getList(page = 1, perPage = 10) {
+    return this.proxy.get<PaginateResult<PostModel>>({
       params: { page, size: perPage },
     })
   }

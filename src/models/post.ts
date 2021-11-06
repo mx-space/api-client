@@ -1,9 +1,4 @@
-import { Count, Image, Pager } from './base'
-
-export interface PostResponse {
-  data: PostModel[]
-  pagination: Pager
-}
+import { Count, Image } from './base'
 
 export interface PostModel {
   commentsIndex: number

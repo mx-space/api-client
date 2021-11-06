@@ -14,7 +14,7 @@ describe('test post client', () => {
       },
     })
 
-    const data = await client.post.getPosts()
+    const data = await client.post.getList()
     expect(data).toEqual({ data: [] })
   })
 
