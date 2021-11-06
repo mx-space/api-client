@@ -22,13 +22,16 @@ export class NoteController implements IController {
   /**
    * 获取一篇日记
    * @param id id | nid
+   * @param password 访问密码
    */
 
-  getNoteById(id: string | number) {
+  getNoteById(id: string | number, password?: string) {
     if (typeof id === 'number') {
-      return this.proxy.nid(id.toString()).get<NoteWrappedPayload>()
+      return this.proxy.nid(id.toString()).get<NoteWrappedPayload>({
+        params: { password },
+      })
     } else {
-      return this.proxy(id).get<NoteWrappedPayload>()
+      return this.proxy(id).get<NoteWrappedPayload>({ params: { password } })
     }
   }
 

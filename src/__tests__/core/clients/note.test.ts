@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { createClient } from '~/core'
+import { createClient, RequestError } from '~/core'
 import { NoteController } from '~/core/controllers'
 
 jest.mock('axios')
@@ -68,5 +68,20 @@ describe('test note client', () => {
     const data = await client.note.likeIt('1')
 
     expect(data).toBeNull()
+  })
+
+  it('should forbidden if no password provide', async () => {
+    jest.spyOn(axios, 'get').mockRejectedValue({
+      response: {
+        data: {
+          message: 'password required',
+        },
+        status: 403,
+      },
+    })
+
+    await expect(client.note.getNoteById('1')).rejects.toThrowError(
+      RequestError,
+    )
   })
 })
