@@ -40,8 +40,18 @@ function App() {
         apiCallFn={() => client.note.likeIt('6166c860035bf29e2c32ec40')}
         desc="Like Note"
       />
-
       <ApiView apiCallFn={() => client.note.getList(1, 5)} desc="Note List" />
+
+      {/* Page */}
+      <ApiView apiCallFn={() => client.page.getList(1, 10)} desc="List Page" />
+      <ApiView
+        apiCallFn={() => client.page.getBySlug('about')}
+        desc="Get Page By Slug"
+      />
+      <ApiView
+        apiCallFn={() => client.page.getById('5e0318319332d06503619337')}
+        desc="Get Page By Id"
+      />
     </div>
   )
 }

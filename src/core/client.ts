@@ -5,6 +5,7 @@ import { IRequestHandler, Method } from '~/interfaces/request'
 import { isPlainObject } from '~/utils'
 import { attachRequestMethod } from './attachRequest'
 import { allContollerNames, NoteController } from './controllers'
+import { PageController } from './controllers/page'
 import { PostController } from './controllers/post'
 import { RequestError } from './error'
 
@@ -13,6 +14,7 @@ export class HTTPClient {
   // define all clients
   post!: PostController
   note!: NoteController
+  page!: PageController
 
   constructor(private _endpoint: string, private _instance: IRequestAdapter) {
     this._endpoint = _endpoint
