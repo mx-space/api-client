@@ -21,7 +21,7 @@ export interface Pager {
 }
 
 export interface PaginateResult<T> {
-  data: T
+  data: T[]
   pagination: Pager
 }
 
