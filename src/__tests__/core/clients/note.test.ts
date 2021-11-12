@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { createClient, RequestError } from '~/core'
 import { NoteController } from '~/core/controllers'
+import { mockResponse } from '~/__tests__/helpers/response'
 
 jest.mock('axios')
 describe('test note client', () => {
@@ -8,11 +9,9 @@ describe('test note client', () => {
   client.injectControllers(NoteController)
 
   it('should get note list', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        data: [],
-        pagination: {},
-      },
+    mockResponse('/notes', {
+      data: [],
+      pagination: {},
     })
 
     const data = await client.note.getList()
@@ -20,18 +19,16 @@ describe('test note client', () => {
   })
 
   it('should get middle list of note', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        data: [
-          {
-            id: '1',
-          },
-          {
-            id: '2',
-          },
-        ],
-        size: 2,
-      },
+    mockResponse('/notes/list/1', {
+      data: [
+        {
+          id: '1',
+        },
+        {
+          id: '2',
+        },
+      ],
+      size: 2,
     })
     const data = await client.note.getMiddleList('1')
     expect(data).toEqual({
@@ -48,22 +45,23 @@ describe('test note client', () => {
   })
 
   it('should get single note', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        title: '1',
-      },
-    })
+    mockResponse('/notes/1', { data: { title: '1' } })
 
     const data = await client.note.getNoteById('1')
 
-    expect(data).toStrictEqual({ title: '1' })
+    expect(data.data).toStrictEqual({ title: '1' })
     expect(data.raw).toBeDefined()
   })
 
+  it('should get note by nid', async () => {
+    mockResponse('/notes/nid/1', { data: { title: '1' } })
+
+    const data = await client.note.getNoteById(1)
+    expect(data.data.title).toBe('1')
+  })
+
   it('should like note', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: null,
-    })
+    mockResponse('/notes/like/1', null)
 
     const data = await client.note.likeIt('1')
 

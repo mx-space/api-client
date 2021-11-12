@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { createClient } from '~/core'
 import { PostController } from '~/core/controllers'
+import { mockResponse } from '~/__tests__/helpers/response'
 
 jest.mock('axios')
 describe('test post client', () => {
@@ -8,21 +9,15 @@ describe('test post client', () => {
   client.injectControllers(PostController)
 
   it('should get post list', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        data: [],
-      },
-    })
+    mockResponse('/posts', { data: [] })
 
     const data = await client.post.getList()
     expect(data).toEqual({ data: [] })
   })
 
   it('should get single post', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        title: '1',
-      },
+    mockResponse('/posts/website/host-an-entire-Mix-Space-using-Docker', {
+      title: '1',
     })
 
     const data = await client.post.getPost(
@@ -35,9 +30,7 @@ describe('test post client', () => {
   })
 
   it('should thumbs-up post', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: null,
-    })
+    mockResponse('/posts/_thumbs-up?id=1', null)
 
     const data = await client.post.thumbsUp('1')
 

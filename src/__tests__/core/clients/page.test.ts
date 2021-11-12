@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { createClient } from '~/core'
 import { PageController } from '~/core/controllers/page'
+import { mockResponse } from '~/__tests__/helpers/response'
 
 jest.mock('axios')
 describe('test page client', () => {
@@ -8,22 +9,17 @@ describe('test page client', () => {
   client.injectControllers(PageController)
 
   it('should get page list', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        data: [],
-        pagination: {},
-      },
+    mockResponse('/pages?size=10&page=1', {
+      data: [],
+      pagination: {},
     })
-
     const data = await client.page.getList()
     expect(data).toEqual({ data: [], pagination: {} })
   })
 
   it('should get single page', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({
-      data: {
-        title: '1',
-      },
+    mockResponse('/pages/1', {
+      title: '1',
     })
 
     const data = await client.page.getById('1')
