@@ -18,6 +18,12 @@ describe('test note client', () => {
     expect(data).toEqual({ data: [], pagination: {} })
   })
 
+  it('should get latest note', async () => {
+    mockResponse('/notes/latest', { data: { title: '1' } })
+    const data = await client.note.getLatest()
+    expect(data.data.title).toBe('1')
+  })
+
   it('should get middle list of note', async () => {
     mockResponse('/notes/list/1', {
       data: [

@@ -27,4 +27,15 @@ describe('test page client', () => {
     expect(data).toStrictEqual({ title: '1' })
     expect(data.raw).toBeDefined()
   })
+
+  it('should get by slug', async () => {
+    mockResponse('/pages/slug/about', {
+      title: 'about',
+      text: 'about!',
+    })
+
+    const data = await client.page.getBySlug('about')
+    expect(data.title).toBe('about')
+    expect(data.text).toBe('about!')
+  })
 })

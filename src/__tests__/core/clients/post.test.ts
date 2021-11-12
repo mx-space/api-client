@@ -15,7 +15,24 @@ describe('test post client', () => {
     expect(data).toEqual({ data: [] })
   })
 
-  it('should get single post', async () => {
+  it('should get latest post', async () => {
+    mockResponse('/posts/latest', { title: '1' })
+    const data = await client.post.getLatest()
+    expect(data.title).toBe('1')
+  })
+
+  it('should get single post by id', async () => {
+    mockResponse('/posts/613c91d0326cfffc61923ea2', {
+      title: '1',
+    })
+
+    const data = await client.post.getPost('613c91d0326cfffc61923ea2')
+
+    expect(data).toStrictEqual({ title: '1' })
+    expect(data.raw).toBeDefined()
+  })
+
+  it('should get single post by slug and category', async () => {
     mockResponse('/posts/website/host-an-entire-Mix-Space-using-Docker', {
       title: '1',
     })
