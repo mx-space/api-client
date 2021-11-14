@@ -37,10 +37,10 @@ export class AggregateController implements IController {
     type?: TimelineType
     year?: number
   }) {
-    const { sort = 'asc', type, year } = options || {}
-    return this.proxy.timeline.get<TimelineData>({
+    const { sort, type, year } = options || {}
+    return this.proxy.timeline.get<{ data: TimelineData }>({
       params: {
-        sort: sortOrderToNumber(sort),
+        sort: sort && sortOrderToNumber(sort),
         type,
         year,
       },
