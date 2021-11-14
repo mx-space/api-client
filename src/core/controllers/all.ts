@@ -1,13 +1,15 @@
+import { AggregateController } from './aggregate'
 import { CommentController } from './comment'
 import { NoteController } from './note'
 import { PageController } from './page'
 import { PostController } from './post'
 
 export const allControllers = [
-  NoteController,
-  PostController,
-  PageController,
+  AggregateController,
   CommentController,
+  NoteController,
+  PageController,
+  PostController,
 ]
 
 // export const allClientName = allClients.map((c) =>
@@ -15,6 +17,18 @@ export const allControllers = [
 // )
 // Why not code like before
 // In order to tree shake unnecessary client
-export const allContollerNames = ['note', 'post', 'page', 'comment']
+export const allContollerNames = [
+  'aggregate',
+  'comment',
+  'note',
+  'page',
+  'post',
+]
 
-export { NoteController, PostController, PageController, CommentController }
+export {
+  AggregateController,
+  CommentController,
+  NoteController,
+  PageController,
+  PostController,
+}

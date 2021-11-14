@@ -29,6 +29,12 @@ function handleSearchParams(obj: URLSearchParams | Record<string, string>) {
   const search = new URLSearchParams()
 
   Object.entries<any>(obj).forEach(([k, v]) => {
+    if (
+      typeof v === 'undefined' ||
+      Object.prototype.toString.call(v) === '[object Null]'
+    ) {
+      return
+    }
     search.set(k, v)
   })
 

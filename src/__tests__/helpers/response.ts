@@ -3,7 +3,7 @@ import { URLSearchParams } from 'url'
 
 export const buildResponseDataWrapper = (data: any) => ({ data })
 
-export const mockResponse = (path: string, data: any, method = 'get') => {
+export const mockResponse = <T>(path: string, data: T, method = 'get') => {
   const $url = new URL(
     path.startsWith('http')
       ? path
@@ -27,6 +27,8 @@ export const mockResponse = (path: string, data: any, method = 'get') => {
       })
     }
   })
+
+  return data
 }
 
 const isSearchEqual = (a: URLSearchParams, b: URLSearchParams) => {

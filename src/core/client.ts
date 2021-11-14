@@ -4,10 +4,14 @@ import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { isPlainObject } from '~/utils'
 import { attachRequestMethod } from './attachRequest'
-import { allContollerNames, NoteController } from './controllers'
-import { CommentController } from './controllers/comment'
-import { PageController } from './controllers/page'
-import { PostController } from './controllers/post'
+import {
+  AggregateController,
+  allContollerNames,
+  CommentController,
+  NoteController,
+  PageController,
+  PostController,
+} from './controllers'
 import { RequestError } from './error'
 
 export class HTTPClient {
@@ -17,6 +21,7 @@ export class HTTPClient {
   note!: NoteController
   page!: PageController
   comment!: CommentController
+  aggregate!: AggregateController
 
   constructor(private _endpoint: string, private _instance: IRequestAdapter) {
     this._endpoint = _endpoint
