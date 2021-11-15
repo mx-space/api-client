@@ -52,6 +52,28 @@ function App() {
         apiCallFn={() => client.page.getById('5e0318319332d06503619337')}
         desc="Get Page By Id"
       />
+
+      {/* Aggregate */}
+
+      <ApiView
+        apiCallFn={() => client.aggregate.getAggregateData()}
+        desc="Get Aggregate Data"
+      />
+
+      <ApiView apiCallFn={() => client.aggregate.getStat()} desc="Get Stat" />
+      <ApiView apiCallFn={() => client.aggregate.getTop()} desc="Get Top" />
+
+      <ApiView
+        apiCallFn={() => client.aggregate.getTimeline()}
+        desc="Get Timeline"
+      />
+
+      {/* Say */}
+
+      <ApiView
+        apiCallFn={() => client.say.getAllPaginated(1, 3)}
+        desc="Get Say Paginated"
+      />
     </div>
   )
 }

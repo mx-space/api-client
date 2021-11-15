@@ -4,9 +4,9 @@ import { TimelineType } from '~/models/aggregate'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 
-describe('test  aggregate controller', () => {
+describe('test aggregate client', () => {
   const client = mockRequestInstance(AggregateController)
-  test('get /aggregate', async () => {
+  test('GET /aggregate', async () => {
     const mocked = mockResponse(
       '/aggregate',
       // https://api.innei.ren/v2/aggregate
@@ -131,7 +131,7 @@ describe('test  aggregate controller', () => {
     expect(data.lastestNoteNid).toEqual(mocked.lastest_note_nid)
   })
 
-  test('get /aggregate/top', async () => {
+  test('GET /aggregate/top', async () => {
     const mocked = mockResponse(
       '/aggregate/top', // 20211114224602
       // https://api.innei.ren/v2/aggregate/top
@@ -297,7 +297,7 @@ describe('test  aggregate controller', () => {
     expect(data.notes.length).toEqual(1)
   })
 
-  test('get /timeline', async () => {
+  test('GET /timeline', async () => {
     const mocked = mockResponse('/aggregate/timeline', {
       data: {
         posts: [
@@ -336,7 +336,7 @@ describe('test  aggregate controller', () => {
     expect(data.data.notes).toBeDefined()
   })
 
-  test('get /timeline', async () => {
+  test('GET /timeline', async () => {
     const mocked = mockResponse('/aggregate/timeline?type=1', {
       data: {
         notes: [
@@ -357,7 +357,7 @@ describe('test  aggregate controller', () => {
     expect(data.data.posts).toBeUndefined()
   })
 
-  test('get /stat', async () => {
+  test('GET /stat', async () => {
     const mocked = mockResponse('/aggregate/stat', {
       all_comments: 464,
       categories: 6,

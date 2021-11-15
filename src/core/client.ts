@@ -12,18 +12,24 @@ import {
   PageController,
   PostController,
 } from './controllers'
+import { SayController } from './controllers/say'
 import { RequestError } from './error'
 
-export class HTTPClient {
-  private _proxy: IRequestHandler
-  // define all clients
+class HTTPControllerModule {
   post!: PostController
   note!: NoteController
   page!: PageController
   comment!: CommentController
   aggregate!: AggregateController
+  say!: SayController
+}
+
+export class HTTPClient extends HTTPControllerModule {
+  private _proxy: IRequestHandler
+  // define all clients
 
   constructor(private _endpoint: string, private _instance: IRequestAdapter) {
+    super()
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')

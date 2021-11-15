@@ -3,6 +3,7 @@ import { CommentController } from './comment'
 import { NoteController } from './note'
 import { PageController } from './page'
 import { PostController } from './post'
+import { SayController } from './say'
 
 export const allControllers = [
   AggregateController,
@@ -10,6 +11,7 @@ export const allControllers = [
   NoteController,
   PageController,
   PostController,
+  SayController,
 ]
 
 // export const allClientName = allClients.map((c) =>
@@ -23,6 +25,7 @@ export const allContollerNames = [
   'note',
   'page',
   'post',
+  'say',
 ]
 
 export {
@@ -31,4 +34,5 @@ export {
   NoteController,
   PageController,
   PostController,
+  SayController,
 }

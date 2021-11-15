@@ -1,15 +1,8 @@
 import { IController } from '~/interfaces/controller'
-import { IRequestHandler } from '~/interfaces/request'
 import { SayModel } from '~/models/say'
 import { HTTPClient } from '..'
+import { BaseCrudController } from './base'
 
-class BaseCrudController<T> {
-  proxy!: IRequestHandler
-  getById(id: string) {
-    return this.proxy(id).get<T>()
-  }
-}
-// @ts-expect-error
 export class SayController
   extends BaseCrudController<SayModel>
   implements IController
@@ -17,10 +10,10 @@ export class SayController
   base = 'says'
   name = 'say'
 
-  constructor(private client: HTTPClient) {
-    super()
+  constructor(protected client: HTTPClient) {
+    super(client)
   }
-  // @ts-expect-error
+
   protected get proxy() {
     return this.client.proxy(this.base)
   }
