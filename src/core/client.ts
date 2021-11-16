@@ -7,6 +7,7 @@ import { attachRequestMethod } from './attachRequest'
 import {
   AggregateController,
   allContollerNames,
+  CategoryController,
   CommentController,
   NoteController,
   PageController,
@@ -16,11 +17,12 @@ import { SayController } from './controllers/say'
 import { RequestError } from './error'
 
 class HTTPControllerModule {
-  post!: PostController
+  aggregate!: AggregateController
+  category!: CategoryController
+  comment!: CommentController
   note!: NoteController
   page!: PageController
-  comment!: CommentController
-  aggregate!: AggregateController
+  post!: PostController
   say!: SayController
 }
 

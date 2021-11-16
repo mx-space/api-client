@@ -1,4 +1,5 @@
 import { AggregateController } from './aggregate'
+import { CategoryController } from './category'
 import { CommentController } from './comment'
 import { NoteController } from './note'
 import { PageController } from './page'
@@ -7,6 +8,7 @@ import { SayController } from './say'
 
 export const allControllers = [
   AggregateController,
+  CategoryController,
   CommentController,
   NoteController,
   PageController,
@@ -21,6 +23,7 @@ export const allControllers = [
 // In order to tree shake unnecessary client
 export const allContollerNames = [
   'aggregate',
+  'category',
   'comment',
   'note',
   'page',
@@ -30,6 +33,7 @@ export const allContollerNames = [
 
 export {
   AggregateController,
+  CategoryController,
   CommentController,
   NoteController,
   PageController,
