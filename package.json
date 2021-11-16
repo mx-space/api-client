@@ -70,7 +70,7 @@
     "@zerollup/ts-transform-paths": "1.7.18",
     "axios": "0.24.0",
     "dts-bundle-generator": "5.9.0",
-    "esbuild": "0.13.13",
+    "esbuild": "0.13.14",
     "gh-pages": "3.2.3",
     "husky": "7.0.4",
     "jest": "27.3.1",
