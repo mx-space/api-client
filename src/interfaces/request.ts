@@ -25,4 +25,9 @@ export interface IRequestHandler {
 export type RequestProxyResult<
   T,
   R = { data: T; [key: string]: any },
-> = Promise<T & { raw: R }>
+> = Promise<ResponseProxyExtraRaw<T, R>>
+
+export type ResponseProxyExtraRaw<T, R = any> = T & {
+  raw: R
+  request: { path: string; method: string; [k: string]: string }
+}

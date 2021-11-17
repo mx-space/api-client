@@ -29,10 +29,25 @@ export const destructureData = (payload: any) => {
   if (dataIsPlainObject && Object.keys(payload).length === 1) {
     const d = Object.assign({}, data)
     // attach raw onto new data
-    payload.raw &&
-      Object.defineProperty(d, 'raw', { value: payload.raw, enumerable: false })
+    attachRawFromOneToAnthor(payload, d)
     return d
   }
 
   return payload
+}
+
+export const attachRawFromOneToAnthor = (from: any, to: any) => {
+  if (!from) {
+    return
+  }
+  from.raw &&
+    Object.defineProperty(to, 'raw', {
+      value: { ...from.raw },
+      enumerable: false,
+    })
+  from.request &&
+    Object.defineProperty(to, 'request', {
+      value: { ...from.request },
+      enumerable: false,
+    })
 }

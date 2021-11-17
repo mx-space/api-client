@@ -183,6 +183,19 @@ export class HTTPClient extends HTTPControllerModule {
                 configurable: false,
               })
 
+              // attach request config onto response
+
+              Object.defineProperty(transform, 'request', {
+                get() {
+                  return {
+                    url,
+                    method: name,
+                    options,
+                  }
+                },
+                enumerable: false,
+              })
+
               return transform
             }
           }

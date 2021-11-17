@@ -1,12 +1,14 @@
 import { IController } from '~/interfaces/controller'
+import { ResponseProxyExtraRaw } from '~/interfaces/request'
 import {
+  CategoryEntries,
   CategoryType,
   CategoryWithChildrenModel,
   TagModel,
 } from '~/models/category'
 import { CategoryModel, PostModel } from '~/models/post'
-import { destructureData } from '~/utils'
-import { HTTPClient } from '..'
+import { attachRawFromOneToAnthor, destructureData } from '~/utils'
+import { HTTPClient, RequestError } from '..'
 
 export class CategoryController implements IController {
   name = 'category'
@@ -33,24 +35,46 @@ export class CategoryController implements IController {
     })
   }
 
-  async getCategoryDetail(id: string): Promise<CategoryWithChildrenModel>
+  async getCategoryDetail(
+    id: string,
+  ): Promise<ResponseProxyExtraRaw<CategoryWithChildrenModel>>
   async getCategoryDetail(
     ids: string[],
-  ): Promise<{ data: CategoryWithChildrenModel[] }>
+  ): Promise<ResponseProxyExtraRaw<Map<string, CategoryWithChildrenModel>>>
   async getCategoryDetail(ids: string | string[]): Promise<any> {
     if (typeof ids === 'string') {
-      const data = await this.proxy.get<{ data: CategoryWithChildrenModel[] }>({
+      const data = await this.proxy.get<CategoryEntries>({
         params: {
           ids: ids,
         },
       })
-      return data.data[0]
+      const result = Object.values(data.entries)[0]
+      attachRawFromOneToAnthor(data, result)
+      return result
     } else if (Array.isArray(ids)) {
-      return this.proxy.get<{ data: CategoryWithChildrenModel[] }>({
+      // TODO: backend:  re-design data structure
+
+      const data = await this.proxy.get<CategoryEntries>({
         params: {
           ids: ids.join(','),
         },
       })
+      const entries = data?.entries
+      if (!entries) {
+        throw new RequestError(
+          'data structure error',
+          500,
+          data.request.path,
+          data,
+        )
+      }
+
+      const map = new Map<string, CategoryWithChildrenModel>(
+        Object.entries(entries).map(([id, value]) => [id.toLowerCase(), value]),
+      )
+
+      attachRawFromOneToAnthor(data, map)
+      return map
     }
   }
 
