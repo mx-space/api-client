@@ -52,8 +52,6 @@ export class CategoryController implements IController {
       attachRawFromOneToAnthor(data, result)
       return result
     } else if (Array.isArray(ids)) {
-      // TODO: backend:  re-design data structure
-
       const data = await this.proxy.get<CategoryEntries>({
         params: {
           ids: ids.join(','),
