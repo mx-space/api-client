@@ -27,7 +27,7 @@ export class UserController implements IController {
   }
 
   checkTokenValid(token: string) {
-    return this.proxy.check_logged.post<{ ok: number; isGuest: boolean }>({
+    return this.proxy.check_logged.get<{ ok: number; isGuest: boolean }>({
       params: {
         token,
       },

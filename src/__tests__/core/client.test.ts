@@ -43,6 +43,21 @@ describe('test client', () => {
       const data = await client.proxy.a.a.get()
 
       expect(data).toStrictEqual({ ok: 1 })
+
+      {
+        jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+          if (url === 'http://127.0.0.1:2323/a/b') {
+            return Promise.resolve({ data: { ok: 1 } })
+          }
+
+          return Promise.resolve({ data: null })
+        })
+
+        const client = generateClient()
+        const data = await client.proxy.a.b.get()
+
+        expect(data).toStrictEqual({ ok: 1 })
+      }
     })
   })
 

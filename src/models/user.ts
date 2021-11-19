@@ -26,5 +26,9 @@ export type TLogin = {
   token: string
   expiresIn: number
   // 登陆足迹
-  footstep: Record<string, string | Date>
-} & Pick<UserModel, 'name' | 'username' | 'created' | 'url' | 'mail' | 'avatar'>
+  lastLoginTime: null | string
+  lastLoginIp?: null | string
+} & Pick<
+  UserModel,
+  'name' | 'username' | 'created' | 'url' | 'mail' | 'avatar' | 'id'
+>

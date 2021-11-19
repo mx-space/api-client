@@ -18,4 +18,8 @@ export class HTTPControllerDefine {
   post!: PostController
   say!: SayController
   user!: UserController
+
+  get master() {
+    return this.user
+  }
 }
