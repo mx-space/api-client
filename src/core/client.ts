@@ -4,29 +4,11 @@ import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { isPlainObject } from '~/utils'
 import { attachRequestMethod } from './attachRequest'
-import {
-  AggregateController,
-  allContollerNames,
-  CategoryController,
-  CommentController,
-  NoteController,
-  PageController,
-  PostController,
-} from './controllers'
-import { SayController } from './controllers/say'
+import { allContollerNames } from './controllers'
+import { HTTPControllerDefine } from './define'
 import { RequestError } from './error'
 
-class HTTPControllerModule {
-  aggregate!: AggregateController
-  category!: CategoryController
-  comment!: CommentController
-  note!: NoteController
-  page!: PageController
-  post!: PostController
-  say!: SayController
-}
-
-export class HTTPClient extends HTTPControllerModule {
+export class HTTPClient extends HTTPControllerDefine {
   private _proxy: IRequestHandler
   // define all clients
 
