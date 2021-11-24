@@ -2,6 +2,7 @@ import {
   AggregateController,
   CategoryController,
   CommentController,
+  LinkController,
   NoteController,
   PageController,
   PostController,
@@ -13,6 +14,7 @@ export class HTTPControllerDefine {
   aggregate!: AggregateController
   category!: CategoryController
   comment!: CommentController
+  link!: LinkController
   note!: NoteController
   page!: PageController
   post!: PostController
@@ -21,5 +23,9 @@ export class HTTPControllerDefine {
 
   get master() {
     return this.user
+  }
+
+  get friend() {
+    return this.link
   }
 }
