@@ -5,6 +5,7 @@ import { LinkController } from './link'
 import { NoteController } from './note'
 import { PageController } from './page'
 import { PostController } from './post'
+import { RecentlyController } from './recently'
 import { SayController } from './say'
 import { UserController } from './user'
 
@@ -16,6 +17,7 @@ export const allControllers = [
   NoteController,
   PageController,
   PostController,
+  RecentlyController,
   SayController,
   UserController,
 ]
@@ -28,6 +30,7 @@ export const allContollerNames = [
   'note',
   'page',
   'post',
+  'recently',
   'say',
   'user',
 ]
@@ -40,6 +43,7 @@ export {
   NoteController,
   PageController,
   PostController,
+  RecentlyController,
   SayController,
   UserController,
 }

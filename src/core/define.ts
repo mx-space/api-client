@@ -6,6 +6,7 @@ import {
   NoteController,
   PageController,
   PostController,
+  RecentlyController,
   SayController,
   UserController,
 } from './controllers'
@@ -18,6 +19,7 @@ export class HTTPControllerDefine {
   note!: NoteController
   page!: PageController
   post!: PostController
+  recently!: RecentlyController
   say!: SayController
   user!: UserController
 
@@ -27,5 +29,9 @@ export class HTTPControllerDefine {
 
   get friend() {
     return this.link
+  }
+
+  get shorthand() {
+    return this.recently
   }
 }
