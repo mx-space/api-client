@@ -46,7 +46,9 @@ export class AggregateController implements IController {
       },
     })
   }
-
+  /**
+   * 获取聚合数据统计
+   */
   getStat() {
     return this.proxy.stat.get<AggregateStat>()
   }
