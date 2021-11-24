@@ -8,6 +8,7 @@ import {
   PostController,
   RecentlyController,
   SayController,
+  SearchController,
   UserController,
 } from './controllers'
 
@@ -21,6 +22,7 @@ export class HTTPControllerDefine {
   post!: PostController
   recently!: RecentlyController
   say!: SayController
+  search!: SearchController
   user!: UserController
 
   get master() {

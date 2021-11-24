@@ -7,6 +7,7 @@ import { PageController } from './page'
 import { PostController } from './post'
 import { RecentlyController } from './recently'
 import { SayController } from './say'
+import { SearchController } from './search'
 import { UserController } from './user'
 
 export const allControllers = [
@@ -19,6 +20,7 @@ export const allControllers = [
   PostController,
   RecentlyController,
   SayController,
+  SearchController,
   UserController,
 ]
 
@@ -32,6 +34,7 @@ export const allContollerNames = [
   'post',
   'recently',
   'say',
+  'search',
   'user',
 ]
 
@@ -45,5 +48,6 @@ export {
   PostController,
   RecentlyController,
   SayController,
+  SearchController,
   UserController,
 }
