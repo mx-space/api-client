@@ -56,7 +56,7 @@ describe('test note client', () => {
     const data = await client.note.getNoteById('1')
 
     expect(data.data).toStrictEqual({ title: '1' })
-    expect(data.raw).toBeDefined()
+    expect(data.$raw).toBeDefined()
   })
 
   it('should get note by nid', async () => {

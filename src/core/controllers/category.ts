@@ -62,7 +62,7 @@ export class CategoryController implements IController {
         throw new RequestError(
           'data structure error',
           500,
-          data.request.path,
+          data.$request.path,
           data,
         )
       }

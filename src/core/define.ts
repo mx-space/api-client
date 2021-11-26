@@ -10,6 +10,7 @@ import {
   RecentlyController,
   SayController,
   SearchController,
+  SnippetController,
   UserController,
 } from './controllers'
 
@@ -25,6 +26,7 @@ export class HTTPControllerDefine {
   recently!: RecentlyController
   say!: SayController
   search!: SearchController
+  snippet!: SnippetController
   user!: UserController
 
   get master() {

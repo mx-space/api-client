@@ -29,7 +29,7 @@ describe('test post client', () => {
     const data = await client.post.getPost('613c91d0326cfffc61923ea2')
 
     expect(data).toStrictEqual({ title: '1' })
-    expect(data.raw).toBeDefined()
+    expect(data.$raw).toBeDefined()
   })
 
   it('should get single post by slug and category', async () => {
@@ -43,7 +43,7 @@ describe('test post client', () => {
     )
 
     expect(data).toStrictEqual({ title: '1' })
-    expect(data.raw).toBeDefined()
+    expect(data.$raw).toBeDefined()
   })
 
   it('should thumbs-up post', async () => {

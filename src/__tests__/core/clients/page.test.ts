@@ -25,7 +25,7 @@ describe('test page client', () => {
     const data = await client.page.getById('1')
 
     expect(data).toStrictEqual({ title: '1' })
-    expect(data.raw).toBeDefined()
+    expect(data.$raw).toBeDefined()
   })
 
   it('should get by slug', async () => {

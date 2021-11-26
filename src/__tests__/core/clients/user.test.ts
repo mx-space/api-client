@@ -27,7 +27,7 @@ describe('test user client', () => {
     const data = await client.user.getMasterInfo()
     expect(data.id).toEqual(mocked.id)
     expect(data).toEqual(camelcaseKeys(mocked, { deep: true }))
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
   })
 
   test('POST /login', async () => {
@@ -40,7 +40,7 @@ describe('test user client', () => {
     )
     const data = await client.user.login('test', 'test')
     expect(data.id).toEqual(mocked.id)
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
   })
 
   test('GET /check_logged', async () => {

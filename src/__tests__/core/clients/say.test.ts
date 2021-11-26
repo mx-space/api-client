@@ -26,7 +26,7 @@ describe('test say client', () => {
       ],
     })
     const data = await client.say.getAll()
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.data).toEqual(mocked.data)
     expect(data.data[0].text).toEqual('找不到路，就自己走一条出来。')
   })
@@ -59,7 +59,7 @@ describe('test say client', () => {
       })
 
       const data = await client.say.getAllPaginated()
-      expect(data.raw.data).toEqual(mocked)
+      expect(data.$raw.data).toEqual(mocked)
       expect(data.data).toEqual(camelcaseKeys(mocked.data, { deep: true }))
       expect(data.data[0].text).toEqual('每位师傅各有所长，我都会一点点。')
     })
@@ -86,7 +86,7 @@ describe('test say client', () => {
       })
 
       const data = await client.say.getAllPaginated(1, 1)
-      expect(data.raw.data).toEqual(mocked)
+      expect(data.$raw.data).toEqual(mocked)
     })
   })
 
@@ -99,7 +99,7 @@ describe('test say client', () => {
       created: '2021-09-09T03:20:56.769Z',
     })
     const data = await client.say.getById('61397d9892992823d7329bc9')
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.id).toEqual('61397d9892992823d7329bc9')
   })
 })

@@ -28,6 +28,6 @@ export type RequestProxyResult<
 > = Promise<ResponseProxyExtraRaw<T, R>>
 
 export type ResponseProxyExtraRaw<T, R = any> = T & {
-  raw: R
-  request: { path: string; method: string; [k: string]: string }
+  $raw: R
+  $request: { path: string; method: string; [k: string]: string }
 }

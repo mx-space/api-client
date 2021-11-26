@@ -157,7 +157,7 @@ export class HTTPClient extends HTTPControllerDefine {
                   ? camelcaseKeys(data, { deep: true })
                   : data
 
-              Object.defineProperty(transform, 'raw', {
+              Object.defineProperty(transform, '$raw', {
                 get() {
                   return res
                 },
@@ -167,7 +167,7 @@ export class HTTPClient extends HTTPControllerDefine {
 
               // attach request config onto response
 
-              Object.defineProperty(transform, 'request', {
+              Object.defineProperty(transform, '$request', {
                 get() {
                   return {
                     url,

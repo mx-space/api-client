@@ -40,14 +40,14 @@ export const attachRawFromOneToAnthor = (from: any, to: any) => {
   if (!from) {
     return
   }
-  from.raw &&
-    Object.defineProperty(to, 'raw', {
-      value: { ...from.raw },
+  from.$raw &&
+    Object.defineProperty(to, '$raw', {
+      value: { ...from.$raw },
       enumerable: false,
     })
-  from.request &&
-    Object.defineProperty(to, 'request', {
-      value: { ...from.request },
+  from.$request &&
+    Object.defineProperty(to, '$request', {
+      value: { ...from.$request },
       enumerable: false,
     })
 }

@@ -126,7 +126,7 @@ describe('test aggregate client', () => {
       },
     )
     const data = await client.aggregate.getAggregateData()
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.user.name).toEqual(mocked.user.name)
     expect(data.lastestNoteNid).toEqual(mocked.lastest_note_nid)
   })
@@ -284,7 +284,7 @@ describe('test aggregate client', () => {
     )
 
     const data = await client.aggregate.getTop()
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.posts[0].title).toEqual(
       '终于可以使用 Docker 托管整个 Mix Space 了',
     )
@@ -331,7 +331,7 @@ describe('test aggregate client', () => {
     })
 
     const data = await client.aggregate.getTimeline()
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.data.posts?.[0].url).toEqual(mocked.data.posts[0].url)
     expect(data.data.notes).toBeDefined()
   })
@@ -352,7 +352,7 @@ describe('test aggregate client', () => {
     })
 
     const data = await client.aggregate.getTimeline({ type: TimelineType.Note })
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data.data.notes?.[0]).toEqual(mocked.data.notes[0])
     expect(data.data.posts).toBeUndefined()
   })
@@ -378,7 +378,7 @@ describe('test aggregate client', () => {
       today_ip_access_count: 138,
     })
     const data = await client.aggregate.getStat()
-    expect(data.raw.data).toEqual(mocked)
+    expect(data.$raw.data).toEqual(mocked)
     expect(data).toEqual(camelcaseKeys(mocked))
   })
 })

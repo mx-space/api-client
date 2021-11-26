@@ -71,5 +71,8 @@ describe('test search client, /search', () => {
     const data = await client.search.searchByAlgolia('algolia')
 
     expect(data.data[0].id).toEqual('5fe97d1d5b11408f99ada0fd')
+    expect(data.raw).toBeDefined()
+
+    expect(data.$raw.data).toEqual(mockData)
   })
 })
