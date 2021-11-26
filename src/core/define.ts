@@ -6,6 +6,7 @@ import {
   NoteController,
   PageController,
   PostController,
+  ProjectController,
   RecentlyController,
   SayController,
   SearchController,
@@ -20,6 +21,7 @@ export class HTTPControllerDefine {
   note!: NoteController
   page!: PageController
   post!: PostController
+  project!: ProjectController
   recently!: RecentlyController
   say!: SayController
   search!: SearchController

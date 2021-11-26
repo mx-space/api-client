@@ -5,6 +5,7 @@ import { LinkController } from './link'
 import { NoteController } from './note'
 import { PageController } from './page'
 import { PostController } from './post'
+import { ProjectController } from './project'
 import { RecentlyController } from './recently'
 import { SayController } from './say'
 import { SearchController } from './search'
@@ -18,6 +19,7 @@ export const allControllers = [
   NoteController,
   PageController,
   PostController,
+  ProjectController,
   RecentlyController,
   SayController,
   SearchController,
@@ -32,6 +34,7 @@ export const allContollerNames = [
   'note',
   'page',
   'post',
+  'project',
   'recently',
   'say',
   'search',
@@ -46,6 +49,7 @@ export {
   NoteController,
   PageController,
   PostController,
+  ProjectController,
   RecentlyController,
   SayController,
   SearchController,
