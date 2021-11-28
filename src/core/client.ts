@@ -1,7 +1,9 @@
 import camelcaseKeys from 'camelcase-keys'
+import { ClientOptions } from '~/interfaces/client'
 import { IController } from '~/interfaces/controller'
 import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
+import { Class } from '~/types/helper'
 import { isPlainObject } from '~/utils'
 import { attachRequestMethod } from './attachRequest'
 import { allContollerNames } from './controllers'
@@ -46,12 +48,9 @@ export class HTTPClient extends HTTPControllerDefine {
     }
   }
 
-  public injectControllers<T extends { new (client: HTTPClient): IController }>(
-    ...Controller: T[]
-  ): void
-  public injectControllers<T extends { new (client: HTTPClient): IController }>(
-    Controller: T[],
-  ): void
+  // @ts-expect-error
+  public injectControllers(...Controller: Class<IController>[]): void
+  public injectControllers(Controller: Class<IController>[]): void
   public injectControllers<T extends { new (client: HTTPClient): IController }>(
     Controller: T[],
     ...rest: T[]
@@ -197,7 +196,12 @@ export class HTTPClient extends HTTPControllerDefine {
 }
 
 export function createClient<T extends IRequestAdapter>(adapter: T) {
-  return (endpoint: string) => {
-    return new HTTPClient(endpoint, adapter)
+  return (endpoint: string, options?: ClientOptions) => {
+    const client = new HTTPClient(endpoint, adapter)
+    const { controllers } = options || {}
+    if (controllers) {
+      client.injectControllers(controllers)
+    }
+    return client
   }
 }

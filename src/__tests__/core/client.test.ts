@@ -3,6 +3,7 @@ import { createClient } from '~/core'
 import {
   allContollerNames,
   allControllers,
+  NoteController,
   PostController,
 } from '~/core/controllers'
 
@@ -86,5 +87,21 @@ describe('test client', () => {
 
     client.injectControllers(PostController)
     expect(client.post.name).toBeDefined()
+  })
+
+  it('should inject multi client worked', () => {
+    const client = generateClient()
+
+    client.injectControllers(PostController, NoteController)
+    expect(client.post.name).toBeDefined()
+    expect(client.note.name).toBeDefined()
+  })
+
+  it('should inject controller when init', () => {
+    const client = createClient(axios)('http://127.0.0.1:2323', {
+      controllers: [PostController, NoteController],
+    })
+    expect(client.post.name).toBeDefined()
+    expect(client.note.name).toBeDefined()
   })
 })
