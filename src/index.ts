@@ -1,9 +1,8 @@
 export {
-  allContollerNames as allClientName,
-  allControllers as allClients,
+  allContollerNames,
+  allControllers,
   createClient,
   HTTPClient,
-  NoteController as NoteClient,
-  PostController as PostClient,
   RequestError,
 } from './core'
+export * from './core/controllers'
