@@ -1,7 +1,14 @@
 import { IController } from '~/interfaces/controller'
 import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
+import { SelectFields } from '~/types/helper'
 import { HTTPClient } from '..'
+
+export type PageListOptions = {
+  select?: SelectFields<keyof PageModel>
+  sortBy?: 'order' | 'subtitle' | 'title' | 'created' | 'modified'
+  sortOrder?: 1 | -1
+}
 
 export class PageController implements IController {
   constructor(private readonly client: HTTPClient) {}
@@ -13,9 +20,16 @@ export class PageController implements IController {
   /**
    * 页面列表
    */
-  getList(page = 1, perPage = 10) {
+  getList(page = 1, perPage = 10, options: PageListOptions = {}) {
+    const { select, sortBy, sortOrder } = options
     return this.proxy.get<PaginateResult<PageModel>>({
-      params: { page, size: perPage },
+      params: {
+        page,
+        size: perPage,
+        select: select?.join(' '),
+        sortBy,
+        sortOrder,
+      },
     })
   }
 

@@ -1,7 +1,15 @@
 import { IController } from '~/interfaces/controller'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
+import { SelectFields } from '~/types/helper'
 import { HTTPClient } from '..'
+
+export type NoteListOptions = {
+  select?: SelectFields<keyof NoteModel>
+  year?: number
+  sortBy?: 'weather' | 'mood' | 'title' | 'created' | 'modified'
+  sortOrder?: 1 | -1
+}
 
 export class NoteController implements IController {
   base = 'notes'
@@ -39,9 +47,17 @@ export class NoteController implements IController {
    * 日记列表分页
    */
 
-  getList(page = 1, perPage = 10) {
+  getList(page = 1, perPage = 10, options: NoteListOptions = {}) {
+    const { select, sortBy, sortOrder, year } = options
     return this.proxy.get<PaginateResult<NoteModel>>({
-      params: { page, size: perPage },
+      params: {
+        page,
+        size: perPage,
+        select: select?.join(' '),
+        sortBy,
+        sortOrder,
+        year,
+      },
     })
   }
 

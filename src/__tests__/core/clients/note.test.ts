@@ -18,6 +18,17 @@ describe('test note client', () => {
     expect(data).toEqual({ data: [], pagination: {} })
   })
 
+  it('should get post list filter filed', async () => {
+    const mocked = mockResponse('/notes?page=1&size=1&select=created+title', {
+      data: [{}],
+    })
+
+    const data = await client.note.getList(1, 1, {
+      select: ['created', 'title'],
+    })
+    expect(data).toEqual(mocked)
+  })
+
   it('should get latest note', async () => {
     mockResponse('/notes/latest', { data: { title: '1' } })
     const data = await client.note.getLatest()

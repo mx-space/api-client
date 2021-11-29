@@ -17,6 +17,17 @@ describe('test page client', () => {
     expect(data).toEqual({ data: [], pagination: {} })
   })
 
+  it('should get post list filter filed', async () => {
+    const mocked = mockResponse('/pages?page=1&size=1&select=created+title', {
+      data: [{}],
+    })
+
+    const data = await client.page.getList(1, 1, {
+      select: ['created', 'title'],
+    })
+    expect(data).toEqual(mocked)
+  })
+
   it('should get single page', async () => {
     mockResponse('/pages/1', {
       title: '1',

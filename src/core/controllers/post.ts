@@ -2,7 +2,15 @@ import { IController } from '~/interfaces/controller'
 import { RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PostModel } from '~/models/post'
+import { SelectFields } from '~/types/helper'
 import { HTTPClient } from '../client'
+
+export type PostListOptions = {
+  select?: SelectFields<keyof PostModel>
+  year?: number
+  sortBy?: 'categoryId' | 'title' | 'created' | 'modified'
+  sortOrder?: 1 | -1
+}
 
 export class PostController implements IController {
   constructor(private client: HTTPClient) {}
@@ -21,9 +29,17 @@ export class PostController implements IController {
    * @param perPage
    * @returns
    */
-  getList(page = 1, perPage = 10) {
+  getList(page = 1, perPage = 10, options: PostListOptions = {}) {
+    const { select, sortBy, sortOrder, year } = options
     return this.proxy.get<PaginateResult<PostModel>>({
-      params: { page, size: perPage },
+      params: {
+        page,
+        size: perPage,
+        select: select?.join(' '),
+        sortBy,
+        sortOrder,
+        year,
+      },
     })
   }
 

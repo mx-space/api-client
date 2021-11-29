@@ -15,6 +15,30 @@ describe('test post client', () => {
     expect(data).toEqual({ data: [] })
   })
 
+  it('should get post list filter filed', async () => {
+    const mocked = mockResponse('/posts?page=1&size=1&select=created+title', {
+      data: [
+        {
+          id: '61586f7e769f07b6852f3da0',
+          title: '终于可以使用 Docker 托管整个 Mix Space 了',
+          created: '2021-10-02T14:41:02.742Z',
+          category: null,
+        },
+        {
+          id: '614c539cfdf566c5d93a383f',
+          title: '再遇 Docker，容器化 Node 应用',
+          created: '2021-09-23T10:14:52.491Z',
+          category: null,
+        },
+      ],
+    })
+
+    const data = await client.post.getList(1, 1, {
+      select: ['created', 'title'],
+    })
+    expect(data).toEqual(mocked)
+  })
+
   it('should get latest post', async () => {
     mockResponse('/posts/latest', { title: '1' })
     const data = await client.post.getLatest()
