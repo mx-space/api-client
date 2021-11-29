@@ -1,5 +1,6 @@
 import { IController } from '~/interfaces/controller'
 import { PaginationParams } from '~/interfaces/params'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
 import { HTTPClient } from '..'
@@ -11,7 +12,7 @@ export class CommentController implements IController {
 
   constructor(private readonly client: HTTPClient) {}
 
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

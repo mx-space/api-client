@@ -1,14 +1,16 @@
 import { IController } from '~/interfaces/controller'
-import { ResponseProxyExtraRaw } from '~/interfaces/request'
+import { RequestProxyResult, ResponseProxyExtraRaw } from '~/interfaces/request'
+import { attachRawFromOneToAnthor, destructureData } from '~/utils'
 import {
   CategoryEntries,
+  CategoryModel,
   CategoryType,
   CategoryWithChildrenModel,
   TagModel,
-} from '~/models/category'
-import { CategoryModel, PostModel } from '~/models/post'
-import { attachRawFromOneToAnthor, destructureData } from '~/utils'
-import { HTTPClient, RequestError } from '..'
+} from '../../models/category'
+import { PostModel } from '../../models/post'
+import { HTTPClient } from '../client'
+import { RequestError } from '../error'
 
 export class CategoryController implements IController {
   name = 'category'
@@ -19,15 +21,15 @@ export class CategoryController implements IController {
     return this.client.proxy(this.base)
   }
 
-  getAllCategories() {
-    return this.proxy.get<{ data: CategoryModel[] }>({
+  getAllCategories(): RequestProxyResult<{ data: CategoryModel[] }> {
+    return this.proxy.get({
       params: {
         type: CategoryType.Category,
       },
     })
   }
 
-  getAllTags() {
+  getAllTags(): RequestProxyResult<{ data: TagModel[] }> {
     return this.proxy.get<{ data: TagModel[] }>({
       params: {
         type: CategoryType.Tag,

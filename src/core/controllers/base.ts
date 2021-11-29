@@ -1,14 +1,15 @@
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { HTTPClient } from '..'
 
 export abstract class BaseCrudController<T> {
   base!: string
   constructor(protected client: HTTPClient) {}
-  protected get proxy() {
+  protected get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 
-  getById(id: string) {
+  getById(id: string): RequestProxyResult<T> {
     return this.proxy(id).get<T>()
   }
 

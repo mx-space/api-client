@@ -1,4 +1,5 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { TLogin, UserModel } from '~/models/user'
 import { HTTPClient } from '..'
 
@@ -9,7 +10,7 @@ export class UserController implements IController {
 
   name = 'user'
 
-  protected get proxy() {
+  protected get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

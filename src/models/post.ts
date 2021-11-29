@@ -1,4 +1,5 @@
 import { Count, Image } from './base'
+import { CategoryModel } from './category'
 
 export interface PostModel {
   commentsIndex: number
@@ -16,14 +17,4 @@ export interface PostModel {
   modified: string
   created: string
   category: CategoryModel
-}
-
-export interface CategoryModel {
-  type: number
-  count: number
-  id: string
-  name: string
-  slug: string
-  created: Date
-  categoryId: string
 }

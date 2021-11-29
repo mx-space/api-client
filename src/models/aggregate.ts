@@ -1,6 +1,7 @@
+import { CategoryModel } from './category'
 import { NoteModel } from './note'
 import { PageModel } from './page'
-import { CategoryModel, PostModel } from './post'
+import { PostModel } from './post'
 import { SayModel } from './say'
 import { SeoOptionModel } from './setting'
 import { UserModel } from './user'

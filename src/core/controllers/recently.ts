@@ -1,4 +1,5 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { RecentlyModel } from '~/models/recently'
 import { HTTPClient } from '..'
 
@@ -8,7 +9,7 @@ export class RecentlyController implements IController {
 
   constructor(private readonly client: HTTPClient) {}
 
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
   /**

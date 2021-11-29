@@ -1,5 +1,5 @@
 import { IController } from '~/interfaces/controller'
-import { RequestProxyResult } from '~/interfaces/request'
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel } from '~/models/note'
 import { PostModel } from '~/models/post'
@@ -17,7 +17,7 @@ export class SearchController implements IController {
 
   constructor(private readonly client: HTTPClient) {}
 
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

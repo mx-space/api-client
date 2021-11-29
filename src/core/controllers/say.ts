@@ -1,4 +1,5 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { SayModel } from '~/models/say'
 import { HTTPClient } from '..'
 import { BaseCrudController } from './base'
@@ -14,7 +15,7 @@ export class SayController
     super(client)
   }
 
-  protected get proxy() {
+  protected get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

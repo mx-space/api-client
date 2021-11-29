@@ -1,8 +1,9 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { SelectFields } from '~/types/helper'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../client'
 
 export type NoteListOptions = {
   select?: SelectFields<keyof NoteModel>
@@ -16,7 +17,7 @@ export class NoteController implements IController {
   name = 'note'
 
   constructor(private client: HTTPClient) {}
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

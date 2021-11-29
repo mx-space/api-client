@@ -1,4 +1,5 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { SnippetModel } from '~/models/snippet'
 import { HTTPClient } from '..'
 
@@ -8,7 +9,7 @@ export class SnippetController implements IController {
 
   constructor(protected client: HTTPClient) {}
 
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

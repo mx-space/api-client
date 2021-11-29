@@ -1,5 +1,6 @@
 import { IController } from '~/interfaces/controller'
 import { SortOrder } from '~/interfaces/options'
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import {
   AggregateRoot,
   AggregateStat,
@@ -14,14 +15,14 @@ export class AggregateController implements IController {
   base = 'aggregate'
   name = 'aggregate'
   constructor(private client: HTTPClient) {}
-  private get proxy() {
+  private get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 
   /**
    * 获取聚合数据
    */
-  getAggregateData() {
+  getAggregateData(): RequestProxyResult<AggregateRoot> {
     return this.proxy.get<AggregateRoot>()
   }
 

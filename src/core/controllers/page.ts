@@ -1,4 +1,5 @@
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
 import { SelectFields } from '~/types/helper'
@@ -14,7 +15,7 @@ export class PageController implements IController {
   constructor(private readonly client: HTTPClient) {}
   base = 'pages'
   name = 'page'
-  get proxy() {
+  get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
   /**
