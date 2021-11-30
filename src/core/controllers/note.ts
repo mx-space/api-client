@@ -1,5 +1,5 @@
 import { IController } from '~/interfaces/controller'
-import { IRequestHandler } from '~/interfaces/request'
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { SelectFields } from '~/types/helper'
@@ -24,7 +24,7 @@ export class NoteController implements IController {
   /**
    * 最新日记
    */
-  getLatest() {
+  getLatest(): RequestProxyResult<NoteWrappedPayload> {
     return this.proxy.latest.get<NoteWrappedPayload>()
   }
 

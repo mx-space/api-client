@@ -1,5 +1,6 @@
 import { IController } from '~/interfaces/controller'
-import { RequestProxyResult } from '~/interfaces/request'
+// organize-imports-ignore
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PostModel } from '~/models/post'
 import { SelectFields } from '~/types/helper'

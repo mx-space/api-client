@@ -1,6 +1,6 @@
 import { IController } from '~/interfaces/controller'
 import { PaginationParams } from '~/interfaces/params'
-import { IRequestHandler } from '~/interfaces/request'
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
 import { HTTPClient } from '..'
@@ -19,7 +19,7 @@ export class CommentController implements IController {
   /**
    * 根据 comment id 获取评论, 包括子评论
    */
-  getById(id: string) {
+  getById(id: string): RequestProxyResult<CommentModel> {
     return this.proxy(id).get<CommentModel>()
   }
 

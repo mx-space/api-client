@@ -1,5 +1,6 @@
 import { IController } from '~/interfaces/controller'
-import { IRequestHandler } from '~/interfaces/request'
+// organize-imports-ignore
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { RecentlyModel } from '~/models/recently'
 import { HTTPClient } from '..'
 
