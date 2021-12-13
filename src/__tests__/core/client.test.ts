@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { axiosAdaptor } from '~/adaptors/axios'
 import { createClient } from '~/core'
 import {
   allContollerNames,
@@ -8,7 +8,7 @@ import {
 } from '~/core/controllers'
 
 // axios wrapper test
-const generateClient = () => createClient(axios)('http://127.0.0.1:2323')
+const generateClient = () => createClient(axiosAdaptor)('http://127.0.0.1:2323')
 describe('test client', () => {
   it('should create new client with axios', () => {
     const client = generateClient()
@@ -16,8 +16,11 @@ describe('test client', () => {
   })
 
   describe('client `get` method', () => {
+    afterEach(() => {
+      jest.resetAllMocks()
+    })
     test('case 1', async () => {
-      jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+      jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
         if (url === 'http://127.0.0.1:2323/a/a?foo=bar') {
           return Promise.resolve({ data: { ok: 1 } })
         }
@@ -32,7 +35,7 @@ describe('test client', () => {
     })
 
     test('case 2', async () => {
-      jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+      jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
         if (url === 'http://127.0.0.1:2323/a/a') {
           return Promise.resolve({ data: { ok: 1 } })
         }
@@ -46,7 +49,7 @@ describe('test client', () => {
       expect(data).toStrictEqual({ ok: 1 })
 
       {
-        jest.spyOn(axios, 'get').mockImplementation((url, config) => {
+        jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
           if (url === 'http://127.0.0.1:2323/a/b') {
             return Promise.resolve({ data: { ok: 1 } })
           }
@@ -98,7 +101,7 @@ describe('test client', () => {
   })
 
   it('should inject controller when init', () => {
-    const client = createClient(axios)('http://127.0.0.1:2323', {
+    const client = createClient(axiosAdaptor)('http://127.0.0.1:2323', {
       controllers: [PostController, NoteController],
     })
     expect(client.post.name).toBeDefined()
