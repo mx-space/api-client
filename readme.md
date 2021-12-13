@@ -11,7 +11,10 @@
 以 `axios` 为例。
 
 ```ts
-import { axiosAdaptor } from "@mx-space/api-client/esm/adaptors/axios";
+// esm format (spa recommend)
+import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+// cjs format (ssr recommend)
+// import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 import {
   AggregateController,
   CategoryController,
@@ -28,7 +31,27 @@ const client = createClient(axiosAdaptor)(endpoint)
 // `default` is AxiosInstance
 // you can do anything else on this
 // interceptor or re-configure
-const axios = axiosAdaptor.default
+const $axios = axiosAdaptor.default
+// re-config (optional)
+$axios.defaults.timeout = 10000
+// set interceptors (optional)
+$axios.interceptors.request.use(
+  (config) => {
+    const token = getToken()
+    if (token) {
+      config.headers!['Authorization'] = 'bearer ' + getToken()
+    }
+
+    return config
+  },
+  (error) => {
+    if (__DEV__) {
+      console.log(error.message)
+    }
+
+    return Promise.reject(error)
+  },
+)
 
 // inject controller first.
 client.injectControllers([
