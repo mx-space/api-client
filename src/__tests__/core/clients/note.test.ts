@@ -1,4 +1,4 @@
-import { axiosAdaptor } from '~/adaptor/axios'
+import { axiosAdaptor } from '~/adaptors/axios'
 import { RequestError } from '~/core'
 import { NoteController } from '~/core/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'

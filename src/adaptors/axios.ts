@@ -1,9 +1,13 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { IRequestAdapter } from '~/interfaces/instance'
 const $http = axios.create({})
 
 // ignore axios `method` declare not assignable to `Method`
-export const axiosAdaptor: IRequestAdapter = {
+export const axiosAdaptor: IRequestAdapter<AxiosInstance> = {
+  get default() {
+    return $http
+  },
+
   get(url, options) {
     // @ts-ignore
     return $http.get(url, options)
@@ -29,4 +33,3 @@ export const axiosAdaptor: IRequestAdapter = {
     return $http.patch(url, data, config)
   },
 }
-;(axiosAdaptor as any).default = $http

@@ -1,5 +1,5 @@
 import { URLSearchParams } from 'url'
-import { axiosAdaptor } from '~/adaptor/axios'
+import { axiosAdaptor } from '~/adaptors/axios'
 
 export const buildResponseDataWrapper = (data: any) => ({ data })
 

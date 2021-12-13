@@ -1,4 +1,4 @@
-import { axiosAdaptor } from '~/adaptor/axios'
+import { axiosAdaptor } from '~/adaptors/axios'
 import { createClient, HTTPClient } from '~/core'
 import { IController } from '~/interfaces/controller'
 

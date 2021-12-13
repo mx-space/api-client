@@ -1,4 +1,4 @@
-import { extend } from 'umi-request'
+import { extend, RequestMethod } from 'umi-request'
 import { IRequestAdapter } from '~/interfaces/instance'
 const $http = extend({
   getResponse: true,
@@ -6,7 +6,10 @@ const $http = extend({
   responseType: 'json',
 })
 
-export const umiAdaptor: IRequestAdapter = {
+export const umiAdaptor: IRequestAdapter<RequestMethod<true>> = {
+  get default() {
+    return $http
+  },
   get(url, options) {
     return $http.get(url, options)
   },
@@ -23,4 +26,3 @@ export const umiAdaptor: IRequestAdapter = {
     return $http.patch(url, options)
   },
 }
-;(umiAdaptor as any).default = $http

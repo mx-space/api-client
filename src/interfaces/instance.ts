@@ -8,7 +8,8 @@ export interface RequestOptions {
 }
 
 type RequestResponseType<P> = Promise<Record<string, any> & { data: P }>
-export interface IRequestAdapter {
+export interface IRequestAdapter<T = any> {
+  default: T
   get<P = unknown>(
     url: string,
     options?: RequestOptions,
