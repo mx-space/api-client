@@ -1,12 +1,9 @@
-import axios from 'axios'
-import { createClient } from '~/core'
 import { PageController } from '~/core/controllers/page'
+import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 
-jest.mock('axios')
 describe('test page client', () => {
-  const client = createClient(axios)('https://api.innei.ren/v2')
-  client.injectControllers(PageController)
+  const client = mockRequestInstance(PageController)
 
   it('should get page list', async () => {
     mockResponse('/pages?size=10&page=1', {

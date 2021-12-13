@@ -1,9 +1,10 @@
 // @ts-ignore
 import cors from 'cors'
 import express from 'express'
+import { AddressInfo } from 'net'
 type Express = ReturnType<typeof express>
 export const createMockServer = (options: { port?: number } = {}) => {
-  const { port = 7001 } = options
+  const { port = 0 } = options
 
   const app: Express = express()
   app.use(express.json())
@@ -12,6 +13,7 @@ export const createMockServer = (options: { port?: number } = {}) => {
 
   return {
     app,
+    port: (server.address() as AddressInfo).port,
     server,
     close() {
       server.close()

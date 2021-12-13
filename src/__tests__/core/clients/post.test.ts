@@ -1,12 +1,9 @@
-import axios from 'axios'
-import { createClient } from '~/core'
 import { PostController } from '~/core/controllers'
+import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 
-jest.mock('axios')
 describe('test post client', () => {
-  const client = createClient(axios)('https://api.innei.ren/v2')
-  client.injectControllers(PostController)
+  const client = mockRequestInstance(PostController)
 
   it('should get post list', async () => {
     mockResponse('/posts', { data: [] })

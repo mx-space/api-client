@@ -1,13 +1,10 @@
-import axios from 'axios'
 import camelcaseKeys from 'camelcase-keys'
-import { createClient } from '~/core'
 import { CommentController } from '~/core/controllers/comment'
+import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 
-jest.mock('axios')
 describe('test note client', () => {
-  const client = createClient(axios)('https://api.innei.ren/v2')
-  client.injectControllers(CommentController)
+  const client = mockRequestInstance(CommentController)
 
   test('get comment by id', async () => {
     mockResponse('/comments/11111', {

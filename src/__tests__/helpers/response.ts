@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { URLSearchParams } from 'url'
+import { axiosAdaptor } from '~/adaptor/axios'
 
 export const buildResponseDataWrapper = (data: any) => ({ data })
 
@@ -10,7 +10,7 @@ export const mockResponse = <T>(path: string, data: T, method = 'get') => {
       : `https://example.com/${path.replace(/^\//, '')}`,
   )
   // @ts-ignore
-  jest.spyOn(axios, method).mockImplementation(async (_url: string) => {
+  jest.spyOn(axiosAdaptor, method).mockImplementation(async (_url: string) => {
     const $_url = new URL(_url)
     if (
       $_url.pathname.endsWith($url.pathname) &&

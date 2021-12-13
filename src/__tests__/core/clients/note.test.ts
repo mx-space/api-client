@@ -1,12 +1,11 @@
-import axios from 'axios'
-import { createClient, RequestError } from '~/core'
+import { axiosAdaptor } from '~/adaptor/axios'
+import { RequestError } from '~/core'
 import { NoteController } from '~/core/controllers'
+import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 
-jest.mock('axios')
 describe('test note client', () => {
-  const client = createClient(axios)('https://api.innei.ren/v2')
-  client.injectControllers(NoteController)
+  const client = mockRequestInstance(NoteController)
 
   it('should get note list', async () => {
     mockResponse('/notes', {
@@ -86,7 +85,7 @@ describe('test note client', () => {
   })
 
   it('should forbidden if no password provide', async () => {
-    jest.spyOn(axios, 'get').mockRejectedValue({
+    jest.spyOn(axiosAdaptor, 'get').mockRejectedValue({
       response: {
         data: {
           message: 'password required',

@@ -4,13 +4,13 @@ import { createMockServer } from './e2e-mock-server'
 
 export const testAdaptor = (adaptor: IRequestAdapter) => {
   let client: HTTPClient
-  const { app, close } = createMockServer()
+  const { app, close, port } = createMockServer()
 
   afterAll(() => {
     close()
   })
   beforeAll(() => {
-    client = createClient(adaptor)('http://localhost:7001')
+    client = createClient(adaptor)('http://localhost:' + port)
     client.injectControllers(allControllers)
   })
   test('get', async () => {
@@ -29,6 +29,7 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
   test('post', async () => {
     app.post('/comments/1', (req, res) => {
       const { body } = req
+
       res.send({
         ...body,
       })
