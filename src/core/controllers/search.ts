@@ -3,7 +3,9 @@ import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel } from '~/models/note'
 import { PostModel } from '~/models/post'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
+
 type SearchType = 'post' | 'note'
 
 type SearchOption = {
@@ -15,7 +17,9 @@ export class SearchController implements IController {
   base = 'search'
   name = 'search'
 
-  constructor(private readonly client: HTTPClient) {}
+  constructor(private readonly client: HTTPClient) {
+    autoBind(this)
+  }
 
   get proxy(): IRequestHandler {
     return this.client.proxy(this.base)

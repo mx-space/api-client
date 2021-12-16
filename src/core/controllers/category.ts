@@ -1,6 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { RequestProxyResult, ResponseProxyExtraRaw } from '~/interfaces/request'
 import { attachRawFromOneToAnthor, destructureData } from '~/utils'
+import { autoBind } from '~/utils/auto-bind'
 import {
   CategoryEntries,
   CategoryModel,
@@ -15,7 +16,9 @@ import { RequestError } from '../error'
 export class CategoryController implements IController {
   name = 'category'
   base = 'categories'
-  constructor(private client: HTTPClient) {}
+  constructor(private client: HTTPClient) {
+    autoBind(this)
+  }
 
   private get proxy() {
     return this.client.proxy(this.base)

@@ -9,12 +9,15 @@ import {
   TimelineType,
 } from '~/models/aggregate'
 import { sortOrderToNumber } from '~/utils'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 
 export class AggregateController implements IController {
   base = 'aggregate'
   name = 'aggregate'
-  constructor(private client: HTTPClient) {}
+  constructor(private client: HTTPClient) {
+    autoBind(this)
+  }
   private get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }

@@ -3,6 +3,7 @@ import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { SelectFields } from '~/types/helper'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../client'
 
 export type NoteListOptions = {
@@ -16,7 +17,9 @@ export class NoteController implements IController {
   base = 'notes'
   name = 'note'
 
-  constructor(private client: HTTPClient) {}
+  constructor(private client: HTTPClient) {
+    autoBind(this)
+  }
   get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }

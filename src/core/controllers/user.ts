@@ -1,17 +1,18 @@
 import { IController } from '~/interfaces/controller'
-// organize-imports-ignore
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { TLogin, UserModel } from '~/models/user'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 
 export class UserController implements IController {
-  constructor(private readonly client: HTTPClient) {}
+  constructor(private readonly client: HTTPClient) {
+    autoBind(this)
+  }
 
   base = 'master'
 
   name = 'user'
 
-  protected get proxy(): IRequestHandler {
+  protected get proxy() {
     return this.client.proxy(this.base)
   }
 

@@ -3,6 +3,7 @@ import { PaginationParams } from '~/interfaces/params'
 import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 import { CommentDto } from '../dtos/comment'
 
@@ -10,7 +11,9 @@ export class CommentController implements IController {
   base = 'comments'
   name = 'comment'
 
-  constructor(private readonly client: HTTPClient) {}
+  constructor(private readonly client: HTTPClient) {
+    autoBind(this)
+  }
 
   get proxy(): IRequestHandler {
     return this.client.proxy(this.base)

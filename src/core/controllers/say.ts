@@ -1,7 +1,6 @@
 import { IController } from '~/interfaces/controller'
-// organize-imports-ignore
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { SayModel } from '~/models/say'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 import { BaseCrudController } from './base'
 
@@ -14,9 +13,10 @@ export class SayController
 
   constructor(protected client: HTTPClient) {
     super(client)
+    autoBind(this)
   }
 
-  protected get proxy(): IRequestHandler {
+  protected get proxy() {
     return this.client.proxy(this.base)
   }
 

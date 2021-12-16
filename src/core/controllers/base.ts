@@ -1,10 +1,13 @@
 import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 
 export abstract class BaseCrudController<T> {
   base!: string
-  constructor(protected client: HTTPClient) {}
+  constructor(protected client: HTTPClient) {
+    autoBind(this)
+  }
   protected get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }

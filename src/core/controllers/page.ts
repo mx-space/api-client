@@ -1,9 +1,8 @@
 import { IController } from '~/interfaces/controller'
-// organize-imports-ignore
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
 import { SelectFields } from '~/types/helper'
+import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '..'
 
 export type PageListOptions = {
@@ -13,10 +12,12 @@ export type PageListOptions = {
 }
 
 export class PageController implements IController {
-  constructor(private readonly client: HTTPClient) {}
+  constructor(private readonly client: HTTPClient) {
+    autoBind(this)
+  }
   base = 'pages'
   name = 'page'
-  get proxy(): IRequestHandler {
+  get proxy() {
     return this.client.proxy(this.base)
   }
   /**
