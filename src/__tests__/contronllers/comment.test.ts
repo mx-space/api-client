@@ -1,5 +1,5 @@
 import camelcaseKeys from 'camelcase-keys'
-import { CommentController } from '~/core/controllers/comment'
+import { CommentController } from '~/controllers/comment'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 

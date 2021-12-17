@@ -1,4 +1,4 @@
-import { PageController } from '~/core/controllers/page'
+import { PageController } from '~/controllers/page'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 

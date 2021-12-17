@@ -2,16 +2,16 @@ import { IController } from '~/interfaces/controller'
 import { RequestProxyResult, ResponseProxyExtraRaw } from '~/interfaces/request'
 import { attachRawFromOneToAnthor, destructureData } from '~/utils'
 import { autoBind } from '~/utils/auto-bind'
+import { HTTPClient } from '../core/client'
+import { RequestError } from '../core/error'
 import {
   CategoryEntries,
   CategoryModel,
   CategoryType,
   CategoryWithChildrenModel,
   TagModel,
-} from '../../models/category'
-import { PostModel } from '../../models/post'
-import { HTTPClient } from '../client'
-import { RequestError } from '../error'
+} from '../models/category'
+import { PostModel } from '../models/post'
 
 export class CategoryController implements IController {
   name = 'category'

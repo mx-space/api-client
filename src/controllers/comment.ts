@@ -4,7 +4,7 @@ import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 import { CommentDto } from '../dtos/comment'
 
 export class CommentController implements IController {

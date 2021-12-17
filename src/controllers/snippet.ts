@@ -1,7 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { SnippetModel } from '~/models/snippet'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 export class SnippetController implements IController {
   base = 'snippets'

@@ -12,7 +12,7 @@ import {
   SearchController,
   SnippetController,
   UserController,
-} from './controllers'
+} from '../controllers'
 
 export class HTTPControllerDefine {
   aggregate!: AggregateController

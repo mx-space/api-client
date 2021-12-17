@@ -10,11 +10,12 @@ export function attachRequestMethod<T extends HTTPClient>(target: T) {
       return target.instance.get(url + `${qs ? `${'?' + qs}` : ''}`)
     },
   })
-
-  Object.defineProperty(target, '$$post', {
-    value: function (path: string, options?: any) {
-      return target.instance.post(path, options)
-    },
+  ;(['put', 'post', 'patch', 'delete'] as const).forEach((method) => {
+    Object.defineProperty(target, '$$' + method, {
+      value: function (path: string, options?: any) {
+        return target.instance[method](path, options)
+      },
+    })
   })
 }
 // FIXME: only support string value

@@ -4,7 +4,7 @@ import { PaginateResult } from '~/models/base'
 import { PostModel } from '~/models/post'
 import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../client'
+import { HTTPClient } from '../core/client'
 
 export type PostListOptions = {
   select?: SelectFields<keyof PostModel>

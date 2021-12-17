@@ -1,7 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { TLogin, UserModel } from '~/models/user'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 export class UserController implements IController {
   constructor(private readonly client: HTTPClient) {

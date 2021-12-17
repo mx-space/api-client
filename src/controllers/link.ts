@@ -1,6 +1,6 @@
 import { LinkModel } from '~/models/link'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 import { BaseCrudController } from './base'
 
 export class LinkController extends BaseCrudController<LinkModel> {

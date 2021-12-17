@@ -1,10 +1,10 @@
-import axios from 'axios'
 import { ApiView } from 'components/ApiView'
 import React from 'react'
+import { axiosAdaptor } from '~/adaptors/axios'
+import { allControllers } from '~/controllers'
 import { createClient } from '~/core/client'
-import { allControllers } from '~/core/controllers'
-
-const client = createClient(axios)('https://api.innei.ren/v2')
+const axios = axiosAdaptor.default
+const client = createClient(axiosAdaptor)('https://api.innei.ren/v2')
 client.injectControllers(allControllers)
 
 axios.interceptors.response.use(

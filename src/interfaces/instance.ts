@@ -8,7 +8,7 @@ export interface RequestOptions {
 }
 
 type RequestResponseType<P> = Promise<Record<string, any> & { data: P }>
-export interface IRequestAdapter<T = any> {
+export type IRequestAdapter<T = any> = Readonly<{
   default: T
   get<P = unknown>(
     url: string,
@@ -34,4 +34,4 @@ export interface IRequestAdapter<T = any> {
     url: string,
     options?: RequestOptions,
   ): RequestResponseType<P>
-}
+}>

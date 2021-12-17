@@ -1,4 +1,5 @@
-import { allControllers, createClient, HTTPClient, RequestError } from '~/core'
+import { allControllers } from '~/controllers'
+import { createClient, HTTPClient, RequestError } from '~/core'
 import { IRequestAdapter } from '~/interfaces/instance'
 import { createMockServer } from './e2e-mock-server'
 

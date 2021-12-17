@@ -1,4 +1,4 @@
-import { RecentlyController } from '~/core'
+import { RecentlyController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 

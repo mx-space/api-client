@@ -1,11 +1,11 @@
 import { axiosAdaptor } from '~/adaptors/axios'
-import { createClient } from '~/core'
 import {
   allContollerNames,
   allControllers,
   NoteController,
   PostController,
-} from '~/core/controllers'
+} from '~/controllers'
+import { createClient } from '~/core'
 
 // axios wrapper test
 const generateClient = () => createClient(axiosAdaptor)('http://127.0.0.1:2323')

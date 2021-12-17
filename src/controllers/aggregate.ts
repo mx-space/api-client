@@ -10,7 +10,7 @@ import {
 } from '~/models/aggregate'
 import { sortOrderToNumber } from '~/utils'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 export class AggregateController implements IController {
   base = 'aggregate'

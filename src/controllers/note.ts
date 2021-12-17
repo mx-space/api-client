@@ -4,7 +4,7 @@ import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../client'
+import { HTTPClient } from '../core/client'
 
 export type NoteListOptions = {
   select?: SelectFields<keyof NoteModel>

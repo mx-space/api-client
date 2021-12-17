@@ -1,5 +1,5 @@
 import camelcaseKeys from 'camelcase-keys'
-import { UserController } from '~/core'
+import { UserController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 

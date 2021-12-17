@@ -1,6 +1,6 @@
 import { ProjectModel } from '~/models/project'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 import { BaseCrudController } from './base'
 
 export class ProjectController extends BaseCrudController<ProjectModel> {

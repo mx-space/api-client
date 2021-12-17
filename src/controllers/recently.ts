@@ -1,7 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { RecentlyModel } from '~/models/recently'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 export class RecentlyController implements IController {
   base = 'recently'

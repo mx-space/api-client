@@ -5,16 +5,17 @@ import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/types/helper'
 import { isPlainObject } from '~/utils'
+import { allContollerNames } from '../controllers'
 import { attachRequestMethod } from './attachRequest'
-import { allContollerNames } from './controllers'
 import { HTTPControllerDefine } from './define'
 import { RequestError } from './error'
 
-export class HTTPClient extends HTTPControllerDefine {
+export class HTTPClient<
+  T extends IRequestAdapter = IRequestAdapter,
+> extends HTTPControllerDefine {
   private _proxy: IRequestHandler
-  // define all clients
 
-  constructor(private _endpoint: string, private _instance: IRequestAdapter) {
+  constructor(private _endpoint: string, private _adaptor: T) {
     super()
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
@@ -73,7 +74,7 @@ export class HTTPClient extends HTTPControllerDefine {
   }
 
   get instance() {
-    return this._instance
+    return this._adaptor
   }
 
   public request(options: {

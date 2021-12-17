@@ -1,5 +1,5 @@
 import camelcaseKeys from 'camelcase-keys'
-import { AggregateController } from '~/core'
+import { AggregateController } from '~/controllers'
 import { TimelineType } from '~/models/aggregate'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'

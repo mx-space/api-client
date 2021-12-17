@@ -1,7 +1,7 @@
 import { IController } from '~/interfaces/controller'
 import { SayModel } from '~/models/say'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 import { BaseCrudController } from './base'
 
 export class SayController

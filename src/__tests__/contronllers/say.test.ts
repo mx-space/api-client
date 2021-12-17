@@ -1,5 +1,5 @@
 import camelcaseKeys from 'camelcase-keys'
-import { SayController } from '~/core/controllers/say'
+import { SayController } from '~/controllers/say'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
 

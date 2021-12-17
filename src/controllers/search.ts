@@ -4,7 +4,7 @@ import { PaginateResult } from '~/models/base'
 import { NoteModel } from '~/models/note'
 import { PostModel } from '~/models/post'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 type SearchType = 'post' | 'note'
 

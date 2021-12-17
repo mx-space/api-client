@@ -3,7 +3,7 @@ import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
 import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '..'
+import { HTTPClient } from '../core'
 
 export type PageListOptions = {
   select?: SelectFields<keyof PageModel>
