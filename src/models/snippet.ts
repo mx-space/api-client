@@ -4,7 +4,7 @@ export enum SnippetType {
   // Function = 'function',
   Text = 'text',
 }
-export interface SnippetModel extends BaseModel {
+export interface SnippetModel<T = unknown> extends BaseModel {
   type: SnippetType
   private: boolean
   raw: string
@@ -12,4 +12,6 @@ export interface SnippetModel extends BaseModel {
   reference: string
   comment?: string
   metatype?: string
+
+  data: T
 }

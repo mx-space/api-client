@@ -15,11 +15,11 @@ export class SnippetController implements IController {
     return this.client.proxy(this.base)
   }
 
-  getById(id: string) {
-    return this.proxy(id).get<SnippetModel>()
+  getById<T>(id: string) {
+    return this.proxy(id).get<SnippetModel<T>>()
   }
 
-  getByReferenceAndName(reference: string, name: string) {
-    return this.proxy(reference)(name).get<SnippetModel>()
+  getByReferenceAndName<T>(reference: string, name: string) {
+    return this.proxy(reference)(name).get<SnippetModel<T>>()
   }
 }
