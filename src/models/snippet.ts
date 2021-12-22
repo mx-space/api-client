@@ -3,6 +3,7 @@ export enum SnippetType {
   JSON = 'json',
   // Function = 'function',
   Text = 'text',
+  YAML = 'yaml',
 }
 export interface SnippetModel<T = unknown> extends BaseModel {
   type: SnippetType
