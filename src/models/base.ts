@@ -30,7 +30,12 @@ export class BaseModel {
   id?: string
 }
 
-export interface TextBaseModel {
+export interface BaseCommentIndexModel {
+  commentsIndex?: number
+
+  allowComment: boolean
+}
+export interface TextBaseModel extends BaseCommentIndexModel {
   title: string
   text: string
   images?: Image[]
