@@ -1,7 +1,7 @@
-import { Count, Image } from './base'
+import { Count, Image, TextBaseModel } from './base'
 import { CategoryModel } from './category'
 
-export interface PostModel {
+export interface PostModel extends TextBaseModel {
   commentsIndex: number
   allowComment: boolean
   hide: boolean
@@ -14,7 +14,6 @@ export interface PostModel {
   slug: string
   categoryId: string
   images: Image[]
-  modified: string
   created: string
   category: CategoryModel
 }

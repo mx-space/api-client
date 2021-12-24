@@ -1,26 +1,21 @@
+import { TextBaseModel } from './base'
+
 export enum EnumPageType {
   'md' = 'md',
   'html' = 'html',
   'frame' = 'frame',
 }
-export interface PageModel {
+export interface PageModel extends TextBaseModel {
   created: string
-  modified: string
   id: string
   /** Slug */
   slug: string
-
-  /** Title */
-  title: string
 
   /** SubTitle */
   subtitle?: string
 
   /** Order */
   order?: number
-
-  /** Text */
-  text: string
 
   /** Type (MD | html | frame) */
   type?: EnumPageType

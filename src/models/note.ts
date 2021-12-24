@@ -1,4 +1,6 @@
-export interface NoteModel {
+import { TextBaseModel } from './base'
+
+export interface NoteModel extends TextBaseModel {
   id: string
   hide: boolean
   count: {
@@ -11,7 +13,7 @@ export interface NoteModel {
   weather?: string
   hasMemory?: boolean
   created: string
-  modified: string
+
   secret?: Date
   password?: string | null
   nid: number

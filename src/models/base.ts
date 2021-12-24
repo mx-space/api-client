@@ -29,3 +29,10 @@ export class BaseModel {
   created?: Date
   id?: string
 }
+
+export interface TextBaseModel {
+  title: string
+  text: string
+  images?: Image[]
+  modified: string | null
+}
