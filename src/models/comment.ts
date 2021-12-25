@@ -19,12 +19,12 @@ export interface CommentModel extends BaseModel {
   key: string
 
   avatar: string
-  parent?: CommentModel
+  parent?: CommentModel | string
   children: CommentModel[]
 }
 export interface CommentRef {
   id: string
-  category_id?: string
+  categoryId?: string
   slug: string
   title: string
   category?: CategoryModel
