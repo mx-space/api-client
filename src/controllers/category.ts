@@ -20,7 +20,7 @@ export class CategoryController implements IController {
     autoBind(this)
   }
 
-  private get proxy() {
+  public get proxy() {
     return this.client.proxy(this.base)
   }
 

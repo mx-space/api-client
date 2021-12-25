@@ -22,7 +22,7 @@ export class PostController implements IController {
 
   name = 'post'
 
-  private get proxy() {
+  public get proxy() {
     return this.client.proxy(this.base)
   }
 

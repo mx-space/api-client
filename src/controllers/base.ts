@@ -8,7 +8,7 @@ export abstract class BaseCrudController<T> {
   constructor(protected client: HTTPClient) {
     autoBind(this)
   }
-  protected get proxy(): IRequestHandler {
+  public get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 

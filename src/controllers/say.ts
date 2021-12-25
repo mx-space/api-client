@@ -16,7 +16,7 @@ export class SayController
     autoBind(this)
   }
 
-  protected get proxy() {
+  public get proxy() {
     return this.client.proxy(this.base)
   }
 

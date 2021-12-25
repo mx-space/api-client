@@ -18,7 +18,7 @@ export class AggregateController implements IController {
   constructor(private client: HTTPClient) {
     autoBind(this)
   }
-  private get proxy(): IRequestHandler {
+  public get proxy(): IRequestHandler {
     return this.client.proxy(this.base)
   }
 
