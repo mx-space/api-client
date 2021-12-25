@@ -25,12 +25,12 @@ export interface PaginateResult<T> {
   pagination: Pager
 }
 
-export class BaseModel {
-  created?: Date
-  id?: string
+export interface BaseModel {
+  created: string
+  id: string
 }
 
-export interface BaseCommentIndexModel {
+export interface BaseCommentIndexModel extends BaseModel {
   commentsIndex?: number
 
   allowComment: boolean

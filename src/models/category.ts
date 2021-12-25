@@ -1,3 +1,4 @@
+import { BaseModel } from './base'
 import { PostModel } from './post'
 
 export enum CategoryType {
@@ -5,14 +6,11 @@ export enum CategoryType {
   Tag,
 }
 
-export interface CategoryModel {
+export interface CategoryModel extends BaseModel {
   type: CategoryType
   count: number
-  id: string
-  created: string
   slug: string
   name: string
-  modified: string
 }
 export type CategoryWithChildrenModel = CategoryModel & {
   children: Pick<PostModel, 'id' | 'title' | 'slug' | 'modified' | 'created'>[]

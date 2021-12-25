@@ -1,18 +1,15 @@
 import { TextBaseModel } from './base'
 
 export interface NoteModel extends TextBaseModel {
-  id: string
   hide: boolean
   count: {
     read: number
     like: number
   }
-  title: string
-  text: string
+
   mood?: string
   weather?: string
   hasMemory?: boolean
-  created: string
 
   secret?: Date
   password?: string | null

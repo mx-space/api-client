@@ -7,12 +7,10 @@ export interface PostModel extends TextBaseModel {
   copyright: boolean
   tags: string[]
   count: Count
-  id: string
   text: string
   title: string
   slug: string
   categoryId: string
   images: Image[]
-  created: string
   category: CategoryModel
 }

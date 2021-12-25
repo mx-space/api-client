@@ -1,5 +1,7 @@
-export interface RecentlyModel {
+import { BaseModel } from './base'
+
+export interface RecentlyModel extends BaseModel {
   content: string
-  created: string
-  id: string
+  project?: string
+  language?: string
 }

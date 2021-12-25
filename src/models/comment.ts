@@ -1,11 +1,11 @@
-import { Pager } from './base'
+import { BaseModel, Pager } from './base'
 
-export interface CommentModel {
+export interface CommentModel extends BaseModel {
   refType: string
   state: number
   children: CommentModel[]
   commentsIndex: number
-  id: string
+
   author: string
   text: string
   mail: string
@@ -14,7 +14,7 @@ export interface CommentModel {
   agent: string
   key: string
   pid: string
-  created: string
+
   modified: string
   avatar: string
 }

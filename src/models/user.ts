@@ -1,14 +1,13 @@
-export interface UserModel {
-  ok: number
-  id: string
+import { BaseModel } from './base'
+
+export interface UserModel extends BaseModel {
   introduce: string
   mail: string
   url: string
   name: string
   socialIDS: SocialIDS & Record<string, string>
   username: string
-  created: Date
-  modified: Date
+  modified: string
   v: number
   lastLoginTime: string
   lastLoginIp?: string

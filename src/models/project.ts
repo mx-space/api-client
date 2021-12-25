@@ -1,7 +1,6 @@
-import { Pager } from './base'
+import { BaseModel } from './base'
 
-export interface ProjectModel {
-  id?: string
+export interface ProjectModel extends BaseModel {
   name: string
   previewUrl?: string
   docUrl?: string
@@ -10,9 +9,4 @@ export interface ProjectModel {
   description: string
   avatar?: string
   text: string
-}
-
-export type ProjectResponse = {
-  data: ProjectModel[]
-  pagination: Pager
 }
