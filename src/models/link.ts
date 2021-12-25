@@ -1,14 +1,16 @@
 import { BaseModel } from './base'
 
-export enum LinkType {
+enum LinkType {
   Friend,
   Collection,
 }
 
-export enum LinkState {
+enum LinkState {
   Pass,
   Audit,
 }
+
+export { LinkState, LinkType }
 export interface LinkModel extends BaseModel {
   name: string
   url: string
@@ -16,4 +18,5 @@ export interface LinkModel extends BaseModel {
   description?: string
   type: LinkType
   state: LinkState
+  hide: boolean
 }
