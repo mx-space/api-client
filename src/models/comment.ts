@@ -1,27 +1,32 @@
-import { BaseModel, Pager } from './base'
+import { BaseModel } from './base'
+import { CategoryModel } from './category'
 
+export enum RefType {
+  Page = 'Page',
+  Post = 'Post',
+  Note = 'Note',
+}
 export interface CommentModel extends BaseModel {
-  refType: string
+  refType: RefType
   state: number
-  children: CommentModel[]
-  commentsIndex: number
-
+  comments_index: number
   author: string
   text: string
-  mail: string
-  url: string
-  ip: string
-  agent: string
+  mail?: string
+  url?: string
+  ip?: string
+  agent?: string
   key: string
-  pid: string
-
-  modified: string
+  ref: string | Ref
   avatar: string
+  parent?: CommentModel
 }
-
-export interface CommentsResponse {
-  data: CommentModel[]
-  pagination: Pager
+export interface Ref {
+  id: string
+  category_id?: string
+  slug: string
+  title: string
+  category?: CategoryModel
 }
 
 export enum CommentState {
