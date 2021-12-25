@@ -2,8 +2,7 @@ import { Count, Image, TextBaseModel } from './base'
 import { CategoryModel } from './category'
 
 export interface PostModel extends TextBaseModel {
-  commentsIndex: number
-  allowComment: boolean
+  summary?: string
   hide: boolean
   copyright: boolean
   tags: string[]
