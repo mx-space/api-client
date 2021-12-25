@@ -30,9 +30,6 @@ export class RecentlyController implements IController {
     after?: string | undefined,
     size?: number | number,
   ) {
-    if (!before && !after) {
-      throw new Error('you can only choose `before` or `after`')
-    }
     return this.proxy.get<{ data: RecentlyModel[] }>({
       params: {
         before,
