@@ -23,7 +23,7 @@ export class CommentController implements IController {
    * 根据 comment id 获取评论, 包括子评论
    */
   getById(id: string): RequestProxyResult<CommentModel> {
-    return this.proxy(id).get<CommentModel>()
+    return this.proxy(id).get<CommentModel & { ref: string }>()
   }
 
   /**
@@ -32,9 +32,11 @@ export class CommentController implements IController {
    */
   getByRefId(refId: string, pagination: PaginationParams = {}) {
     const { page, size } = pagination
-    return this.proxy.ref(refId).get<PaginateResult<CommentModel>>({
-      params: { page: page || 1, size: size || 10 },
-    })
+    return this.proxy
+      .ref(refId)
+      .get<PaginateResult<CommentModel & { ref: string }>>({
+        params: { page: page || 1, size: size || 10 },
+      })
   }
   /**
    * 评论

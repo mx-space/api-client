@@ -17,11 +17,12 @@ export interface CommentModel extends BaseModel {
   ip?: string
   agent?: string
   key: string
-  ref: string | Ref
+
   avatar: string
   parent?: CommentModel
+  children: CommentModel[]
 }
-export interface Ref {
+export interface CommentRef {
   id: string
   category_id?: string
   slug: string
