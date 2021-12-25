@@ -78,4 +78,13 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
     })
     await expect(client.proxy.error.get()).rejects.toThrowError(RequestError)
   })
+
+  it('should use number as path', async () => {
+    app.get('/1/1', (req, res) => {
+      res.send({ data: 1 })
+    })
+
+    const res = await client.proxy(1)(1).get()
+    expect(res).toStrictEqual({ data: 1 })
+  })
 }

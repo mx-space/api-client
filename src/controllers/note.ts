@@ -80,7 +80,7 @@ export class NoteController implements IController {
   /**
    * 喜欢这篇日记
    */
-  likeIt(id: string) {
+  likeIt(id: string | number) {
     return this.proxy.like(id).get<never>()
   }
 }

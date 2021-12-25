@@ -4,7 +4,7 @@ type NoStringIndex<T> = { [K in keyof T as string extends K ? never : K]: T[K] }
 export type Method = 'get' | 'delete' | 'post' | 'put' | 'patch'
 
 export interface IRequestHandler {
-  (id?: string): IRequestHandler
+  (path?: string | number): IRequestHandler
   // @ts-ignore
   get<P = unknown>(
     options?: Omit<NoStringIndex<RequestOptions>, 'data'>,
