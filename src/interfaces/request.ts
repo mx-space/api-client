@@ -27,7 +27,9 @@ export type RequestProxyResult<
   R = { data: T; [key: string]: any },
 > = Promise<ResponseProxyExtraRaw<T, R>>
 
-export type ResponseProxyExtraRaw<T, R = any> = T & {
-  $raw: R
-  $request: { path: string; method: string; [k: string]: string }
-}
+export type ResponseProxyExtraRaw<T, R = any> = T extends object
+  ? T & {
+      $raw: R
+      $request: { path: string; method: string; [k: string]: string }
+    }
+  : T

@@ -157,26 +157,28 @@ export class HTTPClient<
                   ? camelcaseKeys(data, { deep: true })
                   : data
 
-              Object.defineProperty(transform, '$raw', {
-                get() {
-                  return res
-                },
-                enumerable: false,
-                configurable: false,
-              })
+              if (transform && typeof transform === 'object') {
+                Object.defineProperty(transform, '$raw', {
+                  get() {
+                    return res
+                  },
+                  enumerable: false,
+                  configurable: false,
+                })
 
-              // attach request config onto response
+                // attach request config onto response
 
-              Object.defineProperty(transform, '$request', {
-                get() {
-                  return {
-                    url,
-                    method: name,
-                    options,
-                  }
-                },
-                enumerable: false,
-              })
+                Object.defineProperty(transform, '$request', {
+                  get() {
+                    return {
+                      url,
+                      method: name,
+                      options,
+                    }
+                  },
+                  enumerable: false,
+                })
+              }
 
               return transform
             }

@@ -1,8 +1,9 @@
 import { SortOrder } from '~/interfaces/options'
 
 export const isPlainObject = (obj: any) =>
-  typeof obj === 'object' &&
-  Object.prototype.toString.call(obj) === '[object Object]'
+  isObject(obj) &&
+  Object.prototype.toString.call(obj) === '[object Object]' &&
+  Object.getPrototypeOf(obj) === Object.prototype
 
 export const sortOrderToNumber = (order: SortOrder) => {
   return (
@@ -12,7 +13,7 @@ export const sortOrderToNumber = (order: SortOrder) => {
     }[order] || 1
   )
 }
-
+const isObject = (obj: any) => obj && typeof obj === 'object'
 export const destructureData = (payload: any) => {
   if (typeof payload !== 'object') {
     return payload
@@ -23,8 +24,7 @@ export const destructureData = (payload: any) => {
 
   const data = payload.data
 
-  const dataIsPlainObject =
-    Object.prototype.toString.call(data) === '[object Object]'
+  const dataIsPlainObject = isPlainObject(data)
 
   if (dataIsPlainObject && Object.keys(payload).length === 1) {
     const d = Object.assign({}, data)
@@ -37,7 +37,7 @@ export const destructureData = (payload: any) => {
 }
 
 export const attachRawFromOneToAnthor = (from: any, to: any) => {
-  if (!from) {
+  if (!from || !isObject(to)) {
     return
   }
   from.$raw &&

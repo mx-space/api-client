@@ -81,10 +81,22 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
 
   it('should use number as path', async () => {
     app.get('/1/1', (req, res) => {
-      res.send({ data: 1 })
+      res.send({ data: 1, foo_bar: 'foo' })
     })
 
-    const res = await client.proxy(1)(1).get()
-    expect(res).toStrictEqual({ data: 1 })
+    const res = await client.proxy(1)(1).get<{ data: number; fooBar: string }>()
+
+    expect(res).toStrictEqual({ data: 1, fooBar: 'foo' })
+    expect(res.$raw.data).toStrictEqual({ data: 1, foo_bar: 'foo' })
+    expect(res.$request).toBeDefined()
+  })
+
+  it('should get string payload', async () => {
+    app.get('/string', (req, res) => {
+      res.send('x')
+    })
+
+    const res = await client.proxy('string').get<string>()
+    expect(res).toStrictEqual('x')
   })
 }
