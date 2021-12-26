@@ -234,8 +234,6 @@ describe('test Category client', () => {
         ]),
       )
 
-      console.log(data, data.$raw)
-
       expect(data.$raw.data).toEqual(mocked)
     })
 
