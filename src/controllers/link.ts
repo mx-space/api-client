@@ -9,6 +9,6 @@ export class LinkController extends BaseCrudController<LinkModel> {
     autoBind(this)
   }
 
-  name = 'link'
+  name = ['link', 'friend']
   base = 'links'
 }

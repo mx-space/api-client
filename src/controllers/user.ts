@@ -10,7 +10,7 @@ export class UserController implements IController {
 
   base = 'master'
 
-  name = 'user'
+  name = ['user', 'master']
 
   public get proxy() {
     return this.client.proxy(this.base)

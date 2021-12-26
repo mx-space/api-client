@@ -5,7 +5,7 @@ import { HTTPClient } from '../core'
 
 export class RecentlyController implements IController {
   base = 'recently'
-  name = 'recently'
+  name = ['recently', 'shorthand']
 
   constructor(private readonly client: HTTPClient) {
     autoBind(this)

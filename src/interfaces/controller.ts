@@ -1,5 +1,5 @@
 export interface IController {
   base: string
 
-  name: string
+  name: string | string[]
 }

@@ -42,7 +42,12 @@ export const allContollerNames = [
   'search',
   'snippet',
   'user',
-]
+
+  // alias,
+  'friend',
+  'master',
+  'shorthand',
+] as const
 
 export {
   AggregateController,

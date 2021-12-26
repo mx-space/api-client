@@ -5,18 +5,54 @@ import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/types/helper'
 import { isPlainObject } from '~/utils'
-import { allContollerNames } from '../controllers'
+import {
+  AggregateController,
+  allContollerNames,
+  CategoryController,
+  CommentController,
+  LinkController,
+  NoteController,
+  PageController,
+  PostController,
+  ProjectController,
+  RecentlyController,
+  SayController,
+  SearchController,
+  SnippetController,
+  UserController,
+} from '../controllers'
 import { attachRequestMethod } from './attachRequest'
-import { HTTPControllerDefine } from './define'
 import { RequestError } from './error'
 
-export class HTTPClient<
-  T extends IRequestAdapter = IRequestAdapter,
-> extends HTTPControllerDefine {
+export interface HTTPClient {
+  aggregate: AggregateController
+  category: CategoryController
+  comment: CommentController
+  link: LinkController
+  note: NoteController
+  page: PageController
+  post: PostController
+  project: ProjectController
+  recently: RecentlyController
+  say: SayController
+  search: SearchController
+  snippet: SnippetController
+  user: UserController
+
+  master: HTTPClient['user']
+
+  friend: HTTPClient['link']
+
+  shorthand: HTTPClient['recently']
+}
+
+const methodPrefix = '_$'
+
+export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
   private _proxy: IRequestHandler
 
   constructor(private _endpoint: string, private _adaptor: T) {
-    super()
+    // super()
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')
@@ -25,15 +61,25 @@ export class HTTPClient<
     this.initGetClient()
 
     attachRequestMethod(this)
+
+    // const proxy = new Proxy(this, {
+    //   get(target, key, r) {
+    //     return (
+    //       Reflect.get(target, key, r) ||
+    //       (typeof key === 'string' &&
+    //         Reflect.get(target, methodPrefix + key, r))
+    //     )
+    //   },
+    // })
+
+    // return proxy
   }
 
   private initGetClient() {
-    const clientsName = allContollerNames
-
-    for (const name of clientsName) {
+    for (const name of allContollerNames) {
       Object.defineProperty(this, name, {
         get() {
-          const client = Reflect.get(this, `_${name}`)
+          const client = Reflect.get(this, `${methodPrefix}${name}`)
           if (!client) {
             throw new ReferenceError(
               `${
@@ -59,7 +105,18 @@ export class HTTPClient<
     Controller = Array.isArray(Controller) ? Controller : [Controller, ...rest]
     for (const Client of Controller) {
       const cl = new Client(this)
-      Object.defineProperty(this, `_${cl.name.toLowerCase()}`, {
+
+      if (Array.isArray(cl.name)) {
+        for (const name of cl.name) {
+          attach.call(this, name, cl)
+        }
+      } else {
+        attach.call(this, cl.name, cl)
+      }
+    }
+
+    function attach(this: any, name: string, cl: IController) {
+      Object.defineProperty(this, `${methodPrefix}${name.toLowerCase()}`, {
         get() {
           return cl
         },
