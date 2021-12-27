@@ -95,13 +95,9 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
     }
   }
 
-  // @ts-expect-error
   public injectControllers(...Controller: Class<IController>[]): void
   public injectControllers(Controller: Class<IController>[]): void
-  public injectControllers<T extends { new (client: HTTPClient): IController }>(
-    Controller: T[],
-    ...rest: T[]
-  ) {
+  public injectControllers(Controller: any, ...rest: any[]) {
     Controller = Array.isArray(Controller) ? Controller : [Controller, ...rest]
     for (const Client of Controller) {
       const cl = new Client(this)
