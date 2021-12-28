@@ -9,9 +9,15 @@ import { UserModel } from './user'
 export interface AggregateRoot {
   user: UserModel
   seo: SeoOptionModel
+  url: Url
   categories: CategoryModel[]
   pageMeta: Pick<PageModel, 'title' | 'id' | 'slug' | 'order'>[] | null
-  lastestNoteNid: number | null
+}
+
+export interface Url {
+  wsUrl: string
+  serverUrl: string
+  webUrl: string
 }
 
 export interface AggregateTop {

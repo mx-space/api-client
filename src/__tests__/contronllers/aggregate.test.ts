@@ -122,13 +122,17 @@ describe('test aggregate client', () => {
             slug: 'sprint',
           },
         ],
-        lastest_note_nid: 104,
+        url: {
+          ws_url: 'https://api.innei.ren',
+          server_url: 'https://api.innei.ren/v2',
+          web_url: 'https://innei.ren',
+        },
       },
     )
     const data = await client.aggregate.getAggregateData()
     expect(data.$raw.data).toEqual(mocked)
     expect(data.user.name).toEqual(mocked.user.name)
-    expect(data.lastestNoteNid).toEqual(mocked.lastest_note_nid)
+    expect(data.url.webUrl).toEqual(mocked.url.web_url)
   })
 
   test('GET /aggregate/top', async () => {
