@@ -26,22 +26,14 @@ describe('test Snippet client', () => {
   })
 
   test('GET /:reference/:name', async () => {
-    const mocked = mockResponse('/snippets/theme/config', {
-      id: '61a0cac4b4aefa000fcc1822',
-      type: 'json',
-      private: true,
-      reference: 'theme',
-      raw: '{}',
-      name: 'config',
-      created: '2021-11-26T11:53:40.863Z',
-      updated: '2021-11-26T11:53:40.863Z',
-      data: {},
-    })
+    const mocked = mockResponse('/snippets/theme/config', {})
 
-    const data = await client.snippet.getByReferenceAndName('theme', 'config')
+    const data = await client.snippet.getByReferenceAndName<{}>(
+      'theme',
+      'config',
+    )
 
     expect(data).toEqual(mocked)
     expect(data.$raw.data).toEqual(mocked)
-    expect(data.raw).toEqual('{}')
   })
 })
