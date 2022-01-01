@@ -1,6 +1,6 @@
 {
   "name": "@mx-space/api-client",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A api client for mx-space server@next",
   "author": "Innei",
   "license": "MIT",
@@ -73,7 +73,7 @@
     "axios": "0.24.0",
     "cors": "2.8.5",
     "dts-bundle-generator": "6.2.0",
-    "esbuild": "0.14.10",
+    "esbuild": "0.14.9",
     "express": "4.17.2",
     "gh-pages": "3.2.3",
     "husky": "7.0.4",
