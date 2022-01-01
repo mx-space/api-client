@@ -27,9 +27,31 @@ export type RequestProxyResult<
   R = { data: T; [key: string]: any },
 > = Promise<ResponseProxyExtraRaw<T, R>>
 
-export type ResponseProxyExtraRaw<T, R = any> = T extends object
+type CamelToSnake<T extends string, P extends string = ''> = string extends T
+  ? string
+  : T extends `${infer C0}${infer R}`
+  ? CamelToSnake<
+      R,
+      `${P}${C0 extends Lowercase<C0> ? '' : '_'}${Lowercase<C0>}`
+    >
+  : P
+
+type CamelKeysToSnake<T> = {
+  [K in keyof T as CamelToSnake<Extract<K, string>>]: T[K]
+}
+
+export type ResponseProxyExtraRaw<
+  T,
+  RawData = unknown,
+  Response = unknown,
+> = T extends object
   ? T & {
-      $raw: R
+      $raw: Response extends unknown
+        ? {
+            [i: string]: any
+            data: RawData extends unknown ? CamelKeysToSnake<T> : RawData
+          }
+        : Response
       $request: { path: string; method: string; [k: string]: string }
     }
   : T

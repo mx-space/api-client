@@ -18,13 +18,17 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
     app.get('/posts/1', (req, res) => {
       res.send({
         id: '1',
+        category_id: '11',
       })
     })
     const res = await client.post.getPost('1')
 
     expect(res).toStrictEqual({
       id: '1',
+      categoryId: '11',
     })
+
+    expect(res.$raw.data.category_id).toEqual('11')
   })
 
   test('post', async () => {
