@@ -72,7 +72,7 @@
     "@zerollup/ts-transform-paths": "1.7.18",
     "axios": "0.24.0",
     "cors": "2.8.5",
-    "dts-bundle-generator": "6.2.0",
+    "dts-bundle-generator": "6.3.0",
     "esbuild": "0.14.9",
     "express": "4.17.2",
     "gh-pages": "3.2.3",
