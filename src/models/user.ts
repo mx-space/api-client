@@ -5,7 +5,7 @@ export interface UserModel extends BaseModel {
   mail: string
   url: string
   name: string
-  socialIDS: SocialIDS & Record<string, string>
+  socialIds: Record<string, string>
   username: string
   modified: string
   v: number
@@ -13,12 +13,6 @@ export interface UserModel extends BaseModel {
   lastLoginIp?: string
   avatar: string
   postID: string
-}
-
-interface SocialIDS {
-  biliID: number
-  neteaseID: number
-  github: string
 }
 
 export type TLogin = {
