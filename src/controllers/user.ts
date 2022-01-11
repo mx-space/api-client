@@ -32,7 +32,7 @@ export class UserController implements IController {
   checkTokenValid(token: string) {
     return this.proxy.check_logged.get<{ ok: number; isGuest: boolean }>({
       params: {
-        token,
+        token: 'bearer ' + token.replace(/^Bearer\s/i, ''),
       },
     })
   }
