@@ -17,7 +17,7 @@ specifiers:
   axios: 0.24.0
   camelcase-keys: 7.0.1
   cors: 2.8.5
-  dts-bundle-generator: 6.3.0
+  dts-bundle-generator: 6.4.0
   esbuild: 0.14.11
   express: 4.17.2
   gh-pages: 3.2.3
@@ -59,7 +59,7 @@ devDependencies:
   '@zerollup/ts-transform-paths': 1.7.18_typescript@4.4.4
   axios: 0.24.0
   cors: 2.8.5
-  dts-bundle-generator: 6.3.0
+  dts-bundle-generator: 6.4.0
   esbuild: 0.14.11
   express: 4.17.2
   gh-pages: 3.2.3
@@ -1846,8 +1846,8 @@ packages:
       webidl-conversions: 5.0.0
     dev: true
 
-  /dts-bundle-generator/6.3.0:
-    resolution: {integrity: sha512-MZszk9RW0krG0DqhJL852fqMNwy6U06EoarJWhpUzlU9n6u4kv5UgS7YF3z1lDYAA42cbO6E85M2sF/OO167LA==}
+  /dts-bundle-generator/6.4.0:
+    resolution: {integrity: sha512-hKktZs5tXUAMlZX5Ae3ArI2HFR2ISLrDzvbBBSy5dI7mZMaJztsX2hA0rgkcMqzvkjOezen7x1GUYQwad2wAqQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
