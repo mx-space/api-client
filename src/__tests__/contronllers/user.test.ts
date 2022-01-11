@@ -44,7 +44,9 @@ describe('test user client', () => {
   })
 
   test('GET /check_logged', async () => {
-    const mocked = mockResponse('/check_logged?token=token', { isGuest: true })
+    const mocked = mockResponse('/check_logged?token=bearer token', {
+      isGuest: true,
+    })
     const data = await client.user.checkTokenValid('token')
     expect(data).toEqual(mocked)
   })
