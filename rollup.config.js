@@ -11,6 +11,7 @@ const umdName = packageJson.name
 
 const globals = {
   ...packageJson.devDependencies,
+  ...packageJson.dependencies,
 }
 
 const dir = 'build'
