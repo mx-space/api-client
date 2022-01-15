@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@innei-util/eslint-config-ts': latest
   '@innei-util/prettier': latest
-  '@innei/bump-version': 0.2.1
+  '@innei/bump-version': 0.2.2
   '@rollup/plugin-commonjs': 21.0.1
   '@rollup/plugin-node-resolve': 13.1.3
   '@rollup/plugin-typescript': 8.3.0
@@ -46,7 +46,7 @@ dependencies:
 devDependencies:
   '@innei-util/eslint-config-ts': 0.3.4_typescript@4.4.4
   '@innei-util/prettier': 0.1.4_prettier@2.5.1+typescript@4.4.4
-  '@innei/bump-version': 0.2.1
+  '@innei/bump-version': 0.2.2
   '@rollup/plugin-commonjs': 21.0.1_rollup@2.64.0
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.64.0
   '@rollup/plugin-typescript': 8.3.0_2f6308b2c1291786f22aaee08be8cd8f
@@ -478,8 +478,8 @@ packages:
       - typescript
     dev: true
 
-  /@innei/bump-version/0.2.1:
-    resolution: {integrity: sha512-nUfXaUUTb5qx+PReF6nvZEu0FGlXCru5bigK6hC7MnyBwZca1VniAFYx/PG3mR1Mm+F6qPChbrRnH4+pdnRS9A==}
+  /@innei/bump-version/0.2.2:
+    resolution: {integrity: sha512-4vcKdu5lFGgBd62xiAz20uwhUWgXSp8enNWYYaN6/tSipZkSNrtYUDbdQ+lQizRBHBg6XxfmOIzbN9j/YDTSew==}
     hasBin: true
     dev: true
 
