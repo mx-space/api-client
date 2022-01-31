@@ -8,6 +8,8 @@ export enum LinkType {
 export enum LinkState {
   Pass,
   Audit,
+  Outdate,
+  Banned,
 }
 
 export interface LinkModel extends BaseModel {

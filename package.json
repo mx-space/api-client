@@ -20,7 +20,6 @@
       "npm run package"
     ],
     "after": [
-      "sh ./scripts/create-tags.sh",
       "npm publish --access=public"
     ]
   },
