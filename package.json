@@ -95,6 +95,6 @@
     "vite-tsconfig-paths": "3.3.17"
   },
   "dependencies": {
-    "camelcase-keys": "7.0.1"
+    "camelcase-keys": "7.0.2"
   }
 }
