@@ -4,6 +4,7 @@ import { PaginateResult } from '~/models/base'
 import { NoteModel } from '~/models/note'
 import { PostModel } from '~/models/post'
 import { autoBind } from '~/utils/auto-bind'
+import { PageModel } from '..'
 import { HTTPClient } from '../core'
 
 type SearchType = 'post' | 'note'
@@ -70,10 +71,18 @@ export class SearchController implements IController {
     return this.proxy('algolia').get<
       RequestProxyResult<
         PaginateResult<
-          Pick<
-            PostModel,
-            'modified' | 'id' | 'title' | 'created' | 'slug' | 'category'
-          >
+          | (Pick<
+              PostModel,
+              'modified' | 'id' | 'title' | 'created' | 'slug' | 'category'
+            > & { type: 'post' })
+          | (Pick<
+              NoteModel,
+              'id' | 'created' | 'id' | 'modified' | 'title' | 'nid'
+            > & { type: 'note' })
+          | (Pick<
+              PageModel,
+              'id' | 'title' | 'created' | 'modified' | 'slug'
+            > & { type: 'page' })
         > & {
           /**
            * @see: algoliasearch <https://www.algolia.com/doc/api-reference/api-methods/search/>
