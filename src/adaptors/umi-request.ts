@@ -1,5 +1,5 @@
 import { extend, RequestMethod } from 'umi-request'
-import { IRequestAdapter } from '~/interfaces/instance'
+import { IRequestAdapter } from '~/interfaces/adapter'
 
 const $http = extend({
   getResponse: true,

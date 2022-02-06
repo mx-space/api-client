@@ -6,32 +6,3 @@ export interface RequestOptions {
 
   [key: string]: any
 }
-
-type RequestResponseType<P> = Promise<Record<string, any> & { data: P }>
-export type IRequestAdapter<T = any> = Readonly<{
-  default: T
-  get<P = unknown>(
-    url: string,
-    options?: RequestOptions,
-  ): RequestResponseType<P>
-
-  post<P = unknown>(
-    url: string,
-    options?: RequestOptions,
-  ): RequestResponseType<P>
-
-  patch<P = unknown>(
-    url: string,
-    options?: RequestOptions,
-  ): RequestResponseType<P>
-
-  delete<P = unknown>(
-    url: string,
-    options?: RequestOptions,
-  ): RequestResponseType<P>
-
-  put<P = unknown>(
-    url: string,
-    options?: RequestOptions,
-  ): RequestResponseType<P>
-}>

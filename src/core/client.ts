@@ -1,7 +1,8 @@
 import camelcaseKeys from 'camelcase-keys'
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { ClientOptions } from '~/interfaces/client'
 import { IController } from '~/interfaces/controller'
-import { IRequestAdapter, RequestOptions } from '~/interfaces/instance'
+import { RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/types/helper'
 import { isPlainObject } from '~/utils'
@@ -21,7 +22,7 @@ import {
   SnippetController,
   UserController,
 } from '../controllers'
-import { attachRequestMethod } from './attachRequest'
+import { attachRequestMethod } from './attach-request'
 import { RequestError } from './error'
 
 export interface HTTPClient {
