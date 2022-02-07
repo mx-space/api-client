@@ -7,6 +7,6 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
   moduleNameMapper: {
-    '~/(.*)': '<rootDir>/src/$1',
+    '~/(.*)': '<rootDir>/$1',
   },
 }
