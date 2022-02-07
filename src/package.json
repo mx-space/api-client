@@ -1,0 +1,66 @@
+{
+  "name": "@mx-space/api-client",
+  "version": "0.7.0-alpha.0",
+  "description": "A api client for mx-space server@next",
+  "author": "Innei",
+  "license": "MIT",
+  "main": "build/index.cjs.js",
+  "module": "build/index.esm.js",
+  "types": "index.ts",
+  "unpkg": "build/index.umd.min.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "bump": {
+    "before": [
+      "git pull --rebase",
+      "pnpm i",
+      "npm run package"
+    ],
+    "after": [
+      "npm publish --access=public"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --ignore-path ./.prettierignore --write ",
+      "eslint --cache"
+    ]
+  },
+  "engines": {
+    "pnpm": ">=6"
+  },
+  "scripts": {
+    "predeploy": "rm -rf dist",
+    "prebuild": "rm -rf rm -rf lib && rm -rf esm",
+    "build": "tsc --build tsconfig.build.json && tsc --build tsconfig.cjs.json",
+    "postbuild": "tsconfig-replace-paths -p tsconfig.build.json && tsconfig-replace-paths -p tsconfig.cjs.json",
+    "package": "NODE_ENV=production npm run build && rollup -c",
+    "prepackage": "rm -rf build",
+    "release": "vv",
+    "test": "jest --env=jsdom --colors --coverage test",
+    "test:watch": "jest --env=jsdom --colors --coverage test --watch -i --detectOpenHandles",
+    "version": "vv"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "21.0.1",
+    "@rollup/plugin-node-resolve": "13.1.3",
+    "@rollup/plugin-typescript": "8.3.0",
+    "@types/jest": "27.4.0",
+    "@types/lodash": "4.14.178",
+    "@types/node": "16.11.22",
+    "axios": "0.25.0",
+    "gh-pages": "3.2.3",
+    "lodash": "4.17.21",
+    "rollup": "2.66.1",
+    "rollup-plugin-peer-deps-external": "2.2.4",
+    "rollup-plugin-terser": "7.0.2",
+    "tsconfig-replace-paths": "0.0.11",
+    "umi-request": "1.4.0"
+  },
+  "dependencies": {
+    "camelcase-keys": "7.0.2"
+  }
+}

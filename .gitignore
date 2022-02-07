@@ -118,11 +118,16 @@ ctag
 # idea
 # .idea/*
 
-/dist
+src/dist
 /publish
-/build
-/lib
+src/build
+src/lib
+src/esm
+src/types
+
 /esm
-/types
+/lib
+/dist
+/build
 
 example/dist

@@ -21,7 +21,7 @@ const dir = 'build'
  */
 const config = [
   {
-    input: 'src/index.ts',
+    input: './index.ts',
     // ignore lib
     external: ['lodash', 'lodash-es', ...Object.keys(globals)],
 
@@ -65,7 +65,7 @@ const config = [
     plugins: [
       nodeResolve(),
       commonjs({ include: 'node_modules/**' }),
-      typescript({ tsconfig: './src/tsconfig.json', declaration: false }),
+      typescript({ tsconfig: './tsconfig.json', declaration: false }),
 
       // @ts-ignore
       peerDepsExternal(),

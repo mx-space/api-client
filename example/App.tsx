@@ -1,8 +1,8 @@
+import { allControllers, createClient } from '@mx-space/api-client'
+import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
 import { ApiView } from 'components/ApiView'
 import React from 'react'
-import { axiosAdaptor } from '~/adaptors/axios'
-import { allControllers } from '~/controllers'
-import { createClient } from '~/core/client'
+
 const axios = axiosAdaptor.default
 const client = createClient(axiosAdaptor)('https://api.innei.ren/v2')
 client.injectControllers(allControllers)
