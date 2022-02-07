@@ -7,9 +7,15 @@ import { autoBind } from '~/utils/auto-bind'
 import { PageModel } from '..'
 import { HTTPClient } from '../core'
 
-type SearchType = 'post' | 'note'
+declare module '../core/client' {
+  interface HTTPClient {
+    search: SearchController
+  }
+}
 
-type SearchOption = {
+export type SearchType = 'post' | 'note'
+
+export type SearchOption = {
   orderBy?: string
   order?: number
   rawAlgolia?: boolean

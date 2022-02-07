@@ -12,6 +12,12 @@ import { sortOrderToNumber } from '~/utils'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    aggregate: AggregateController
+  }
+}
+
 export class AggregateController implements IController {
   base = 'aggregate'
   name = 'aggregate'

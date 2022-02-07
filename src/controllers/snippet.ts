@@ -3,6 +3,12 @@ import { SnippetModel } from '~/models/snippet'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    snippet: SnippetController
+  }
+}
+
 export class SnippetController implements IController {
   base = 'snippets'
   name = 'snippet'

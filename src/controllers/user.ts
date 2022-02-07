@@ -3,6 +3,13 @@ import { TLogin, UserModel } from '~/models/user'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    user: UserController
+    master: UserController
+  }
+}
+
 export class UserController implements IController {
   constructor(private readonly client: HTTPClient) {
     autoBind(this)

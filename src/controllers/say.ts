@@ -4,6 +4,12 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 import { BaseCrudController } from './base'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    say: SayController
+  }
+}
+
 export class SayController
   extends BaseCrudController<SayModel>
   implements IController

@@ -13,6 +13,12 @@ import {
 } from '../models/category'
 import { PostModel } from '../models/post'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    category: CategoryController
+  }
+}
+
 export class CategoryController implements IController {
   name = 'category'
   base = 'categories'

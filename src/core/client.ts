@@ -6,46 +6,31 @@ import { RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/types/helper'
 import { isPlainObject } from '~/utils'
-import {
-  AggregateController,
-  allContollerNames,
-  CategoryController,
-  CommentController,
-  LinkController,
-  NoteController,
-  PageController,
-  PostController,
-  ProjectController,
-  RecentlyController,
-  SayController,
-  SearchController,
-  SnippetController,
-  UserController,
-} from '../controllers'
+import { allContollerNames } from '../controllers'
 import { attachRequestMethod } from './attach-request'
 import { RequestError } from './error'
 
-export interface HTTPClient {
-  aggregate: AggregateController
-  category: CategoryController
-  comment: CommentController
-  link: LinkController
-  note: NoteController
-  page: PageController
-  post: PostController
-  project: ProjectController
-  recently: RecentlyController
-  say: SayController
-  search: SearchController
-  snippet: SnippetController
-  user: UserController
+// export interface HTTPClient {
+//   aggregate: AggregateController
+//   category: CategoryController
+//   comment: CommentController
+//   link: LinkController
+//   note: NoteController
+//   page: PageController
+//   post: PostController
+//   project: ProjectController
+//   recently: RecentlyController
+//   say: SayController
+//   search: SearchController
+//   snippet: SnippetController
+//   user: UserController
 
-  master: HTTPClient['user']
+//   master: HTTPClient['user']
 
-  friend: HTTPClient['link']
+//   friend: HTTPClient['link']
 
-  shorthand: HTTPClient['recently']
-}
+//   shorthand: HTTPClient['recently']
+// }
 
 const methodPrefix = '_$'
 

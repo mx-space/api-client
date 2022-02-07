@@ -7,6 +7,12 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 import { CommentDto } from '../dtos/comment'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    comment: CommentController
+  }
+}
+
 export class CommentController implements IController {
   base = 'comments'
   name = 'comment'

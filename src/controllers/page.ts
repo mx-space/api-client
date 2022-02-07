@@ -5,6 +5,12 @@ import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    page: PageController
+  }
+}
+
 export type PageListOptions = {
   select?: SelectFields<keyof PageModel>
   sortBy?: 'order' | 'subtitle' | 'title' | 'created' | 'modified'

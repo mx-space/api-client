@@ -6,8 +6,13 @@
   "license": "MIT",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
-  "types": "build/index.d.ts",
+  "types": "src/index.ts",
   "unpkg": "build/index.umd.min.js",
+  "exports": {
+    "default": "./build/index.cjs.js",
+    "module": "./build/index.esm.js",
+    "types": "./src/index.ts"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -34,7 +39,9 @@
     "lib",
     "esm",
     "readme.md",
-    "tsconfig.json"
+    "tsconfig.json",
+    "src",
+    "!src/__tests__/*"
   ],
   "engines": {
     "pnpm": ">=6"

@@ -6,6 +6,12 @@ import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core/client'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    note: NoteController
+  }
+}
+
 export type NoteListOptions = {
   select?: SelectFields<keyof NoteModel>
   year?: number

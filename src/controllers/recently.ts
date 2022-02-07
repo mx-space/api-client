@@ -3,6 +3,13 @@ import { RecentlyModel } from '~/models/recently'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
+declare module '../core/client' {
+  interface HTTPClient {
+    recently: RecentlyController
+    shorthand: RecentlyController
+  }
+}
+
 export class RecentlyController implements IController {
   base = 'recently'
   name = ['recently', 'shorthand']
