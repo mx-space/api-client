@@ -1,5 +1,6 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
-import { RequestProxyResult } from '~/interfaces/request'
+import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PostModel } from '~/models/post'
 import { SelectFields } from '~/types/helper'
@@ -7,8 +8,11 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core/client'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    post: PostController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    post: PostController<ResponseWrapper>
   }
 }
 
@@ -19,7 +23,7 @@ export type PostListOptions = {
   sortOrder?: 1 | -1
 }
 
-export class PostController implements IController {
+export class PostController<ResponseWrapper> implements IController {
   constructor(private client: HTTPClient) {
     autoBind(this)
   }
@@ -28,7 +32,7 @@ export class PostController implements IController {
 
   name = 'post'
 
-  public get proxy() {
+  public get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
@@ -57,12 +61,15 @@ export class PostController implements IController {
    * @param categoryName
    * @param slug
    */
-  getPost(categoryName: string, slug: string): RequestProxyResult<PostModel>
+  getPost(
+    categoryName: string,
+    slug: string,
+  ): RequestProxyResult<PostModel, ResponseWrapper>
   /**
    * 根据 ID 查找文章
    * @param id
    */
-  getPost(id: string): RequestProxyResult<PostModel>
+  getPost(id: string): RequestProxyResult<PostModel, ResponseWrapper>
   getPost(idOrCategoryName: string, slug?: string): any {
     if (arguments.length == 1) {
       return this.proxy(idOrCategoryName).get<PostModel>()

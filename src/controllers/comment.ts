@@ -1,6 +1,7 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { PaginationParams } from '~/interfaces/params'
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
 import { autoBind } from '~/utils/auto-bind'
@@ -8,12 +9,15 @@ import { HTTPClient } from '../core'
 import { CommentDto } from '../dtos/comment'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    comment: CommentController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    comment: CommentController<ResponseWrapper>
   }
 }
 
-export class CommentController implements IController {
+export class CommentController<ResponseWrapper> implements IController {
   base = 'comments'
   name = 'comment'
 
@@ -21,14 +25,14 @@ export class CommentController implements IController {
     autoBind(this)
   }
 
-  get proxy(): IRequestHandler {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
   /**
    * 根据 comment id 获取评论, 包括子评论
    */
-  getById(id: string): RequestProxyResult<CommentModel> {
+  getById(id: string) {
     return this.proxy(id).get<CommentModel & { ref: string }>()
   }
 

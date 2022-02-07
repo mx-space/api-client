@@ -1,5 +1,6 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { SelectFields } from '~/types/helper'
@@ -7,8 +8,11 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core/client'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    note: NoteController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    note: NoteController<ResponseWrapper>
   }
 }
 
@@ -19,21 +23,21 @@ export type NoteListOptions = {
   sortOrder?: 1 | -1
 }
 
-export class NoteController implements IController {
+export class NoteController<ResponseWrapper> implements IController {
   base = 'notes'
   name = 'note'
 
   constructor(private client: HTTPClient) {
     autoBind(this)
   }
-  get proxy(): IRequestHandler {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
   /**
    * 最新日记
    */
-  getLatest(): RequestProxyResult<NoteWrappedPayload> {
+  getLatest() {
     return this.proxy.latest.get<NoteWrappedPayload>()
   }
 

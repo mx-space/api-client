@@ -1,3 +1,4 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
@@ -8,8 +9,11 @@ import { PageModel } from '..'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    search: SearchController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    search: SearchController<ResponseWrapper>
   }
 }
 
@@ -20,7 +24,7 @@ export type SearchOption = {
   order?: number
   rawAlgolia?: boolean
 }
-export class SearchController implements IController {
+export class SearchController<ResponseWrapper> implements IController {
   base = 'search'
   name = 'search'
 
@@ -28,7 +32,7 @@ export class SearchController implements IController {
     autoBind(this)
   }
 
-  get proxy(): IRequestHandler {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
@@ -40,7 +44,8 @@ export class SearchController implements IController {
     RequestProxyResult<
       PaginateResult<
         Pick<NoteModel, 'modified' | 'id' | 'title' | 'created' | 'nid'>
-      >
+      >,
+      ResponseWrapper
     >
   >
   search(
@@ -54,7 +59,8 @@ export class SearchController implements IController {
           PostModel,
           'modified' | 'id' | 'title' | 'created' | 'slug' | 'category'
         >
-      >
+      >,
+      ResponseWrapper
     >
   >
   search(
@@ -94,7 +100,8 @@ export class SearchController implements IController {
            * @see: algoliasearch <https://www.algolia.com/doc/api-reference/api-methods/search/>
            */
           raw?: any
-        }
+        },
+        ResponseWrapper
       >
     >({ params: { keyword, ...options } })
   }

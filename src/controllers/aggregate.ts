@@ -1,3 +1,4 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { SortOrder } from '~/interfaces/options'
 import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
@@ -13,25 +14,28 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    aggregate: AggregateController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    aggregate: AggregateController<ResponseWrapper>
   }
 }
 
-export class AggregateController implements IController {
+export class AggregateController<ResponseWrapper> implements IController {
   base = 'aggregate'
   name = 'aggregate'
   constructor(private client: HTTPClient) {
     autoBind(this)
   }
-  public get proxy(): IRequestHandler {
+  public get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
   /**
    * 获取聚合数据
    */
-  getAggregateData(): RequestProxyResult<AggregateRoot> {
+  getAggregateData(): RequestProxyResult<AggregateRoot, ResponseWrapper> {
     return this.proxy.get<AggregateRoot>()
   }
 

@@ -1,4 +1,6 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
 import { SelectFields } from '~/types/helper'
@@ -6,8 +8,11 @@ import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    page: PageController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    page: PageController<ResponseWrapper>
   }
 }
 
@@ -17,13 +22,13 @@ export type PageListOptions = {
   sortOrder?: 1 | -1
 }
 
-export class PageController implements IController {
+export class PageController<ResponseWrapper> implements IController {
   constructor(private readonly client: HTTPClient) {
     autoBind(this)
   }
   base = 'pages'
   name = 'page'
-  get proxy() {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
   /**

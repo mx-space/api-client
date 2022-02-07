@@ -6,7 +6,10 @@
     "baseUrl": ".",
     "jsx": "react"
   },
-  "include": [
-    "./**/*.ts"
+  "exclude": [
+    "esm/*",
+    "build/*",
+    "node_modules/*",
+    "lib/*"
   ]
 }

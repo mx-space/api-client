@@ -33,8 +33,7 @@
     "pnpm": ">=6"
   },
   "scripts": {
-    "predeploy": "rm -rf dist",
-    "prebuild": "rm -rf rm -rf lib && rm -rf esm",
+    "prebuild": "rm -rf lib && rm -rf esm",
     "build": "tsc --build tsconfig.build.json && tsc --build tsconfig.cjs.json",
     "postbuild": "tsconfig-replace-paths -p tsconfig.build.json && tsconfig-replace-paths -p tsconfig.cjs.json",
     "package": "NODE_ENV=production npm run build && rollup -c",

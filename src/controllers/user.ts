@@ -1,16 +1,21 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { TLogin, UserModel } from '~/models/user'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    user: UserController
-    master: UserController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    user: UserController<ResponseWrapper>
+    master: UserController<ResponseWrapper>
   }
 }
 
-export class UserController implements IController {
+export class UserController<ResponseWrapper> implements IController {
   constructor(private readonly client: HTTPClient) {
     autoBind(this)
   }
@@ -19,7 +24,7 @@ export class UserController implements IController {
 
   name = ['user', 'master']
 
-  public get proxy() {
+  public get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 

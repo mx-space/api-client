@@ -1,6 +1,6 @@
 import type { HTTPClient } from '.'
 
-export function attachRequestMethod<T extends HTTPClient>(target: T) {
+export function attachRequestMethod<T extends HTTPClient<any, any>>(target: T) {
   Object.defineProperty(target, '$$get', {
     value: function (url: string, options?: any) {
       // HINT: method get only accept search params;

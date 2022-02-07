@@ -3,29 +3,40 @@ type NoStringIndex<T> = { [K in keyof T as string extends K ? never : K]: T[K] }
 
 export type Method = 'get' | 'delete' | 'post' | 'put' | 'patch'
 
-export interface IRequestHandler {
-  (path?: string | number): IRequestHandler
+export interface IRequestHandler<ResponseWrapper> {
+  (path?: string | number): IRequestHandler<ResponseWrapper>
   // @ts-ignore
   get<P = unknown>(
     options?: Omit<NoStringIndex<RequestOptions>, 'data'>,
-  ): RequestProxyResult<P>
+  ): RequestProxyResult<P, ResponseWrapper>
   // @ts-ignore
-  post<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
+  post<P = unknown>(
+    options?: RequestOptions,
+  ): RequestProxyResult<P, ResponseWrapper>
   // @ts-ignore
-  patch<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
+  patch<P = unknown>(
+    options?: RequestOptions,
+  ): RequestProxyResult<P, ResponseWrapper>
   // @ts-ignore
   delete<P = unknown>(
     options?: Omit<NoStringIndex<RequestOptions>, 'data'>,
-  ): RequestProxyResult<P>
+  ): RequestProxyResult<P, ResponseWrapper>
   // @ts-ignore
-  put<P = unknown>(options?: RequestOptions): RequestProxyResult<P>
-  [key: string]: IRequestHandler
+  put<P = unknown>(
+    options?: RequestOptions,
+  ): RequestProxyResult<P, ResponseWrapper>
+  [key: string]: IRequestHandler<ResponseWrapper>
 }
 
 export type RequestProxyResult<
   T,
-  R = { data: T; [key: string]: any },
-> = Promise<ResponseProxyExtraRaw<T, R>>
+  ResponseWrapper,
+  R = ResponseWrapper extends unknown
+    ? { data: T; [key: string]: any }
+    : ResponseWrapper extends { data: T }
+    ? ResponseWrapper
+    : Omit<ResponseWrapper, 'data'> & { data: T },
+> = Promise<ResponseProxyExtraRaw<T, R, ResponseWrapper>>
 
 type CamelToSnake<T extends string, P extends string = ''> = string extends T
   ? string
@@ -40,18 +51,28 @@ type CamelKeysToSnake<T> = {
   [K in keyof T as CamelToSnake<Extract<K, string>>]: T[K]
 }
 
+type ResponseWrapperType<Response, RawData, T> = {
+  $raw: Response extends { data: infer T }
+    ? Response
+    : Response extends unknown
+    ? {
+        [i: string]: any
+        data: RawData extends unknown ? CamelKeysToSnake<T> : RawData
+      }
+    : Response
+  $request: {
+    path: string
+    method: string
+    [k: string]: string
+  }
+}
+
 export type ResponseProxyExtraRaw<
   T,
   RawData = unknown,
   Response = unknown,
 > = T extends object
-  ? T & {
-      $raw: Response extends unknown
-        ? {
-            [i: string]: any
-            data: RawData extends unknown ? CamelKeysToSnake<T> : RawData
-          }
-        : Response
-      $request: { path: string; method: string; [k: string]: string }
-    }
-  : T
+  ? T & ResponseWrapperType<Response, RawData, T>
+  : T extends unknown
+  ? T & ResponseWrapperType<Response, RawData, T>
+  : unknown

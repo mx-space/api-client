@@ -1,5 +1,8 @@
 import camelcaseKeys from 'camelcase-keys'
-import { IRequestAdapter } from '~/interfaces/adapter'
+import {
+  IAdaptorRequestResponseType,
+  IRequestAdapter,
+} from '~/interfaces/adapter'
 import { ClientOptions } from '~/interfaces/client'
 import { IController } from '~/interfaces/controller'
 import { RequestOptions } from '~/interfaces/instance'
@@ -10,35 +13,15 @@ import { allContollerNames } from '../controllers'
 import { attachRequestMethod } from './attach-request'
 import { RequestError } from './error'
 
-// export interface HTTPClient {
-//   aggregate: AggregateController
-//   category: CategoryController
-//   comment: CommentController
-//   link: LinkController
-//   note: NoteController
-//   page: PageController
-//   post: PostController
-//   project: ProjectController
-//   recently: RecentlyController
-//   say: SayController
-//   search: SearchController
-//   snippet: SnippetController
-//   user: UserController
-
-//   master: HTTPClient['user']
-
-//   friend: HTTPClient['link']
-
-//   shorthand: HTTPClient['recently']
-// }
-
 const methodPrefix = '_$'
-
-export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
-  private _proxy: IRequestHandler
+export type { HTTPClient }
+class HTTPClient<
+  T extends IRequestAdapter = IRequestAdapter,
+  ResponseWrapper = unknown,
+> {
+  private _proxy: IRequestHandler<ResponseWrapper>
 
   constructor(private _endpoint: string, private _adaptor: T) {
-    // super()
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')
@@ -47,18 +30,6 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
     this.initGetClient()
 
     attachRequestMethod(this)
-
-    // const proxy = new Proxy(this, {
-    //   get(target, key, r) {
-    //     return (
-    //       Reflect.get(target, key, r) ||
-    //       (typeof key === 'string' &&
-    //         Reflect.get(target, methodPrefix + key, r))
-    //     )
-    //   },
-    // })
-
-    // return proxy
   }
 
   private initGetClient() {
@@ -125,7 +96,7 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
     return (this as any)['$$' + String(options.method || 'get').toLowerCase()](
       options.url,
       options,
-    )
+    ) as Promise<IAdaptorRequestResponseType<any>>
   }
 
   public get proxy() {
@@ -139,7 +110,7 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
     return `${this.endpoint}${path}`
   }
 
-  private buildRoute(manager: this): () => IRequestHandler {
+  private buildRoute(manager: this): () => IRequestHandler<ResponseWrapper> {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     const noop = () => {}
     const methods = ['get', 'post', 'delete', 'patch', 'put']
@@ -149,7 +120,6 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
       'inspect',
       'constructor',
       Symbol.toPrimitive,
-      Symbol.for('util.inspect.custom'),
     ]
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this
@@ -164,7 +134,7 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
             return async (options: RequestOptions) => {
               const url = that.resolveFullPath(route.join('/'))
               route.length = 0
-              let res: any
+              let res: Record<string, any> & { data: any }
               try {
                 res = await manager.request({
                   method: name,
@@ -237,9 +207,12 @@ export class HTTPClient<T extends IRequestAdapter = IRequestAdapter> {
   }
 }
 
-export function createClient<T extends IRequestAdapter>(adapter: T) {
+export function createClient<
+  ResponseWrapper,
+  T extends IRequestAdapter = IRequestAdapter,
+>(adapter: T) {
   return (endpoint: string, options?: ClientOptions) => {
-    const client = new HTTPClient(endpoint, adapter)
+    const client = new HTTPClient<T, ResponseWrapper>(endpoint, adapter)
     const { controllers } = options || {}
     if (controllers) {
       client.injectControllers(controllers)

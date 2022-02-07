@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "test": "pnpm run test -C src",
-    "package": "pnpm run package -C src",
-    "build": "pnpm run build -C src",
+    "test": "cd src && pnpm run test",
+    "package": "cd src && pnpm run package",
+    "build": "cd src && pnpm run build",
     "dev": "pnpm run dev -C example",
     "publish": "pnpm publish --access public -C src",
     "pack": "pnpm pack -C src",

@@ -1,15 +1,20 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { SnippetModel } from '~/models/snippet'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    snippet: SnippetController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    snippet: SnippetController<ResponseWrapper>
   }
 }
 
-export class SnippetController implements IController {
+export class SnippetController<ResponseWrapper> implements IController {
   base = 'snippets'
   name = 'snippet'
 
@@ -17,7 +22,7 @@ export class SnippetController implements IController {
     autoBind(this)
   }
 
-  get proxy() {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 

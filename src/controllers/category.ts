@@ -1,5 +1,10 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
-import { RequestProxyResult, ResponseProxyExtraRaw } from '~/interfaces/request'
+import {
+  IRequestHandler,
+  RequestProxyResult,
+  ResponseProxyExtraRaw,
+} from '~/interfaces/request'
 import { attachRawFromOneToAnthor, destructureData } from '~/utils'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core/client'
@@ -14,23 +19,29 @@ import {
 import { PostModel } from '../models/post'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    category: CategoryController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    category: CategoryController<ResponseWrapper>
   }
 }
 
-export class CategoryController implements IController {
+export class CategoryController<ResponseWrapper> implements IController {
   name = 'category'
   base = 'categories'
   constructor(private client: HTTPClient) {
     autoBind(this)
   }
 
-  public get proxy() {
+  public get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
-  getAllCategories(): RequestProxyResult<{ data: CategoryModel[] }> {
+  getAllCategories(): RequestProxyResult<
+    { data: CategoryModel[] },
+    ResponseWrapper
+  > {
     return this.proxy.get({
       params: {
         type: CategoryType.Category,
@@ -38,7 +49,7 @@ export class CategoryController implements IController {
     })
   }
 
-  getAllTags(): RequestProxyResult<{ data: TagModel[] }> {
+  getAllTags(): RequestProxyResult<{ data: TagModel[] }, ResponseWrapper> {
     return this.proxy.get<{ data: TagModel[] }>({
       params: {
         type: CategoryType.Tag,

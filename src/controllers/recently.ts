@@ -1,16 +1,21 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
+import { IRequestHandler } from '~/interfaces/request'
 import { RecentlyModel } from '~/models/recently'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
 declare module '../core/client' {
-  interface HTTPClient {
-    recently: RecentlyController
-    shorthand: RecentlyController
+  interface HTTPClient<
+    T extends IRequestAdapter = IRequestAdapter,
+    ResponseWrapper = unknown,
+  > {
+    recently: RecentlyController<ResponseWrapper>
+    shorthand: RecentlyController<ResponseWrapper>
   }
 }
 
-export class RecentlyController implements IController {
+export class RecentlyController<ResponseWrapper> implements IController {
   base = 'recently'
   name = ['recently', 'shorthand']
 
@@ -18,7 +23,7 @@ export class RecentlyController implements IController {
     autoBind(this)
   }
 
-  get proxy() {
+  get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
   /**

@@ -3,16 +3,16 @@ import { PaginateResult } from '~/models/base'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
-export abstract class BaseCrudController<T> {
+export abstract class BaseCrudController<T, ResponseWrapper> {
   base!: string
   constructor(protected client: HTTPClient) {
     autoBind(this)
   }
-  public get proxy(): IRequestHandler {
+  public get proxy(): IRequestHandler<ResponseWrapper> {
     return this.client.proxy(this.base)
   }
 
-  getById(id: string): RequestProxyResult<T> {
+  getById(id: string): RequestProxyResult<T, ResponseWrapper> {
     return this.proxy(id).get<T>()
   }
 

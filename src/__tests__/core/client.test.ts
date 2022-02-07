@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios'
 import { axiosAdaptor } from '~/adaptors/axios'
 import {
   allContollerNames,
@@ -6,9 +7,11 @@ import {
   PostController,
 } from '~/controllers'
 import { createClient } from '~/core'
+import { IRequestAdapter } from '~/interfaces/adapter'
 
 // axios wrapper test
-const generateClient = () => createClient(axiosAdaptor)('http://127.0.0.1:2323')
+const generateClient = <Response>(adapter?: IRequestAdapter) =>
+  createClient<Response>(adapter ?? axiosAdaptor)('http://127.0.0.1:2323')
 describe('test client', () => {
   it('should create new client with axios', () => {
     const client = generateClient()
@@ -106,5 +109,21 @@ describe('test client', () => {
     })
     expect(client.post.name).toBeDefined()
     expect(client.note.name).toBeDefined()
+  })
+
+  it('should infer response wrapper type', async () => {
+    const client = generateClient<AxiosResponse>(axiosAdaptor)
+    client.injectControllers(PostController)
+    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+      if (url === 'http://127.0.0.1:2323/posts/latest') {
+        return Promise.resolve({ data: { ok: 1 }, status: 200 })
+      }
+
+      return Promise.resolve({ data: null })
+    })
+
+    const data = await client.post.getLatest()
+
+    expect(data.$raw.status).toBe(200)
   })
 })
