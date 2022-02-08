@@ -1,5 +1,5 @@
-import { allControllers, createClient } from '@mx-space/api-client'
 // import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+import { allControllers, createClient } from '@mx-space/api-client/esm'
 import { umiAdaptor } from '@mx-space/api-client/esm/adaptors/umi-request'
 import { ApiView } from 'components/ApiView'
 import React from 'react'
@@ -21,6 +21,9 @@ const umi = umiAdaptor.default
 const client = createClient(umiAdaptor)('https://api.innei.ren/v2')
 client.injectControllers(allControllers)
 
+Object.defineProperty(window, 'client', {
+  value: client,
+})
 function App() {
   return (
     <div className="App">

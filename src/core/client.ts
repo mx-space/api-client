@@ -129,7 +129,18 @@ class HTTPClient<
 
       const handler: any = {
         get(target: any, name: Method) {
-          if (reflectors.includes(name)) return () => route.join('/')
+          if (reflectors.includes(name))
+            return (withBase?: boolean) => {
+              if (withBase) {
+                const path = that.resolveFullPath(route.join('/'))
+                route.length = 0
+                return path
+              } else {
+                const path = route.join('/')
+                route.length = 0
+                return path.startsWith('/') ? path : '/' + path
+              }
+            }
           if (methods.includes(name)) {
             return async (options: RequestOptions) => {
               const url = that.resolveFullPath(route.join('/'))

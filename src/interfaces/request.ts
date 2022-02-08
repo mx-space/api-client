@@ -25,6 +25,10 @@ export interface IRequestHandler<ResponseWrapper> {
   put<P = unknown>(
     options?: RequestOptions,
   ): RequestProxyResult<P, ResponseWrapper>
+  //@ts-ignore
+  toString(withBase?: boolean): string
+  //@ts-ignore
+  valueOf(withBase?: boolean): string
   [key: string]: IRequestHandler<ResponseWrapper>
 }
 

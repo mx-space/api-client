@@ -12,7 +12,7 @@ import { IRequestAdapter } from '~/interfaces/adapter'
 
 // axios wrapper test
 const generateClient = <
-  Response,
+  Response = AxiosResponse<unknown>,
   AdaptorType extends IRequestAdapter = typeof axiosAdaptor,
 >(
   adapter?: AdaptorType,
@@ -132,7 +132,7 @@ describe('test client', () => {
     expect(data.$raw.status).toBe(200)
   })
 
-  it.only('should infer axios instance type', async () => {
+  it('should infer axios instance type', async () => {
     const client = generateClient<AxiosResponse>(axiosAdaptor)
     jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
       if (url === 'http://127.0.0.1:2323/a') {
@@ -162,5 +162,32 @@ describe('test client', () => {
       expect(res.$raw.response.status).toBe(200)
       expect(res.$raw.response.body).toStrictEqual({})
     }
+  })
+
+  it('should resolve joint path call toString()', () => {
+    const client = generateClient()
+    {
+      const path = client.proxy.foo.bar.toString()
+      expect(path).toBe('/foo/bar')
+    }
+
+    {
+      const path = client.proxy.foo.bar.toString(true)
+      expect(path).toBe('http://127.0.0.1:2323/foo/bar')
+    }
+  })
+
+  it('should do not json convert case if payload is string or other primitive type', async () => {
+    const client = generateClient<AxiosResponse>(axiosAdaptor)
+    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+      if (url === 'http://127.0.0.1:2323/a') {
+        return Promise.resolve({ data: 'foo', status: 200 })
+      }
+
+      return Promise.resolve({ data: null })
+    })
+
+    const data = await client.proxy.a.get()
+    expect(data).toBe('foo')
   })
 })
