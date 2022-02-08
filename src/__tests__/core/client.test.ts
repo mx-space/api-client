@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { axiosAdaptor } from '~/adaptors/axios'
+import { umiAdaptor } from '~/adaptors/umi-request'
 import {
   allContollerNames,
   allControllers,
@@ -10,8 +11,12 @@ import { createClient } from '~/core'
 import { IRequestAdapter } from '~/interfaces/adapter'
 
 // axios wrapper test
-const generateClient = <Response>(adapter?: IRequestAdapter) =>
-  createClient<Response>(adapter ?? axiosAdaptor)('http://127.0.0.1:2323')
+const generateClient = <
+  Response,
+  AdaptorType extends IRequestAdapter = typeof axiosAdaptor,
+>(
+  adapter?: AdaptorType,
+) => createClient(adapter ?? axiosAdaptor)<Response>('http://127.0.0.1:2323')
 describe('test client', () => {
   it('should create new client with axios', () => {
     const client = generateClient()
@@ -125,5 +130,37 @@ describe('test client', () => {
     const data = await client.post.getLatest()
 
     expect(data.$raw.status).toBe(200)
+  })
+
+  it.only('should infer axios instance type', async () => {
+    const client = generateClient<AxiosResponse>(axiosAdaptor)
+    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+      if (url === 'http://127.0.0.1:2323/a') {
+        return Promise.resolve({ data: { ok: 1 }, status: 200 })
+      }
+
+      return Promise.resolve({ data: null })
+    })
+    expect(client.instance.default).toBe(axiosAdaptor.default)
+    const res = await client.proxy.a.get()
+    expect(res.$raw.status).toBe(200)
+
+    {
+      jest.spyOn(umiAdaptor, 'get').mockImplementation((url, config) => {
+        if (url === 'http://127.0.0.1:2323/a') {
+          return Promise.resolve({
+            data: { ok: 1 },
+            response: { status: 200, body: {} },
+          })
+        }
+
+        return Promise.resolve({ data: null })
+      })
+      const client2 = createClient(umiAdaptor)('http://127.0.0.1:2323')
+      expect(client2.instance.default).toBe(umiAdaptor.default)
+      const res = await client2.proxy.a.get()
+      expect(res.$raw.response.status).toBe(200)
+      expect(res.$raw.response.body).toStrictEqual({})
+    }
   })
 })

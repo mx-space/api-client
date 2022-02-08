@@ -1,20 +1,26 @@
 import { allControllers, createClient } from '@mx-space/api-client'
-import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+// import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+import { umiAdaptor } from '@mx-space/api-client/esm/adaptors/umi-request'
 import { ApiView } from 'components/ApiView'
 import React from 'react'
 
-const axios = axiosAdaptor.default
-const client = createClient(axiosAdaptor)('https://api.innei.ren/v2')
+// const axios = axiosAdaptor.default
+// const client = createClient(axiosAdaptor)('https://api.innei.ren/v2')
+// client.injectControllers(allControllers)
+
+// axios.interceptors.response.use(
+//   (r) => r,
+//   (err) => {
+//     console.log('err:')
+//     console.dir(err)
+//     return Promise.reject(err)
+//   },
+// )
+
+const umi = umiAdaptor.default
+const client = createClient(umiAdaptor)('https://api.innei.ren/v2')
 client.injectControllers(allControllers)
 
-axios.interceptors.response.use(
-  (r) => r,
-  (err) => {
-    console.log('err:')
-    console.dir(err)
-    return Promise.reject(err)
-  },
-)
 function App() {
   return (
     <div className="App">
@@ -29,7 +35,15 @@ function App() {
         desc="Single Post"
       />
 
-      <ApiView apiCallFn={() => client.post.getLatest()} desc="Latest Post" />
+      <ApiView
+        apiCallFn={async () => {
+          const res = await client.post.getLatest()
+          console.log(res)
+
+          return res
+        }}
+        desc="Latest Post"
+      />
       {/* Note */}
       <ApiView apiCallFn={() => client.note.getLatest()} desc="Latest Note" />
       <ApiView

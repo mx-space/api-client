@@ -207,11 +207,17 @@ class HTTPClient<
   }
 }
 
-export function createClient<
-  ResponseWrapper,
-  T extends IRequestAdapter = IRequestAdapter,
->(adapter: T) {
-  return (endpoint: string, options?: ClientOptions) => {
+export function createClient<T extends IRequestAdapter>(adapter: T) {
+  return <
+    ResponseWrapper = T extends { responseWrapper: infer Type }
+      ? Type extends undefined
+        ? unknown
+        : Type
+      : unknown,
+  >(
+    endpoint: string,
+    options?: ClientOptions,
+  ) => {
     const client = new HTTPClient<T, ResponseWrapper>(endpoint, adapter)
     const { controllers } = options || {}
     if (controllers) {
