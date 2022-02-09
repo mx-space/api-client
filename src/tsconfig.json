@@ -1,10 +1,28 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "outDir": "./esm",
     "baseUrl": ".",
-    "jsx": "react"
+    "jsx": "react",
+    "target": "ES2020",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "paths": {
+      "~/*": [
+        "*"
+      ]
+    }
   },
   "exclude": [
     "esm/*",
