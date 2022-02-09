@@ -36,7 +36,7 @@
     "prebuild": "rm -rf lib && rm -rf esm",
     "build": "tsc --build tsconfig.build.json && tsc --build tsconfig.cjs.json",
     "postbuild": "tsconfig-replace-paths -p tsconfig.build.json && tsconfig-replace-paths -p tsconfig.cjs.json && npm run types",
-    "types": "tsc --build tsconfig.types.json && tsconfig-replace-paths -p tsconfig.types.json",
+    "types": "rm -rf types && tsc --build tsconfig.types.json && tsconfig-replace-paths -p tsconfig.types.json",
     "package": "NODE_ENV=production npm run build && rollup -c",
     "prepackage": "rm -rf build",
     "release": "vv",

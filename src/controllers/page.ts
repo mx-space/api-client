@@ -1,9 +1,9 @@
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler } from '~/interfaces/request'
+import { SelectFields } from '~/interfaces/types'
 import { PaginateResult } from '~/models/base'
 import { PageModel } from '~/models/page'
-import { SelectFields } from '~/types/helper'
 import { autoBind } from '~/utils/auto-bind'
 import { HTTPClient } from '../core'
 
