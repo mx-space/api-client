@@ -69,7 +69,7 @@ importers:
       '@types/jest': 27.4.0
       '@types/lodash': 4.14.178
       '@types/node': 16.11.24
-      axios: 0.25.0
+      axios: 0.26.0
       camelcase-keys: 7.0.2
       gh-pages: 3.2.3
       lodash: 4.17.21
@@ -87,7 +87,7 @@ importers:
       '@types/jest': 27.4.0
       '@types/lodash': 4.14.178
       '@types/node': 16.11.24
-      axios: 0.25.0
+      axios: 0.26.0
       gh-pages: 3.2.3
       lodash: 4.17.21
       rollup: 2.67.2
@@ -1391,10 +1391,10 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /axios/0.25.0:
-    resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
+  /axios/0.26.0:
+    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
     dependencies:
-      follow-redirects: 1.14.7
+      follow-redirects: 1.14.8
     transitivePeerDependencies:
       - debug
     dev: true
@@ -2637,8 +2637,8 @@ packages:
       react: 18.0.0-rc.0-next-fe905f152-20220107
     dev: true
 
-  /follow-redirects/1.14.7:
-    resolution: {integrity: sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==}
+  /follow-redirects/1.14.8:
+    resolution: {integrity: sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
