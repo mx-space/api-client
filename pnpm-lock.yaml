@@ -6,7 +6,7 @@ importers:
     specifiers:
       '@innei-util/eslint-config-ts': latest
       '@innei-util/prettier': latest
-      '@innei/bump-version': 0.2.5
+      '@innei/bump-version': 0.2.6
       '@types/express': 4.17.13
       '@types/lodash': 4.14.178
       '@types/node': 16.11.25
@@ -24,7 +24,7 @@ importers:
     devDependencies:
       '@innei-util/eslint-config-ts': 0.4.0_typescript@4.5.5
       '@innei-util/prettier': 0.2.2_typescript@4.5.5
-      '@innei/bump-version': 0.2.5
+      '@innei/bump-version': 0.2.6
       '@types/express': 4.17.13
       '@types/lodash': 4.14.178
       '@types/node': 16.11.25
@@ -555,8 +555,8 @@ packages:
       - typescript
     dev: true
 
-  /@innei/bump-version/0.2.5:
-    resolution: {integrity: sha512-/fCHy5g/GMwWvqfvM7e9pTjXqESy6Pim7a5CdImJYu5wwkCwkywNc4EWbfpOYax4RwxKravof3yRGHky0szFsg==}
+  /@innei/bump-version/0.2.6:
+    resolution: {integrity: sha512-YF6m39cLD5kgofhhMy/MKPy7mjwAIClOUEClOmHCYAPKRJaLOmfhdnRdg/T+lKeaW6ojYI6cUGvufO8dSr/hqA==}
     hasBin: true
     dev: true
 

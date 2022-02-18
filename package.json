@@ -14,7 +14,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-ts": "latest",
     "@innei-util/prettier": "latest",
-    "@innei/bump-version": "0.2.5",
+    "@innei/bump-version": "0.2.6",
     "@types/express": "4.17.13",
     "@types/lodash": "4.14.178",
     "@types/node": "16.11.25",
