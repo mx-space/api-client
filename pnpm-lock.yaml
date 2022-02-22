@@ -49,7 +49,7 @@ importers:
       react-dom: 18.0.0-rc.0-next-fe905f152-20220107
       react-json-view: 1.21.3
       vite: 2.8.4
-      vite-tsconfig-paths: 3.4.0
+      vite-tsconfig-paths: 3.4.1
     dependencies:
       '@mx-space/api-client': link:../src
     devDependencies:
@@ -59,7 +59,7 @@ importers:
       react-dom: 18.0.0-rc.0-next-fe905f152-20220107_e32785dbcafa2fde92a71a8f50f52ce6
       react-json-view: 1.21.3_7dd930cba52286291b0b6521892ea56c
       vite: 2.8.4
-      vite-tsconfig-paths: 3.4.0_vite@2.8.4
+      vite-tsconfig-paths: 3.4.1_vite@2.8.4
 
   src:
     specifiers:
@@ -5509,8 +5509,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vite-tsconfig-paths/3.4.0_vite@2.8.4:
-    resolution: {integrity: sha512-os+oAdJxkZvNLmisVQ76eDdCWC3aH4bKTy3EXI5oJi//zQ0G+qJfUeFR6Need4iyzL/Xus9R7AECF/YfGS0ZEw==}
+  /vite-tsconfig-paths/3.4.1_vite@2.8.4:
+    resolution: {integrity: sha512-SgK3/pnTuJ3i+gMSAWLR6VCPSw26bnxawrmXGvCDjJgk8MAQgmbCrFrAzfwbwZBXSqSuvWEuX04Wt73qJKx8fQ==}
     peerDependencies:
       vite: '>2.0.0-0'
     dependencies:
