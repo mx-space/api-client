@@ -44,7 +44,7 @@ importers:
     specifiers:
       '@mx-space/api-client': workspace:*
       '@types/react': 17.0.39
-      '@types/react-dom': 17.0.11
+      '@types/react-dom': 17.0.12
       react: 18.0.0-rc.1-next-f468816ef-20220225
       react-dom: 18.0.0-rc.1-next-f468816ef-20220225
       react-json-view: 1.21.3
@@ -54,7 +54,7 @@ importers:
       '@mx-space/api-client': link:../src
     devDependencies:
       '@types/react': 17.0.39
-      '@types/react-dom': 17.0.11
+      '@types/react-dom': 17.0.12
       react: 18.0.0-rc.1-next-f468816ef-20220225
       react-dom: 18.0.0-rc.1-next-f468816ef-20220225_a28f1fd517be1d2b056a3673720bd102
       react-json-view: 1.21.3_b2bf198cce2a18cc1184f3cab2637718
@@ -1026,8 +1026,8 @@ packages:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: true
 
-  /@types/react-dom/17.0.11:
-    resolution: {integrity: sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==}
+  /@types/react-dom/17.0.12:
+    resolution: {integrity: sha512-SeJ430ndLI15JtRSHuzotn7AIdUtr8bdk6XW8mMfzjZo3vahRgJGHZqHiI4nAzCHTVG4qC21ObfsHBVUEHcDhg==}
     dependencies:
       '@types/react': 17.0.39
     dev: true
