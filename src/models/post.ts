@@ -3,7 +3,6 @@ import { CategoryModel } from './category'
 
 export interface PostModel extends TextBaseModel {
   summary?: string
-  hide: boolean
   copyright: boolean
   tags: string[]
   count: Count
