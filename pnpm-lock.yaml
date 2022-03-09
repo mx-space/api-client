@@ -69,7 +69,7 @@ importers:
       '@types/jest': 27.4.1
       '@types/lodash': 4.14.179
       '@types/node': 16.11.26
-      axios: 0.26.0
+      axios: 0.26.1
       camelcase-keys: 7.0.2
       gh-pages: 3.2.3
       lodash: 4.17.21
@@ -87,7 +87,7 @@ importers:
       '@types/jest': 27.4.1
       '@types/lodash': 4.14.179
       '@types/node': 16.11.26
-      axios: 0.26.0
+      axios: 0.26.1
       gh-pages: 3.2.3
       lodash: 4.17.21
       rollup: 2.68.0
@@ -1391,8 +1391,8 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /axios/0.26.0:
-    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.14.8
     transitivePeerDependencies:
