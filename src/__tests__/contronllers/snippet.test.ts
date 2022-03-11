@@ -15,7 +15,6 @@ describe('test Snippet client', () => {
       name: 'config',
       created: '2021-11-26T11:53:40.863Z',
       updated: '2021-11-26T11:53:40.863Z',
-      data: {},
     })
 
     const data = await client.snippet.getById('61a0cac4b4aefa000fcc1822')

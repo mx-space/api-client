@@ -9,6 +9,7 @@ import { ProjectController } from './project'
 import { RecentlyController } from './recently'
 import { SayController } from './say'
 import { SearchController } from './search'
+import { ServerlessController } from './severless'
 import { SnippetController } from './snippet'
 import { UserController } from './user'
 
@@ -25,6 +26,7 @@ export const allControllers = [
   SayController,
   SearchController,
   SnippetController,
+  ServerlessController,
   UserController,
 ]
 
@@ -41,6 +43,7 @@ export const allContollerNames = [
   'say',
   'search',
   'snippet',
+  'serverless',
   'user',
 
   // alias,
@@ -62,5 +65,6 @@ export {
   SayController,
   SearchController,
   SnippetController,
+  ServerlessController,
   UserController,
 }
