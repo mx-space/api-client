@@ -13,6 +13,6 @@ export interface SnippetModel<T = unknown> extends BaseModel {
   reference: string
   comment?: string
   metatype?: string
-
+  schema?: string
   data: T
 }
