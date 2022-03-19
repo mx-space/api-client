@@ -1,3 +1,5 @@
+import { HTTPClient } from '../core'
+import { CommentDto } from '../dtos/comment'
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { PaginationParams } from '~/interfaces/params'
@@ -5,8 +7,6 @@ import { IRequestHandler } from '~/interfaces/request'
 import { PaginateResult } from '~/models/base'
 import { CommentModel } from '~/models/comment'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../core'
-import { CommentDto } from '../dtos/comment'
 
 declare module '../core/client' {
   interface HTTPClient<

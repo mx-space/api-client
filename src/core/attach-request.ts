@@ -2,17 +2,17 @@ import type { HTTPClient } from '.'
 
 export function attachRequestMethod<T extends HTTPClient<any, any>>(target: T) {
   Object.defineProperty(target, '$$get', {
-    value: function (url: string, options?: any) {
+    value(url: string, options?: any) {
       // HINT: method get only accept search params;
       const { params = {} } = options
       const qs = handleSearchParams(params)
 
-      return target.instance.get(url + `${qs ? `${'?' + qs}` : ''}`)
+      return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`)
     },
   })
   ;(['put', 'post', 'patch', 'delete'] as const).forEach((method) => {
-    Object.defineProperty(target, '$$' + method, {
-      value: function (path: string, options?: any) {
+    Object.defineProperty(target, `$$${method}`, {
+      value(path: string, options?: any) {
         return target.instance[method](path, options)
       },
     })

@@ -2,10 +2,10 @@ import { AxiosResponse } from 'axios'
 import { axiosAdaptor } from '~/adaptors/axios'
 import { umiAdaptor } from '~/adaptors/umi-request'
 import {
-  allContollerNames,
-  allControllers,
   NoteController,
   PostController,
+  allContollerNames,
+  allControllers,
 } from '~/controllers'
 import { createClient } from '~/core'
 import { IRequestAdapter } from '~/interfaces/adapter'
@@ -77,9 +77,9 @@ describe('test client', () => {
     const client = generateClient()
     allContollerNames.forEach((name) => {
       expect(() => (client as any)[name].name).toThrow(
-        name.charAt(0).toUpperCase() +
-          name.slice(1) +
-          ' Client not inject yet, please inject with client.injectClients(...)',
+        `${
+          name.charAt(0).toUpperCase() + name.slice(1)
+        } Client not inject yet, please inject with client.injectClients(...)`,
       )
     })
   })

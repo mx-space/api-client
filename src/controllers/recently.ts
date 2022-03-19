@@ -1,9 +1,9 @@
+import { HTTPClient } from '../core'
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler } from '~/interfaces/request'
 import { RecentlyModel } from '~/models/recently'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../core'
 
 declare module '../core/client' {
   interface HTTPClient<

@@ -1,4 +1,7 @@
 import camelcaseKeys from 'camelcase-keys'
+import { allContollerNames } from '../controllers'
+import { attachRequestMethod } from './attach-request'
+import { RequestError } from './error'
 import {
   IAdaptorRequestResponseType,
   IRequestAdapter,
@@ -9,9 +12,6 @@ import { RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/interfaces/types'
 import { isPlainObject } from '~/utils'
-import { allContollerNames } from '../controllers'
-import { attachRequestMethod } from './attach-request'
-import { RequestError } from './error'
 
 const methodPrefix = '_$'
 export type { HTTPClient }
@@ -93,7 +93,7 @@ class HTTPClient<
     data?: any
     params?: any
   }) {
-    return (this as any)['$$' + String(options.method || 'get').toLowerCase()](
+    return (this as any)[`$$${String(options.method || 'get').toLowerCase()}`](
       options.url,
       options,
     ) as Promise<IAdaptorRequestResponseType<any>>
@@ -105,7 +105,7 @@ class HTTPClient<
 
   private resolveFullPath(path: string) {
     if (!path.startsWith('/')) {
-      path = '/' + path
+      path = `/${path}`
     }
     return `${this.endpoint}${path}`
   }
@@ -138,7 +138,7 @@ class HTTPClient<
               } else {
                 const path = route.join('/')
                 route.length = 0
-                return path.startsWith('/') ? path : '/' + path
+                return path.startsWith('/') ? path : `/${path}`
               }
             }
           if (methods.includes(name)) {

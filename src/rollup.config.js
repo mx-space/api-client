@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
@@ -27,36 +27,36 @@ const config = [
 
     output: [
       {
-        file: dir + '/index.umd.js',
+        file: `${dir}/index.umd.js`,
         format: 'umd',
         sourcemap: true,
         name: umdName,
       },
       {
-        file: dir + '/index.umd.min.js',
+        file: `${dir}/index.umd.min.js`,
         format: 'umd',
         sourcemap: true,
         name: umdName,
         plugins: [terser()],
       },
       {
-        file: dir + '/index.cjs.js',
+        file: `${dir}/index.cjs.js`,
         format: 'cjs',
         sourcemap: true,
       },
       {
-        file: dir + '/index.cjs.min.js',
+        file: `${dir}/index.cjs.min.js`,
         format: 'cjs',
         sourcemap: true,
         plugins: [terser()],
       },
       {
-        file: dir + '/index.esm.js',
+        file: `${dir}/index.esm.js`,
         format: 'es',
         sourcemap: true,
       },
       {
-        file: dir + '/index.esm.min.js',
+        file: `${dir}/index.esm.min.js`,
         format: 'es',
         sourcemap: true,
         plugins: [terser()],

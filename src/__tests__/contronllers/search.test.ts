@@ -1,8 +1,8 @@
 import camelcaseKeys from 'camelcase-keys'
+import mockData from '../mock/algolia.json'
 import { SearchController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
-import mockData from '../mock/algolia.json'
 
 describe('test search client, /search', () => {
   const client = mockRequestInstance(SearchController)

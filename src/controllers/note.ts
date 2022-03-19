@@ -1,3 +1,4 @@
+import { HTTPClient } from '../core/client'
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler } from '~/interfaces/request'
@@ -5,7 +6,6 @@ import { SelectFields } from '~/interfaces/types'
 import { PaginateResult } from '~/models/base'
 import { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../core/client'
 
 declare module '../core/client' {
   interface HTTPClient<

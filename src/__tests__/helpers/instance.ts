@@ -1,5 +1,5 @@
 import { axiosAdaptor } from '~/adaptors/axios'
-import { createClient, HTTPClient } from '~/core'
+import { HTTPClient, createClient } from '~/core'
 import { IController } from '~/interfaces/controller'
 
 export const mockRequestInstance = (

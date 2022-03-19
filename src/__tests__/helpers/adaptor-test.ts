@@ -1,7 +1,7 @@
-import { allControllers } from '~/controllers'
-import { createClient, HTTPClient, RequestError } from '~/core'
-import { IRequestAdapter } from '~/interfaces/adapter'
 import { createMockServer } from './e2e-mock-server'
+import { allControllers } from '~/controllers'
+import { HTTPClient, RequestError, createClient } from '~/core'
+import { IRequestAdapter } from '~/interfaces/adapter'
 
 export const testAdaptor = (adaptor: IRequestAdapter) => {
   let client: HTTPClient
@@ -11,7 +11,7 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
     close()
   })
   beforeAll(() => {
-    client = createClient(adaptor)('http://localhost:' + port)
+    client = createClient(adaptor)(`http://localhost:${port}`)
     client.injectControllers(allControllers)
   })
   test('get', async () => {

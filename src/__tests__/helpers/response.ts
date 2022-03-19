@@ -40,12 +40,7 @@ const isSearchEqual = (a: URLSearchParams, b: URLSearchParams) => {
     const res = a.get(key) === b.get(key)
     if (!res) {
       console.log(
-        'key ' +
-          key +
-          ' not equal, receive ' +
-          a.get(key) +
-          ' want ' +
-          b.get(key),
+        `key ${key} not equal, receive ${a.get(key)} want ${b.get(key)}`,
       )
     }
     return res

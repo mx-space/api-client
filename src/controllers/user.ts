@@ -1,9 +1,9 @@
+import { HTTPClient } from '../core'
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler } from '~/interfaces/request'
 import { TLogin, UserModel } from '~/models/user'
 import { autoBind } from '~/utils/auto-bind'
-import { HTTPClient } from '../core'
 
 declare module '../core/client' {
   interface HTTPClient<
@@ -44,7 +44,7 @@ export class UserController<ResponseWrapper> implements IController {
   checkTokenValid(token: string) {
     return this.proxy.check_logged.get<{ ok: number; isGuest: boolean }>({
       params: {
-        token: 'bearer ' + token.replace(/^Bearer\s/i, ''),
+        token: `bearer ${token.replace(/^Bearer\s/i, '')}`,
       },
     })
   }
