@@ -20,4 +20,5 @@ export interface LinkModel extends BaseModel {
   type: LinkType
   state: LinkState
   hide: boolean
+  email: string
 }

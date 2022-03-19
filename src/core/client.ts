@@ -12,6 +12,7 @@ import { RequestOptions } from '~/interfaces/instance'
 import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/interfaces/types'
 import { isPlainObject } from '~/utils'
+import { resolveFullPath } from '~/utils/path'
 
 const methodPrefix = '_$'
 export type { HTTPClient }
@@ -103,13 +104,6 @@ class HTTPClient<
     return this._proxy
   }
 
-  private resolveFullPath(path: string) {
-    if (!path.startsWith('/')) {
-      path = `/${path}`
-    }
-    return `${this.endpoint}${path}`
-  }
-
   private buildRoute(manager: this): () => IRequestHandler<ResponseWrapper> {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     const noop = () => {}
@@ -132,7 +126,7 @@ class HTTPClient<
           if (reflectors.includes(name))
             return (withBase?: boolean) => {
               if (withBase) {
-                const path = that.resolveFullPath(route.join('/'))
+                const path = resolveFullPath(that.endpoint, route.join('/'))
                 route.length = 0
                 return path
               } else {
@@ -143,7 +137,7 @@ class HTTPClient<
             }
           if (methods.includes(name)) {
             return async (options: RequestOptions) => {
-              const url = that.resolveFullPath(route.join('/'))
+              const url = resolveFullPath(that.endpoint, route.join('/'))
               route.length = 0
               let res: Record<string, any> & { data: any }
               try {

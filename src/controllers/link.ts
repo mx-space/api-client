@@ -23,6 +23,21 @@ export class LinkController<ResponseWrapper> extends BaseCrudController<
     autoBind(this)
   }
 
+  // 是否可以申请友链
+  async canApplyLink() {
+    const { can } = await this.proxy.audit.get<{ can: boolean }>()
+    return can
+  }
+
+  // 申请友链
+  async applyLink(
+    data: Pick<LinkModel, 'avatar' | 'name' | 'description' | 'url'> & {
+      author: string
+    },
+  ) {
+    return await this.proxy.audit.post<never>(data)
+  }
+
   name = ['link', 'friend']
   base = 'links'
 }

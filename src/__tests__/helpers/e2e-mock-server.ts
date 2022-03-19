@@ -1,4 +1,3 @@
-// @ts-ignore
 import { AddressInfo } from 'net'
 import cors from 'cors'
 import express from 'express'

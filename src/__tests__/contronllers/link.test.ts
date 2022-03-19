@@ -1,3 +1,4 @@
+import { exitCode } from 'process'
 import camelcaseKeys from 'camelcase-keys'
 import { LinkController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
@@ -65,5 +66,28 @@ describe('test link client, /links', () => {
     const data = await client.link.getById('5eaabe10cd5bca719652179d')
     expect(data.$raw.data).toEqual(mocked)
     expect(data).toEqual(camelcaseKeys(mocked, { deep: true }))
+  })
+
+  test('GET /audit', async () => {
+    const mocked = mockResponse('/links/audit', {
+      can: true,
+    })
+
+    const allowed = await client.link.canApplyLink()
+
+    expect(allowed).toEqual(mocked.can)
+  })
+
+  test('POST /audit', async () => {
+    mockResponse('/links/audit', null, 'post')
+
+    const res = await client.link.applyLink({
+      author: '',
+      avatar: '',
+      name: '',
+      url: '',
+      description: '',
+    })
+    expect(res).toEqual(null)
   })
 })
