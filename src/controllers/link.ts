@@ -31,7 +31,10 @@ export class LinkController<ResponseWrapper> extends BaseCrudController<
 
   // 申请友链
   async applyLink(
-    data: Pick<LinkModel, 'avatar' | 'name' | 'description' | 'url'> & {
+    data: Pick<
+      LinkModel,
+      'avatar' | 'name' | 'description' | 'url' | 'email'
+    > & {
       author: string
     },
   ) {
