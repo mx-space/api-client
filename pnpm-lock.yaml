@@ -44,7 +44,7 @@ importers:
     specifiers:
       '@mx-space/api-client': workspace:*
       '@types/react': 17.0.43
-      '@types/react-dom': 17.0.13
+      '@types/react-dom': 17.0.14
       react: 18.0.0-rc.2-next-b9de50d2f-20220308
       react-dom: 18.0.0-rc.2-next-b9de50d2f-20220308
       react-json-view: 1.21.3
@@ -53,7 +53,7 @@ importers:
       '@mx-space/api-client': link:../src
     devDependencies:
       '@types/react': 17.0.43
-      '@types/react-dom': 17.0.13
+      '@types/react-dom': 17.0.14
       react: 18.0.0-rc.2-next-b9de50d2f-20220308
       react-dom: 18.0.0-rc.2-next-b9de50d2f-20220308_b6535743ded9d6e615b152ed8c889920
       react-json-view: 1.21.3_6d8a959a8d7b8607169f34b716c33a94
@@ -622,8 +622,8 @@ packages:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: true
 
-  /@types/react-dom/17.0.13:
-    resolution: {integrity: sha512-wEP+B8hzvy6ORDv1QBhcQia4j6ea4SFIBttHYpXKPFZRviBvknq0FRh3VrIxeXUmsPkwuXVZrVGG7KUVONmXCQ==}
+  /@types/react-dom/17.0.14:
+    resolution: {integrity: sha512-H03xwEP1oXmSfl3iobtmQ/2dHF5aBHr8aUMwyGZya6OW45G+xtdzmq6HkncefiBt5JU8DVyaWl/nWZbjZCnzAQ==}
     dependencies:
       '@types/react': 17.0.43
     dev: true
