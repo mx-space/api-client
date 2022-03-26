@@ -87,6 +87,7 @@ describe('test link client, /links', () => {
       name: '',
       url: '',
       description: '',
+      email: '',
     })
     expect(res).toEqual(null)
   })
