@@ -1,6 +1,6 @@
-import { PageController } from '~/controllers/page'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { PageController } from '~/controllers/page'
 
 describe('test page client', () => {
   const client = mockRequestInstance(PageController)

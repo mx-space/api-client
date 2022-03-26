@@ -1,6 +1,6 @@
-import { RecentlyController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { RecentlyController } from '~/controllers'
 
 describe('test recently client, /recently', () => {
   const client = mockRequestInstance(RecentlyController)

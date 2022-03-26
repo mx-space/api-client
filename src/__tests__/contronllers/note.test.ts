@@ -1,8 +1,10 @@
+import { spyOn } from 'vitest'
+
+import { mockRequestInstance } from '~/__tests__/helpers/instance'
+import { mockResponse } from '~/__tests__/helpers/response'
 import { axiosAdaptor } from '~/adaptors/axios'
 import { NoteController } from '~/controllers'
 import { RequestError } from '~/core'
-import { mockRequestInstance } from '~/__tests__/helpers/instance'
-import { mockResponse } from '~/__tests__/helpers/response'
 
 describe('test note client', () => {
   const client = mockRequestInstance(NoteController)
@@ -85,7 +87,7 @@ describe('test note client', () => {
   })
 
   it('should forbidden if no password provide', async () => {
-    jest.spyOn(axiosAdaptor, 'get').mockRejectedValue({
+    spyOn(axiosAdaptor, 'get').mockRejectedValue({
       response: {
         data: {
           message: 'password required',

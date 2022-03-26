@@ -1,4 +1,5 @@
 import { RequestOptions } from './instance'
+
 export type IAdaptorRequestResponseType<P> = Promise<
   Record<string, any> & { data: P }
 >

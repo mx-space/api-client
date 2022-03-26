@@ -12,18 +12,17 @@
 
 ```ts
 // esm format (spa recommend)
-import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
 // cjs format (ssr recommend)
 // import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 import {
   AggregateController,
   CategoryController,
-  createClient,
   NoteController,
   PostController,
-  allControllers,
-  // ...
+  allControllers, // ...
+  createClient,
 } from '@mx-space/api-client'
+import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
 
 const endpoint = 'https://api.innei.dev/v2'
 const client = createClient(axiosAdaptor)(endpoint)

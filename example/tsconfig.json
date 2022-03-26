@@ -3,19 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "noImplicitAny": true,
-    "types": [
-      "react/next",
-      "react-dom/next",
-      "vite/client"
-    ],
+    "types": ["react/next", "react-dom/next", "vite/client"],
     "jsx": "preserve",
     "paths": {
-      "~/*": [
-        "../src/*"
-      ],
-      "~": [
-        "../src"
-      ]
+      "~/*": ["../src/*"],
+      "~": ["../src"]
     }
   }
 }

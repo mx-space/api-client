@@ -1,4 +1,6 @@
 import { URLSearchParams } from 'url'
+import { spyOn } from 'vitest'
+
 import { axiosAdaptor } from '~/adaptors/axios'
 
 export const buildResponseDataWrapper = (data: any) => ({ data })
@@ -10,7 +12,7 @@ export const mockResponse = <T>(path: string, data: T, method = 'get') => {
       : `https://example.com/${path.replace(/^\//, '')}`,
   )
   // @ts-ignore
-  jest.spyOn(axiosAdaptor, method).mockImplementation(async (_url: string) => {
+  spyOn(axiosAdaptor, method).mockImplementation(async (_url: string) => {
     const $_url = new URL(_url)
     if (
       $_url.pathname.endsWith($url.pathname) &&

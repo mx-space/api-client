@@ -1,7 +1,5 @@
 import camelcaseKeys from 'camelcase-keys'
-import { allContollerNames } from '../controllers'
-import { attachRequestMethod } from './attach-request'
-import { RequestError } from './error'
+
 import {
   IAdaptorRequestResponseType,
   IRequestAdapter,
@@ -13,6 +11,10 @@ import { IRequestHandler, Method } from '~/interfaces/request'
 import { Class } from '~/interfaces/types'
 import { isPlainObject } from '~/utils'
 import { resolveFullPath } from '~/utils/path'
+
+import { allContollerNames } from '../controllers'
+import { attachRequestMethod } from './attach-request'
+import { RequestError } from './error'
 
 const methodPrefix = '_$'
 export type { HTTPClient }

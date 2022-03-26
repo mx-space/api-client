@@ -1,5 +1,3 @@
-import { PageModel } from '..'
-import { HTTPClient } from '../core'
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
@@ -7,6 +5,9 @@ import { PaginateResult } from '~/models/base'
 import { NoteModel } from '~/models/note'
 import { PostModel } from '~/models/post'
 import { autoBind } from '~/utils/auto-bind'
+
+import { PageModel } from '..'
+import { HTTPClient } from '../core'
 
 declare module '../core/client' {
   interface HTTPClient<

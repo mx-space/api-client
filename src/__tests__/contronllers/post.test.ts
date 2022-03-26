@@ -1,6 +1,6 @@
-import { PostController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { PostController } from '~/controllers'
 
 describe('test post client', () => {
   const client = mockRequestInstance(PostController)

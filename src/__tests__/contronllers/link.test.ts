@@ -1,8 +1,9 @@
-import { exitCode } from 'process'
 import camelcaseKeys from 'camelcase-keys'
-import { LinkController } from '~/controllers'
+import { exitCode } from 'process'
+
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { LinkController } from '~/controllers'
 
 describe('test link client, /links', () => {
   const client = mockRequestInstance(LinkController)

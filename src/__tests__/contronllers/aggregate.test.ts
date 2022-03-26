@@ -1,8 +1,9 @@
 import camelcaseKeys from 'camelcase-keys'
-import { AggregateController } from '~/controllers'
-import { TimelineType } from '~/models/aggregate'
+
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { AggregateController } from '~/controllers'
+import { TimelineType } from '~/models/aggregate'
 
 describe('test aggregate client', () => {
   const client = mockRequestInstance(AggregateController)

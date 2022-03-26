@@ -1,4 +1,5 @@
 import { BaseModel } from './base'
+
 export enum SnippetType {
   JSON = 'json',
   // Function = 'function',

@@ -1,0 +1,9 @@
+src/esm/*
+src/dist/*
+src/lib/*
+src/build/*
+
+**/*.config.js
+**/*.config.ts
+
+**/App.tsx

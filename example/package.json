@@ -15,8 +15,6 @@
     "react": "18.0.0-rc.2-next-b9de50d2f-20220308",
     "react-dom": "18.0.0-rc.2-next-b9de50d2f-20220308",
     "react-json-view": "1.21.3",
-    "vite": "2.8.6",
-    "vite-tsconfig-paths": "3.4.1"
-  },
-  "version": "0.0.0"
+    "vite": "2.8.6"
+  }
 }

@@ -1,6 +1,6 @@
-import { ServerlessController } from '~/controllers'
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { ServerlessController } from '~/controllers'
 
 describe('test Snippet client', () => {
   const client = mockRequestInstance(ServerlessController)

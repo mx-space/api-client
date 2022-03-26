@@ -1,3 +1,13 @@
+import { IRequestAdapter } from '~/interfaces/adapter'
+import { IController } from '~/interfaces/controller'
+import {
+  IRequestHandler,
+  RequestProxyResult,
+  ResponseProxyExtraRaw,
+} from '~/interfaces/request'
+import { attachRawFromOneToAnthor, destructureData } from '~/utils'
+import { autoBind } from '~/utils/auto-bind'
+
 import { HTTPClient } from '../core/client'
 import { RequestError } from '../core/error'
 import {
@@ -8,15 +18,6 @@ import {
   TagModel,
 } from '../models/category'
 import { PostModel } from '../models/post'
-import { IRequestAdapter } from '~/interfaces/adapter'
-import { IController } from '~/interfaces/controller'
-import {
-  IRequestHandler,
-  RequestProxyResult,
-  ResponseProxyExtraRaw,
-} from '~/interfaces/request'
-import { attachRawFromOneToAnthor, destructureData } from '~/utils'
-import { autoBind } from '~/utils/auto-bind'
 
 declare module '../core/client' {
   interface HTTPClient<

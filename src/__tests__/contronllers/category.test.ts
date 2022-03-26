@@ -1,7 +1,8 @@
 import camelcaseKeys from 'camelcase-keys'
-import { CategoryController } from '~/controllers'
+
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { CategoryController } from '~/controllers'
 
 describe('test Category client', () => {
   const client = mockRequestInstance(CategoryController)

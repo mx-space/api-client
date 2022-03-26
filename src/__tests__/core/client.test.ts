@@ -1,4 +1,6 @@
 import { AxiosResponse } from 'axios'
+import { spyOn } from 'vitest'
+
 import { axiosAdaptor } from '~/adaptors/axios'
 import { umiAdaptor } from '~/adaptors/umi-request'
 import {
@@ -24,11 +26,8 @@ describe('test client', () => {
   })
 
   describe('client `get` method', () => {
-    afterEach(() => {
-      jest.resetAllMocks()
-    })
     test('case 1', async () => {
-      jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+      spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
         if (url === 'http://127.0.0.1:2323/a/a?foo=bar') {
           return Promise.resolve({ data: { ok: 1 } })
         }
@@ -43,7 +42,7 @@ describe('test client', () => {
     })
 
     test('case 2', async () => {
-      jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+      spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
         if (url === 'http://127.0.0.1:2323/a/a') {
           return Promise.resolve({ data: { ok: 1 } })
         }
@@ -57,7 +56,7 @@ describe('test client', () => {
       expect(data).toStrictEqual({ ok: 1 })
 
       {
-        jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+        spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
           if (url === 'http://127.0.0.1:2323/a/b') {
             return Promise.resolve({ data: { ok: 1 } })
           }
@@ -119,7 +118,7 @@ describe('test client', () => {
   it('should infer response wrapper type', async () => {
     const client = generateClient<AxiosResponse>(axiosAdaptor)
     client.injectControllers(PostController)
-    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+    spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
       if (url === 'http://127.0.0.1:2323/posts/latest') {
         return Promise.resolve({ data: { ok: 1 }, status: 200 })
       }
@@ -134,7 +133,7 @@ describe('test client', () => {
 
   it('should infer axios instance type', async () => {
     const client = generateClient<AxiosResponse>(axiosAdaptor)
-    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+    spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
       if (url === 'http://127.0.0.1:2323/a') {
         return Promise.resolve({ data: { ok: 1 }, status: 200 })
       }
@@ -146,7 +145,7 @@ describe('test client', () => {
     expect(res.$raw.status).toBe(200)
 
     {
-      jest.spyOn(umiAdaptor, 'get').mockImplementation((url, config) => {
+      spyOn(umiAdaptor, 'get').mockImplementation((url, config) => {
         if (url === 'http://127.0.0.1:2323/a') {
           return Promise.resolve({
             data: { ok: 1 },
@@ -179,7 +178,7 @@ describe('test client', () => {
 
   it('should do not json convert case if payload is string or other primitive type', async () => {
     const client = generateClient<AxiosResponse>(axiosAdaptor)
-    jest.spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
+    spyOn(axiosAdaptor, 'get').mockImplementation((url, config) => {
       if (url === 'http://127.0.0.1:2323/a') {
         return Promise.resolve({ data: 'foo', status: 200 })
       }

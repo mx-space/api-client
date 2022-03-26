@@ -1,7 +1,8 @@
 import camelcaseKeys from 'camelcase-keys'
-import { CommentController } from '~/controllers/comment'
+
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'
+import { CommentController } from '~/controllers/comment'
 
 describe('test note client', () => {
   const client = mockRequestInstance(CommentController)

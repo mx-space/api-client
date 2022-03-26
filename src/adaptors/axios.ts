@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
+
 import { IRequestAdapter } from '~/interfaces/adapter'
+
 const $http = axios.create({})
 
 // ignore axios `method` declare not assignable to `Method`
