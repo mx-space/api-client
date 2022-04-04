@@ -19,7 +19,7 @@
     "@types/lodash": "4.14.181",
     "@types/node": "16.11.26",
     "cors": "2.8.5",
-    "esbuild": "0.14.30",
+    "esbuild": "0.14.31",
     "express": "4.17.3",
     "gh-pages": "3.2.3",
     "husky": "7.0.4",
