@@ -44,7 +44,7 @@ importers:
     specifiers:
       '@mx-space/api-client': workspace:*
       '@types/react': 17.0.44
-      '@types/react-dom': 17.0.14
+      '@types/react-dom': 17.0.15
       react: 18.0.0
       react-dom: 18.0.0
       react-json-view: 1.21.3
@@ -53,7 +53,7 @@ importers:
       '@mx-space/api-client': link:../src
     devDependencies:
       '@types/react': 17.0.44
-      '@types/react-dom': 17.0.14
+      '@types/react-dom': 17.0.15
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
       react-json-view: 1.21.3_17da3c48954ec03de9c1c37ece0f2b26
@@ -622,8 +622,8 @@ packages:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: true
 
-  /@types/react-dom/17.0.14:
-    resolution: {integrity: sha512-H03xwEP1oXmSfl3iobtmQ/2dHF5aBHr8aUMwyGZya6OW45G+xtdzmq6HkncefiBt5JU8DVyaWl/nWZbjZCnzAQ==}
+  /@types/react-dom/17.0.15:
+    resolution: {integrity: sha512-Tr9VU9DvNoHDWlmecmcsE5ZZiUkYx+nKBzum4Oxe1K0yJVyBlfbq7H3eXjxXqJczBKqPGq3EgfTru4MgKb9+Yw==}
     dependencies:
       '@types/react': 17.0.44
     dev: true
