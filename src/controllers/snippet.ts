@@ -1,7 +1,6 @@
 import { IRequestAdapter } from '~/interfaces/adapter'
 import { IController } from '~/interfaces/controller'
 import { IRequestHandler } from '~/interfaces/request'
-import { SnippetModel } from '~/models/snippet'
 import { autoBind } from '~/utils/auto-bind'
 
 import { HTTPClient } from '../core'
@@ -27,9 +26,9 @@ export class SnippetController<ResponseWrapper> implements IController {
     return this.client.proxy(this.base)
   }
 
-  getById(id: string) {
-    return this.proxy(id).get<Omit<SnippetModel, 'data'>>()
-  }
+  // getById(id: string) {
+  //   return this.proxy(id).get<Omit<SnippetModel, 'data'>>()
+  // }
 
   getByReferenceAndName<T = unknown>(reference: string, name: string) {
     return this.proxy(reference)(name).get<T>()

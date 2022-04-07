@@ -2,7 +2,7 @@ import { BaseModel } from './base'
 
 export enum SnippetType {
   JSON = 'json',
-  // Function = 'function',
+  Function = 'function',
   Text = 'text',
   YAML = 'yaml',
 }
