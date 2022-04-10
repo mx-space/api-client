@@ -67,5 +67,5 @@ export interface AggregateStat {
   todayOnlineTotal: string
   callTime: number
   uv: number
-  todayIPAccessCount: number
+  todayIpAccessCount: number
 }
