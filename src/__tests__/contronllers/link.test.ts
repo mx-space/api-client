@@ -80,16 +80,17 @@ describe('test link client, /links', () => {
   })
 
   test('POST /audit', async () => {
-    mockResponse('/links/audit', null, 'post')
-
-    const res = await client.link.applyLink({
+    const payload = {
       author: '',
       avatar: '',
       name: '',
       url: '',
       description: '',
       email: '',
-    })
-    expect(res).toEqual(null)
+    }
+    mockResponse('/links/audit', 'OK', 'post', payload)
+    const res = await client.link.applyLink(payload)
+
+    expect(res).toEqual('OK')
   })
 })

@@ -39,7 +39,7 @@ export class LinkController<ResponseWrapper> extends BaseCrudController<
       author: string
     },
   ) {
-    return await this.proxy.audit.post<never>(data)
+    return await this.proxy.audit.post<never>({ data })
   }
 
   name = ['link', 'friend']
