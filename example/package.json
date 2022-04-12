@@ -10,7 +10,7 @@
     "@mx-space/api-client": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "18.0.2",
+    "@types/react": "18.0.3",
     "@types/react-dom": "18.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
