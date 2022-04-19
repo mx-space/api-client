@@ -16,7 +16,7 @@
     "@innei-util/prettier": "0.8.2",
     "@innei/bump-version": "0.2.6",
     "@types/express": "4.17.13",
-    "@types/lodash": "4.14.181",
+    "@types/lodash": "4.14.182",
     "@types/node": "16.11.27",
     "cors": "2.8.5",
     "esbuild": "0.14.36",
