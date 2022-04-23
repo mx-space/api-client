@@ -22,9 +22,9 @@ class HTTPClient<
   T extends IRequestAdapter = IRequestAdapter,
   ResponseWrapper = unknown,
 > {
-  private _proxy: IRequestHandler<ResponseWrapper>
+  private readonly _proxy: IRequestHandler<ResponseWrapper>
 
-  constructor(private _endpoint: string, private _adaptor: T) {
+  constructor(private readonly _endpoint: string, private _adaptor: T) {
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')

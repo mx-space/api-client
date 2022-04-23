@@ -40,4 +40,6 @@ export interface TextBaseModel extends BaseCommentIndexModel {
   text: string
   images?: Image[]
   modified: string | null
+
+  meta?: Record<string, string>
 }
