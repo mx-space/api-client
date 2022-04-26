@@ -63,11 +63,11 @@ describe('test note client', () => {
   })
 
   it('should get single note', async () => {
-    mockResponse('/notes/1', { data: { title: '1' } })
+    mockResponse('/notes/1', { title: '1' })
 
     const data = await client.note.getNoteById('1')
 
-    expect(data.data).toStrictEqual({ title: '1' })
+    expect(data).toStrictEqual({ title: '1' })
     expect(data.$raw).toBeDefined()
   })
 
@@ -76,6 +76,13 @@ describe('test note client', () => {
 
     const data = await client.note.getNoteById(1)
     expect(data.data.title).toBe('1')
+  })
+
+  it('should get note by nid query single result', async () => {
+    mockResponse('/notes/nid/1', { title: '1' })
+
+    const data = await client.note.getNoteById(1, undefined, true)
+    expect(data.title).toBe('1')
   })
 
   it('should like note', async () => {

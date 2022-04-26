@@ -12,8 +12,8 @@
     "version": "pnpm run version -C src"
   },
   "devDependencies": {
-    "@innei-util/eslint-config-ts": "0.5.1",
-    "@innei-util/prettier": "0.8.2",
+    "@innei/eslint-config-ts": "latest",
+    "@innei/prettier": "latest",
     "@innei/bump-version": "0.2.6",
     "@types/express": "4.17.13",
     "@types/lodash": "4.14.182",

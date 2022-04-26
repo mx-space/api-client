@@ -1,12 +1,12 @@
-import { IRequestAdapter } from '~/interfaces/adapter'
-import { IController } from '~/interfaces/controller'
-import { IRequestHandler } from '~/interfaces/request'
-import { SelectFields } from '~/interfaces/types'
-import { PaginateResult } from '~/models/base'
-import { NoteModel, NoteWrappedPayload } from '~/models/note'
+import type { IRequestAdapter } from '~/interfaces/adapter'
+import type { IController } from '~/interfaces/controller'
+import type { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
+import type { SelectFields } from '~/interfaces/types'
+import type { PaginateResult } from '~/models/base'
+import type { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { autoBind } from '~/utils/auto-bind'
 
-import { HTTPClient } from '../core/client'
+import type { HTTPClient } from '../core/client'
 
 declare module '../core/client' {
   interface HTTPClient<
@@ -43,18 +43,35 @@ export class NoteController<ResponseWrapper> implements IController {
   }
 
   /**
-   * 获取一篇日记
+   * 获取一篇日记, 根据 Id 查询需要鉴权
    * @param id id | nid
    * @param password 访问密码
    */
 
-  getNoteById(id: string | number, password?: string) {
+  getNoteById(
+    id: string,
+  ): Promise<RequestProxyResult<NoteModel, ResponseWrapper>>
+  getNoteById(id: number): Promise<NoteWrappedPayload>
+  getNoteById(id: number, password: string): Promise<NoteWrappedPayload>
+  getNoteById(
+    id: number,
+    password: undefined,
+    singleResult: true,
+  ): Promise<RequestProxyResult<NoteModel, ResponseWrapper>>
+  getNoteById(
+    id: number,
+    password: string,
+    singleResult: true,
+  ): Promise<RequestProxyResult<NoteModel, ResponseWrapper>>
+  getNoteById(...rest: any[]): any {
+    const [id, password = undefined, singleResult = false] = rest
+
     if (typeof id === 'number') {
       return this.proxy.nid(id.toString()).get<NoteWrappedPayload>({
-        params: { password },
+        params: { password, single: singleResult ? '1' : undefined },
       })
     } else {
-      return this.proxy(id).get<NoteWrappedPayload>({ params: { password } })
+      return this.proxy(id).get<NoteModel>()
     }
   }
 
