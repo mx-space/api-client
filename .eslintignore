@@ -7,3 +7,4 @@ src/build/*
 **/*.config.ts
 
 **/App.tsx
+src/types

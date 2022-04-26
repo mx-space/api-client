@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash'
-import { URLSearchParams } from 'url'
+import type { URLSearchParams } from 'url'
 import { spyOn } from 'vitest'
 
 import { axiosAdaptor } from '~/adaptors/axios'

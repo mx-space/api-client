@@ -1,14 +1,14 @@
 import camelcaseKeys from 'camelcase-keys'
 
-import {
+import type {
   IAdaptorRequestResponseType,
   IRequestAdapter,
 } from '~/interfaces/adapter'
-import { ClientOptions } from '~/interfaces/client'
-import { IController } from '~/interfaces/controller'
-import { RequestOptions } from '~/interfaces/instance'
-import { IRequestHandler, Method } from '~/interfaces/request'
-import { Class } from '~/interfaces/types'
+import type { ClientOptions } from '~/interfaces/client'
+import type { IController } from '~/interfaces/controller'
+import type { RequestOptions } from '~/interfaces/instance'
+import type { IRequestHandler, Method } from '~/interfaces/request'
+import type { Class } from '~/interfaces/types'
 import { isPlainObject } from '~/utils'
 import { resolveFullPath } from '~/utils/path'
 

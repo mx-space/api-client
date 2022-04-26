@@ -1,8 +1,8 @@
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
-import { PaginateResult } from '~/models/base'
+import type { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
+import type { PaginateResult } from '~/models/base'
 import { autoBind } from '~/utils/auto-bind'
 
-import { HTTPClient } from '../core'
+import type { HTTPClient } from '../core'
 
 export abstract class BaseCrudController<T, ResponseWrapper> {
   base!: string

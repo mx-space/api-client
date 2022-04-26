@@ -1,4 +1,4 @@
-import { BaseModel } from './base'
+import type { BaseModel } from './base'
 
 export interface RecentlyModel extends BaseModel {
   content: string

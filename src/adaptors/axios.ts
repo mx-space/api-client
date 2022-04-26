@@ -1,6 +1,7 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import type { AxiosInstance, AxiosResponse } from 'axios'
+import axios from 'axios'
 
-import { IRequestAdapter } from '~/interfaces/adapter'
+import type { IRequestAdapter } from '~/interfaces/adapter'
 
 const $http = axios.create({})
 

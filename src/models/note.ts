@@ -1,4 +1,4 @@
-import { TextBaseModel } from './base'
+import type { TextBaseModel } from './base'
 
 export interface NoteModel extends TextBaseModel {
   hide: boolean

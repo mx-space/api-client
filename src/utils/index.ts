@@ -1,4 +1,4 @@
-import { SortOrder } from '~/interfaces/options'
+import type { SortOrder } from '~/interfaces/options'
 
 export const isPlainObject = (obj: any) =>
   isObject(obj) &&

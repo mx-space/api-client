@@ -1,12 +1,12 @@
-import { IRequestAdapter } from '~/interfaces/adapter'
-import { IController } from '~/interfaces/controller'
-import { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
-import { SelectFields } from '~/interfaces/types'
-import { PaginateResult } from '~/models/base'
-import { PostModel } from '~/models/post'
+import type { IRequestAdapter } from '~/interfaces/adapter'
+import type { IController } from '~/interfaces/controller'
+import type { IRequestHandler, RequestProxyResult } from '~/interfaces/request'
+import type { SelectFields } from '~/interfaces/types'
+import type { PaginateResult } from '~/models/base'
+import type { PostModel } from '~/models/post'
 import { autoBind } from '~/utils/auto-bind'
 
-import { HTTPClient } from '../core/client'
+import type { HTTPClient } from '../core/client'
 
 declare module '../core/client' {
   interface HTTPClient<

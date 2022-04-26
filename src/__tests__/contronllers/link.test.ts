@@ -1,5 +1,4 @@
 import camelcaseKeys from 'camelcase-keys'
-import { exitCode } from 'process'
 
 import { mockRequestInstance } from '~/__tests__/helpers/instance'
 import { mockResponse } from '~/__tests__/helpers/response'

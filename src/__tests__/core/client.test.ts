@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import type { AxiosResponse } from 'axios'
 import { spyOn } from 'vitest'
 
 import { axiosAdaptor } from '~/adaptors/axios'
@@ -10,7 +10,7 @@ import {
   allControllers,
 } from '~/controllers'
 import { createClient } from '~/core'
-import { IRequestAdapter } from '~/interfaces/adapter'
+import type { IRequestAdapter } from '~/interfaces/adapter'
 
 // axios wrapper test
 const generateClient = <
