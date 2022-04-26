@@ -43,7 +43,7 @@ importers:
   example:
     specifiers:
       '@mx-space/api-client': workspace:*
-      '@types/react': 18.0.7
+      '@types/react': 18.0.8
       '@types/react-dom': 18.0.2
       react: 18.0.0
       react-dom: 18.0.0
@@ -52,11 +52,11 @@ importers:
     dependencies:
       '@mx-space/api-client': link:../src
     devDependencies:
-      '@types/react': 18.0.7
+      '@types/react': 18.0.8
       '@types/react-dom': 18.0.2
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
-      react-json-view: 1.21.3_210fa9a098879be372c40b8bd028eb36
+      react-json-view: 1.21.3_1036842d53ecc2ee6cfbe9d8420b17a5
       vite: 2.8.6
 
   src:
@@ -602,11 +602,11 @@ packages:
   /@types/react-dom/18.0.2:
     resolution: {integrity: sha512-UxeS+Wtj5bvLRREz9tIgsK4ntCuLDo0EcAcACgw3E+9wE8ePDr9uQpq53MfcyxyIS55xJ+0B6mDS8c4qkkHLBg==}
     dependencies:
-      '@types/react': 18.0.7
+      '@types/react': 18.0.8
     dev: true
 
-  /@types/react/18.0.7:
-    resolution: {integrity: sha512-CXSXHzTexlX9esf4ReIUJeaemKcmBEvYzxHDUk19c3BCcEGUvUjkeC3jkscPSfSaQ6SPDRNd/zMxi8oc/P1zxA==}
+  /@types/react/18.0.8:
+    resolution: {integrity: sha512-+j2hk9BzCOrrOSJASi5XiOyBbERk9jG5O73Ya4M0env5Ixi6vUNli4qy994AINcEF+1IEHISYFfIT4zwr++LKw==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
@@ -3345,7 +3345,7 @@ packages:
       scheduler: 0.21.0
     dev: true
 
-  /react-json-view/1.21.3_210fa9a098879be372c40b8bd028eb36:
+  /react-json-view/1.21.3_1036842d53ecc2ee6cfbe9d8420b17a5:
     resolution: {integrity: sha512-13p8IREj9/x/Ye4WI/JpjhoIwuzEgUAtgJZNBJckfzJt1qyh24BdTm6UQNGnyTq9dapQdrqvquZTo3dz1X6Cjw==}
     peerDependencies:
       react: ^17.0.0 || ^16.3.0 || ^15.5.4
@@ -3356,7 +3356,7 @@ packages:
       react-base16-styling: 0.6.0
       react-dom: 18.0.0_react@18.0.0
       react-lifecycles-compat: 3.0.4
-      react-textarea-autosize: 8.3.3_@types+react@18.0.7+react@18.0.0
+      react-textarea-autosize: 8.3.3_@types+react@18.0.8+react@18.0.0
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -3365,7 +3365,7 @@ packages:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: true
 
-  /react-textarea-autosize/8.3.3_@types+react@18.0.7+react@18.0.0:
+  /react-textarea-autosize/8.3.3_@types+react@18.0.8+react@18.0.0:
     resolution: {integrity: sha512-2XlHXK2TDxS6vbQaoPbMOfQ8GK7+irc2fVK6QFIcC8GOnH3zI/v481n+j1L0WaPVvKxwesnY93fEfH++sus2rQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3374,7 +3374,7 @@ packages:
       '@babel/runtime': 7.16.0
       react: 18.0.0
       use-composed-ref: 1.1.0_react@18.0.0
-      use-latest: 1.2.0_@types+react@18.0.7+react@18.0.0
+      use-latest: 1.2.0_@types+react@18.0.8+react@18.0.0
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -3943,7 +3943,7 @@ packages:
       ts-essentials: 2.0.12
     dev: true
 
-  /use-isomorphic-layout-effect/1.1.1_@types+react@18.0.7+react@18.0.0:
+  /use-isomorphic-layout-effect/1.1.1_@types+react@18.0.8+react@18.0.0:
     resolution: {integrity: sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ==}
     peerDependencies:
       '@types/react': '*'
@@ -3952,11 +3952,11 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.0.7
+      '@types/react': 18.0.8
       react: 18.0.0
     dev: true
 
-  /use-latest/1.2.0_@types+react@18.0.7+react@18.0.0:
+  /use-latest/1.2.0_@types+react@18.0.8+react@18.0.0:
     resolution: {integrity: sha512-d2TEuG6nSLKQLAfW3By8mKr8HurOlTkul0sOpxbClIv4SQ4iOd7BYr7VIzdbktUCnv7dua/60xzd8igMU6jmyw==}
     peerDependencies:
       '@types/react': '*'
@@ -3965,9 +3965,9 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.0.7
+      '@types/react': 18.0.8
       react: 18.0.0
-      use-isomorphic-layout-effect: 1.1.1_@types+react@18.0.7+react@18.0.0
+      use-isomorphic-layout-effect: 1.1.1_@types+react@18.0.8+react@18.0.0
     dev: true
 
   /utils-merge/1.0.1:
