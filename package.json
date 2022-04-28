@@ -17,7 +17,7 @@
     "@innei/bump-version": "0.2.6",
     "@types/express": "4.17.13",
     "@types/lodash": "4.14.182",
-    "@types/node": "16.11.31",
+    "@types/node": "16.11.32",
     "cors": "2.8.5",
     "esbuild": "0.14.38",
     "express": "4.17.3",
