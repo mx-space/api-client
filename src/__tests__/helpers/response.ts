@@ -1,8 +1,10 @@
 import { isEqual } from 'lodash'
 import type { URLSearchParams } from 'url'
-import { spyOn } from 'vitest'
+import { vi } from 'vitest'
 
 import { axiosAdaptor } from '~/adaptors/axios'
+
+const { spyOn } = vi
 
 export const buildResponseDataWrapper = (data: any) => ({ data })
 

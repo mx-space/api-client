@@ -1,5 +1,5 @@
 import type { AxiosResponse } from 'axios'
-import { spyOn } from 'vitest'
+import { vi } from 'vitest'
 
 import { axiosAdaptor } from '~/adaptors/axios'
 import { umiAdaptor } from '~/adaptors/umi-request'
@@ -11,6 +11,8 @@ import {
 } from '~/controllers'
 import { createClient } from '~/core'
 import type { IRequestAdapter } from '~/interfaces/adapter'
+
+const { spyOn } = vi
 
 // axios wrapper test
 const generateClient = <
