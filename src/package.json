@@ -49,7 +49,7 @@
     "@rollup/plugin-typescript": "8.3.2",
     "@types/cors": "2.8.12",
     "@types/lodash": "4.14.182",
-    "@types/node": "16.11.34",
+    "@types/node": "16.11.35",
     "axios": "0.27.2",
     "gh-pages": "3.2.3",
     "lodash": "4.17.21",
