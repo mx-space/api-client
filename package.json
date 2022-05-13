@@ -31,7 +31,7 @@
     "esbuild": "0.14.39",
     "express": "4.18.1",
     "gh-pages": "3.2.3",
-    "husky": "7.0.4",
+    "husky": "8.0.1",
     "lint-staged": "12.4.1",
     "lodash": "4.17.21",
     "prettier": "2.6.2",
