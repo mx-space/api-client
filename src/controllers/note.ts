@@ -111,4 +111,13 @@ export class NoteController<ResponseWrapper> implements IController {
   likeIt(id: string | number) {
     return this.proxy.like(id).get<never>()
   }
+
+  /**
+   * 获取专栏内的所有日记
+   */
+  getNoteByTopicId(topicId: string, page = 1, size = 10) {
+    return this.proxy.topics(topicId).get<PaginateResult<NoteModel>>({
+      params: { page, size },
+    })
+  }
 }

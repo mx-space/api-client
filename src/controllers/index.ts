@@ -11,6 +11,7 @@ import { SayController } from './say'
 import { SearchController } from './search'
 import { ServerlessController } from './severless'
 import { SnippetController } from './snippet'
+import { TopicController } from './topic'
 import { UserController } from './user'
 
 export const allControllers = [
@@ -39,6 +40,7 @@ export const allContollerNames = [
   'page',
   'post',
   'project',
+  'topic',
   'recently',
   'say',
   'search',
@@ -67,4 +69,5 @@ export {
   SnippetController,
   ServerlessController,
   UserController,
+  TopicController,
 }

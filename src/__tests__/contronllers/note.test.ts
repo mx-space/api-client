@@ -109,4 +109,12 @@ describe('test note client', () => {
       RequestError,
     )
   })
+
+  test('GET /notes/topics/:id', async () => {
+    mockResponse('/notes/topics/11111111', { data: [], pagination: {} })
+
+    const data = await client.note.getNoteByTopicId('11111111')
+
+    expect(data).toEqual({ data: [], pagination: {} })
+  })
 })
