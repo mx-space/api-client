@@ -4,6 +4,10 @@ import { autoBind } from '~/utils/auto-bind'
 
 import type { HTTPClient } from '../core'
 
+export type SortOptions = {
+  sortBy?: string
+  sortOrder?: 1 | -1 | 'asc' | 'desc'
+}
 export abstract class BaseCrudController<T, ResponseWrapper> {
   base!: string
   constructor(protected client: HTTPClient) {
@@ -25,9 +29,9 @@ export abstract class BaseCrudController<T, ResponseWrapper> {
    * @param page
    * @param perPage
    */
-  getAllPaginated(page?: number, perPage?: number) {
+  getAllPaginated(page?: number, perPage?: number, sortOption?: SortOptions) {
     return this.proxy.get<PaginateResult<T>>({
-      params: { page, size: perPage },
+      params: { page, size: perPage, ...sortOption },
     })
   }
 }

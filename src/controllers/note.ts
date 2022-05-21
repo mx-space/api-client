@@ -7,6 +7,7 @@ import type { NoteModel, NoteWrappedPayload } from '~/models/note'
 import { autoBind } from '~/utils/auto-bind'
 
 import type { HTTPClient } from '../core/client'
+import type { SortOptions } from './base'
 
 declare module '../core/client' {
   interface HTTPClient<
@@ -115,9 +116,14 @@ export class NoteController<ResponseWrapper> implements IController {
   /**
    * 获取专栏内的所有日记
    */
-  getNoteByTopicId(topicId: string, page = 1, size = 10) {
+  getNoteByTopicId(
+    topicId: string,
+    page = 1,
+    size = 10,
+    sortOptions: SortOptions = {},
+  ) {
     return this.proxy.topics(topicId).get<PaginateResult<NoteModel>>({
-      params: { page, size },
+      params: { page, size, ...sortOptions },
     })
   }
 }
