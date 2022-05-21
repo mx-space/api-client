@@ -1,4 +1,5 @@
 import type { TextBaseModel } from './base'
+import type { TopicModel } from './topic'
 
 export interface NoteModel extends TextBaseModel {
   hide: boolean
@@ -18,6 +19,8 @@ export interface NoteModel extends TextBaseModel {
   location?: string
 
   coordinates?: Coordinate
+  topic?: TopicModel
+  topicId?: string
 }
 
 export interface NoteMusicRecord {
