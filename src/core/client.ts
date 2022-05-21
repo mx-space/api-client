@@ -24,7 +24,11 @@ class HTTPClient<
 > {
   private readonly _proxy: IRequestHandler<ResponseWrapper>
 
-  constructor(private readonly _endpoint: string, private _adaptor: T) {
+  constructor(
+    private readonly _endpoint: string,
+    private _adaptor: T,
+    private options: Omit<ClientOptions, 'controllers'> = {},
+  ) {
     this._endpoint = _endpoint
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')
@@ -149,18 +153,23 @@ class HTTPClient<
                   url,
                 })
               } catch (e: any) {
-                throw new RequestError(
-                  e.message,
+                let message = e.message
+                let code =
                   e.code ||
-                    e.status ||
-                    e.statusCode ||
-                    e.response?.status ||
-                    e.response?.statusCode ||
-                    e.response?.code ||
-                    500,
-                  url,
-                  e,
-                )
+                  e.status ||
+                  e.statusCode ||
+                  e.response?.status ||
+                  e.response?.statusCode ||
+                  e.response?.code ||
+                  500
+
+                if (that.options.getCodeMessageFromException) {
+                  const errorInfo = that.options.getCodeMessageFromException(e)
+                  message = errorInfo.message || message
+                  code = errorInfo.code || code
+                }
+
+                throw new RequestError(message, code, url, e)
               }
 
               const data = res.data
@@ -225,7 +234,11 @@ export function createClient<T extends IRequestAdapter>(adapter: T) {
     endpoint: string,
     options?: ClientOptions,
   ) => {
-    const client = new HTTPClient<T, ResponseWrapper>(endpoint, adapter)
+    const client = new HTTPClient<T, ResponseWrapper>(
+      endpoint,
+      adapter,
+      options,
+    )
     const { controllers } = options || {}
     if (controllers) {
       client.injectControllers(controllers)

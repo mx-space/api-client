@@ -1,4 +1,5 @@
 import type { AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 import { vi } from 'vitest'
 
 import { axiosAdaptor } from '~/adaptors/axios'
@@ -9,8 +10,9 @@ import {
   allContollerNames,
   allControllers,
 } from '~/controllers'
-import { createClient } from '~/core'
+import { RequestError, createClient } from '~/core'
 import type { IRequestAdapter } from '~/interfaces/adapter'
+import type { ClientOptions } from '~/interfaces/client'
 
 const { spyOn } = vi
 
@@ -20,7 +22,12 @@ const generateClient = <
   AdaptorType extends IRequestAdapter = typeof axiosAdaptor,
 >(
   adapter?: AdaptorType,
-) => createClient(adapter ?? axiosAdaptor)<Response>('http://127.0.0.1:2323')
+  options?: ClientOptions,
+) =>
+  createClient(adapter ?? axiosAdaptor)<Response>(
+    'http://127.0.0.1:2323',
+    options,
+  )
 describe('test client', () => {
   it('should create new client with axios', () => {
     const client = generateClient()
@@ -190,5 +197,41 @@ describe('test client', () => {
 
     const data = await client.proxy.a.get()
     expect(data).toBe('foo')
+  })
+
+  it('should throw exception with custom message and code', async () => {
+    const client = generateClient<AxiosResponse>(axiosAdaptor, {
+      // @ts-ignore
+      getCodeMessageFromException: (e: AxiosError) => {
+        return {
+          code: e.response?.status,
+          message: e.message,
+        }
+      },
+    })
+    spyOn(axiosAdaptor, 'get').mockImplementation(() => {
+      return Promise.reject(
+        new AxiosError(
+          'not found',
+          'NOT_FOUND',
+          {},
+          {},
+          {
+            status: 404,
+            config: {},
+            data: {},
+            headers: {},
+            statusText: 'not found',
+          },
+        ),
+      )
+    })
+
+    try {
+      await client.proxy.a.get()
+    } catch (er: any) {
+      expect(er).toBeInstanceOf(RequestError)
+      expect(er.status).toBe(404)
+    }
   })
 })
