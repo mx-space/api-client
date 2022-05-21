@@ -24,6 +24,7 @@ export const allControllers = [
   PostController,
   ProjectController,
   RecentlyController,
+  TopicController,
   SayController,
   SearchController,
   SnippetController,
