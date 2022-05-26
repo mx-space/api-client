@@ -8,8 +8,9 @@ export enum RefType {
 }
 export interface CommentModel extends BaseModel {
   refType: RefType
+  ref: string
   state: number
-  comments_index: number
+  commentsIndex: number
   author: string
   text: string
   mail?: string
