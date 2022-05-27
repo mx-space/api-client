@@ -81,3 +81,19 @@ client.post.post.getList(page, 10, { year }).then((data) => {
 **如果不使用 axios，应该如何编写适配器**
 
 参考 `src/adaptors/axios.ts` 和 `src/adaptors/umi-request.ts`
+
+**如何使用 proxy 来访问 sdk 内未包含的请求**
+
+如请求 `GET /notes/something/other/123456/info`，可以使用
+
+```ts
+client.note.proxy.something.other('123456').info.get()
+```
+
+**从 proxy 获取请求地址但不发出**
+
+```ts
+client.note.proxy.something.other('123456').info.toString() // /notes/something/other/123456/info
+
+client.note.proxy.something.other('123456').info.toString(true) // http://localhost:2333/notes/something/other/123456/info
+```
