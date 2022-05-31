@@ -7,7 +7,7 @@ export function attachRequestMethod<T extends HTTPClient<any, any>>(target: T) {
       const { params = {} } = options
       const qs = handleSearchParams(params)
 
-      return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`)
+      return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`, options)
     },
   })
   ;(['put', 'post', 'patch', 'delete'] as const).forEach((method) => {
