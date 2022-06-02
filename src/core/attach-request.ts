@@ -6,6 +6,8 @@ export function attachRequestMethod<T extends HTTPClient<any, any>>(target: T) {
       // HINT: method get only accept search params;
       const { params = {} } = options
       const qs = handleSearchParams(params)
+      // because params is handled manually
+      delete options.params
 
       return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`, options)
     },
