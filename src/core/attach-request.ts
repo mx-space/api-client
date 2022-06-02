@@ -4,12 +4,10 @@ export function attachRequestMethod<T extends HTTPClient<any, any>>(target: T) {
   Object.defineProperty(target, '$$get', {
     value(url: string, options?: any) {
       // HINT: method get only accept search params;
-      const { params = {} } = options
+      const { params = {}, ...rest } = options
       const qs = handleSearchParams(params)
-      // because params is handled manually
-      delete options.params
 
-      return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`, options)
+      return target.instance.get(`${url}${qs ? `${`?${qs}`}` : ''}`, rest)
     },
   })
   ;(['put', 'post', 'patch', 'delete'] as const).forEach((method) => {
