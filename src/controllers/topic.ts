@@ -1,7 +1,6 @@
 import type { IRequestAdapter } from '~/interfaces/adapter'
 import type { IController } from '~/interfaces/controller'
 import type { IRequestHandler } from '~/interfaces/request'
-import type { SayModel } from '~/models/say'
 import type { TopicModel } from '~/models/topic'
 import { autoBind } from '~/utils/auto-bind'
 
@@ -18,7 +17,7 @@ declare module '../core/client' {
 }
 
 export class TopicController<ResponseWrapper>
-  extends BaseCrudController<SayModel, ResponseWrapper>
+  extends BaseCrudController<TopicModel, ResponseWrapper>
   implements IController
 {
   base = 'topics'
