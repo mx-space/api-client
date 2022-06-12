@@ -12,4 +12,6 @@ export interface PostModel extends TextBaseModel {
   categoryId: string
   images: Image[]
   category: CategoryModel
+  pin?: string | null
+  pinOrder?: number
 }
