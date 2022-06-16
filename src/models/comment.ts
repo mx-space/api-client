@@ -18,6 +18,7 @@ export interface CommentModel extends BaseModel {
   ip?: string
   agent?: string
   key: string
+  pin?: boolean
 
   avatar: string
   parent?: CommentModel | string
