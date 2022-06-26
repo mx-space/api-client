@@ -14,4 +14,15 @@ export interface PostModel extends TextBaseModel {
   category: CategoryModel
   pin?: string | null
   pinOrder?: number
+  related?: Pick<
+    PostModel,
+    | 'id'
+    | 'category'
+    | 'categoryId'
+    | 'created'
+    | 'modified'
+    | 'title'
+    | 'slug'
+    | 'summary'
+  >[]
 }
