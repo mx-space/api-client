@@ -14,7 +14,7 @@ export const mockResponse = <T>(
   method = 'get',
   requestBody?: any,
 ) => {
-  const $url = new URL(
+  const exceptUrlObject = new URL(
     path.startsWith('http')
       ? path
       : `https://example.com/${path.replace(/^\//, '')}`,
@@ -22,8 +22,8 @@ export const mockResponse = <T>(
   // @ts-ignore
   spyOn(axiosAdaptor, method).mockImplementation(
     // @ts-ignore
-    async (_url: string, options: any) => {
-      const $_url = new URL(_url)
+    async (requestUrl: string, options: any) => {
+      const requestUrlObject = new URL(requestUrl)
 
       if (requestBody) {
         const { data } = options || {}
@@ -35,17 +35,21 @@ export const mockResponse = <T>(
           )
         }
       }
+
       if (
-        $_url.pathname.endsWith($url.pathname) &&
-        ($url.search
-          ? isSearchEqual($url.searchParams, $_url.searchParams)
+        requestUrlObject.pathname.endsWith(exceptUrlObject.pathname) &&
+        (exceptUrlObject.search
+          ? isSearchEqual(
+              exceptUrlObject.searchParams,
+              requestUrlObject.searchParams,
+            )
           : true)
       ) {
         return buildResponseDataWrapper(data)
       } else {
         return buildResponseDataWrapper({
           error: 1,
-          requestPath: $_url.pathname + $_url.search,
+          requestPath: requestUrlObject.pathname + requestUrlObject.search,
           expectPath: path,
         })
       }

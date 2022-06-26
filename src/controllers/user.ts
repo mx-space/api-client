@@ -42,6 +42,16 @@ export class UserController<ResponseWrapper> implements IController {
     })
   }
 
+  loginWithToken(token?: string) {
+    return this.proxy.login.put<{ token: string }>({
+      params: token
+        ? {
+            token: `bearer ${token.replace(/^Bearer\s/i, '')}`,
+          }
+        : undefined,
+    })
+  }
+
   checkTokenValid(token: string) {
     return this.proxy.check_logged.get<{ ok: number; isGuest: boolean }>({
       params: {
