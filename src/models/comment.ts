@@ -23,6 +23,8 @@ export interface CommentModel extends BaseModel {
   avatar: string
   parent?: CommentModel | string
   children: CommentModel[]
+
+  isWhispers?: boolean
 }
 export interface CommentRef {
   id: string
