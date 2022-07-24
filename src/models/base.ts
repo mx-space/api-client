@@ -41,5 +41,5 @@ export interface TextBaseModel extends BaseCommentIndexModel {
   images?: Image[]
   modified: string | null
 
-  meta?: Record<string, string>
+  meta?: Record<string, any>
 }
