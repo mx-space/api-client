@@ -60,6 +60,6 @@
     "umi-request": "1.4.0"
   },
   "dependencies": {
-    "camelcase-keys": "7.0.2"
+    "camelcase-keys": "8.0.2"
   }
 }
