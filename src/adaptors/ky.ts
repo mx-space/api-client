@@ -23,46 +23,51 @@ const getDataFromKyResponse = async (response: ResponsePromise) => {
   return result
 }
 
-export const kyAdaptor: IRequestAdapter<typeof $http, ResponsePromise> =
-  Object.preventExtensions({
-    get default() {
-      return $http
-    },
+export const createKyAdaptor = (ky: KyInstance) => {
+  const adaptor: IRequestAdapter<KyInstance, ResponsePromise> =
+    Object.preventExtensions({
+      get default() {
+        return ky
+      },
 
-    responseWrapper: {} as any as ResponsePromise,
-    get(url, options) {
-      return getDataFromKyResponse($http.get(url, options))
-    },
-    post(url, options) {
-      const data = options.data
-      delete options.data
-      const kyOptions: Options = {
-        ...options,
-        json: data,
-      }
+      responseWrapper: {} as any as ResponsePromise,
+      get(url, options) {
+        return getDataFromKyResponse(ky.get(url, options))
+      },
+      post(url, options) {
+        const data = options.data
+        delete options.data
+        const kyOptions: Options = {
+          ...options,
+          json: data,
+        }
 
-      return getDataFromKyResponse($http.post(url, kyOptions))
-    },
-    put(url, options) {
-      const data = options.data
-      delete options.data
-      const kyOptions: Options = {
-        ...options,
-        json: data,
-      }
-      return getDataFromKyResponse($http.put(url, kyOptions))
-    },
+        return getDataFromKyResponse(ky.post(url, kyOptions))
+      },
+      put(url, options) {
+        const data = options.data
+        delete options.data
+        const kyOptions: Options = {
+          ...options,
+          json: data,
+        }
+        return getDataFromKyResponse(ky.put(url, kyOptions))
+      },
 
-    patch(url, options) {
-      const data = options.data
-      delete options.data
-      const kyOptions: Options = {
-        ...options,
-        json: data,
-      }
-      return getDataFromKyResponse($http.patch(url, kyOptions))
-    },
-    delete(url, options) {
-      return getDataFromKyResponse($http.delete(url, options))
-    },
-  })
+      patch(url, options) {
+        const data = options.data
+        delete options.data
+        const kyOptions: Options = {
+          ...options,
+          json: data,
+        }
+        return getDataFromKyResponse(ky.patch(url, kyOptions))
+      },
+      delete(url, options) {
+        return getDataFromKyResponse(ky.delete(url, options))
+      },
+    })
+  return adaptor
+}
+
+export const defaultKyAdaptor = createKyAdaptor($http)
