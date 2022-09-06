@@ -35,20 +35,19 @@
   "scripts": {
     "prebuild": "rm -rf lib && rm -rf esm",
     "build": "tsc --build tsconfig.build.json && tsc --build tsconfig.cjs.json",
-    "postbuild": "tsconfig-replace-paths -p tsconfig.build.json && tsconfig-replace-paths -p tsconfig.cjs.json && npm run types",
-    "types": "rm -rf types && tsc --build tsconfig.types.json && tsconfig-replace-paths -p tsconfig.types.json",
+    "postbuild": "tsc-alias -p tsconfig.build.json && tsc-alias -p tsconfig.cjs.json && npm run types",
+    "types": "rm -rf types && tsc --build tsconfig.types.json && tsc-alias -p tsconfig.types.json",
     "package": "NODE_ENV=production npm run build && rollup -c",
     "prepackage": "rm -rf build",
-    "release": "vv",
     "test": "vitest",
-    "version": "vv"
+    "dev": "vite"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "22.0.0",
-    "@rollup/plugin-node-resolve": "13.2.2",
-    "@rollup/plugin-typescript": "8.3.3",
+    "@rollup/plugin-commonjs": "22.0.2",
+    "@rollup/plugin-node-resolve": "14.0.0",
+    "@rollup/plugin-typescript": "8.5.0",
     "@types/cors": "2.8.12",
-    "@types/lodash": "4.14.182",
+    "@types/lodash": "4.14.184",
     "@types/node": "16.11.39",
     "axios": "0.27.2",
     "camelcase-keys": "8.0.2",
@@ -57,11 +56,10 @@
     "ky": "0.31.3",
     "ky-universal": "0.10.1",
     "lodash": "4.17.21",
-    "node-fetch": "*",
-    "rollup": "2.74.1",
+    "rollup": "2.79.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-terser": "7.0.2",
-    "tsconfig-replace-paths": "0.0.11",
-    "umi-request": "1.4.0"
+    "umi-request": "1.4.0",
+    "tsc-alias": "1.7.0"
   }
 }

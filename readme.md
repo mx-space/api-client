@@ -12,7 +12,7 @@ npm i @mx-space/api-client
 
 此 SDK 框架无关，不捆绑任何一个网络请求库，只需要提供适配器。你需要手动传入符合接口标准的适配器。
 
-此项目提供 `axios` 和 `umi-request` 两个适配器。
+此项目提供 `axios`, `umi-request`, `ky` 三个适配器。
 
 以 `axios` 为例。
 

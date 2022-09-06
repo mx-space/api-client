@@ -7,5 +7,7 @@ export default defineConfig({
     globals: true,
     include: ['__tests__/**/*.(spec|test).ts'],
   },
+
+  // @ts-ignore
   plugins: [tsPath()],
 })

@@ -1,9 +1,10 @@
 import ky from 'ky-universal'
 import type { Options, ResponsePromise } from 'ky-universal'
+import type { KyInstance } from 'ky/distribution/types/ky'
 
 import type { IRequestAdapter } from '~/interfaces/adapter'
 
-const $http = ky.create({})
+const $http: KyInstance = ky.create({})
 // TODO post data not only json,
 const getDataFromKyResponse = async (response: ResponsePromise) => {
   const res = await response
