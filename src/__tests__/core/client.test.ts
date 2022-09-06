@@ -234,4 +234,61 @@ describe('test client', () => {
       expect(er.status).toBe(404)
     }
   })
+
+  it('should throw custom exception', async () => {
+    class MyRequestError extends Error {
+      constructor(
+        message: string,
+        public status: number,
+        public path: string,
+        public raw: any,
+      ) {
+        super(message)
+      }
+
+      toResponse() {
+        return {
+          status: this.status,
+        }
+      }
+    }
+
+    const client = generateClient<AxiosResponse>(axiosAdaptor, {
+      // @ts-ignore
+      customThrowResponseError(err) {
+        return new MyRequestError(
+          err.message,
+          err.response?.status,
+          err.path,
+          err.raw,
+        )
+      },
+    })
+
+    spyOn(axiosAdaptor, 'get').mockImplementation(() => {
+      return Promise.reject(
+        new AxiosError(
+          'not found',
+          'NOT_FOUND',
+          {},
+          {},
+          {
+            status: 404,
+            config: {},
+            data: {},
+            headers: {},
+            statusText: 'not found',
+          },
+        ),
+      )
+    })
+
+    try {
+      await client.proxy.a.get()
+    } catch (er: any) {
+      expect(er).toBeInstanceOf(MyRequestError)
+      expect(er.toResponse).toBeDefined()
+      expect(er.status).toBe(404)
+    }
+  })
 })

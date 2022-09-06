@@ -2,6 +2,15 @@
 
 这是一个适用于 MServer v3 的 JS SDK，封装了常用接口请求方法以及返回类型的声明，以快速开发前端应用。
 
+## 迁移到 v1
+
+不再提供 camelcase-keys 的 re-export，此库不再依赖 camelcase-keys 库，如有需要可自行安装。
+
+```diff
+- import { camelcaseKeysDeep, camelcaseKeys } from '@mx-space/api-client'
++ import { simpleCamelcaseKeys as camelcaseKeysDeep } from '@mx-space/api-client'
+```
+
 ## 如何使用
 
 此 SDK 框架无关，不捆绑任何一个网络请求库，只需要提供适配器。你需要手动传入符合接口标准的适配器。

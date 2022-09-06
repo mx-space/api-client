@@ -1,5 +1,3 @@
-import camelcaseKeys from 'camelcase-keys'
-
 import type {
   IAdaptorRequestResponseType,
   IRequestAdapter,
@@ -10,6 +8,7 @@ import type { RequestOptions } from '~/interfaces/instance'
 import type { IRequestHandler, Method } from '~/interfaces/request'
 import type { Class } from '~/interfaces/types'
 import { isPlainObject } from '~/utils'
+import { camelcaseKeys } from '~/utils/camelcase-keys'
 import { resolveFullPath } from '~/utils/path'
 
 import { allContollerNames } from '../controllers'
@@ -33,6 +32,8 @@ class HTTPClient<
       .replace(/\/*$/, '')
       .replace('localhost', '127.0.0.1')
     this._proxy = this.buildRoute(this)()
+    options.transformResponse =
+      options.transformResponse || ((data) => camelcaseKeys(data))
 
     this.initGetClient()
 
@@ -169,7 +170,9 @@ class HTTPClient<
                   code = errorInfo.code || code
                 }
 
-                throw new RequestError(message, code, url, e)
+                throw that.options.customThrowResponseError
+                  ? that.options.customThrowResponseError(e)
+                  : new RequestError(message, code, url, e)
               }
 
               const data = res.data
@@ -178,8 +181,9 @@ class HTTPClient<
               }
 
               const transform =
-                Array.isArray(data) || isPlainObject(data)
-                  ? camelcaseKeys(data, { deep: true })
+                (Array.isArray(data) || isPlainObject(data)) &&
+                that.options.transformResponse
+                  ? that.options.transformResponse(data)
                   : data
 
               if (transform && typeof transform === 'object') {
