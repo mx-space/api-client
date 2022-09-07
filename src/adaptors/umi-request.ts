@@ -3,7 +3,8 @@ import { extend } from 'umi-request'
 
 import type { IRequestAdapter } from '~/interfaces/adapter'
 
-const $http = extend({
+// eslint-disable-next-line spaced-comment
+const $http = /*#__PURE__*/ extend({
   getResponse: true,
   requestType: 'json',
   responseType: 'json',

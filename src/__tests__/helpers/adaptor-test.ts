@@ -12,6 +12,7 @@ export const testAdaptor = (adaptor: IRequestAdapter) => {
   afterAll(() => {
     close()
   })
+
   beforeAll(() => {
     client = createClient(adaptor)(`http://localhost:${port}`)
     client.injectControllers(allControllers)

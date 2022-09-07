@@ -1,10 +1,11 @@
-import ky from 'ky-universal'
-import type { Options, ResponsePromise } from 'ky-universal'
+import ky from 'ky'
+import type { Options, ResponsePromise } from 'ky'
 import type { KyInstance } from 'ky/distribution/types/ky'
 
 import type { IRequestAdapter } from '~/interfaces/adapter'
 
-const $http: KyInstance = ky.create({})
+// eslint-disable-next-line spaced-comment
+const $http: KyInstance = /*#__PURE__*/ ky.create({})
 // TODO post data not only json,
 const getDataFromKyResponse = async (response: ResponsePromise) => {
   const res = await response

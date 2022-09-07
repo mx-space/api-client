@@ -3,7 +3,8 @@ import axios from 'axios'
 
 import type { IRequestAdapter } from '~/interfaces/adapter'
 
-const $http = axios.create({})
+// eslint-disable-next-line spaced-comment
+const $http = /*#__PURE__*/ axios.create({})
 
 // ignore axios `method` declare not assignable to `Method`
 export const axiosAdaptor: IRequestAdapter<
