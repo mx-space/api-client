@@ -27,7 +27,7 @@ importers:
       vitest: 0.23.1
     devDependencies:
       '@innei/bump-version': 0.2.6
-      '@innei/eslint-config-ts': 0.9.4
+      '@innei/eslint-config-ts': 0.9.4_typescript@4.8.2
       '@innei/prettier': 0.9.4
       '@types/express': 4.17.13
       '@types/lodash': 4.14.184
@@ -69,7 +69,7 @@ importers:
       '@rollup/plugin-typescript': 8.5.0
       '@types/cors': 2.8.12
       '@types/lodash': 4.14.184
-      '@types/node': 16.11.39
+      '@types/node': 16.11.57
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
@@ -90,7 +90,7 @@ importers:
       '@rollup/plugin-typescript': 8.5.0_rollup@2.79.0
       '@types/cors': 2.8.12
       '@types/lodash': 4.14.184
-      '@types/node': 16.11.39
+      '@types/node': 16.11.57
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
@@ -413,8 +413,10 @@ packages:
     hasBin: true
     dev: true
 
-  /@innei/eslint-config-ts/0.9.4:
+  /@innei/eslint-config-ts/0.9.4_typescript@4.8.2:
     resolution: {integrity: sha512-T52M6omBVNP6CbRN0sWNf8TjEEocuPTSN+FnVUY7c1P8JfgOTH9PFOG8fEt59UZLxZEIjy26pHGDqATv9inGVA==}
+    peerDependencies:
+      typescript: '>=4'
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -635,8 +637,8 @@ packages:
     resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
     dev: true
 
-  /@types/node/16.11.39:
-    resolution: {integrity: sha512-K0MsdV42vPwm9L6UwhIxMAOmcvH/1OoVkZyCgEtVu4Wx7sElGloy/W7kMBNe/oJ7V/jW9BVt1F6RahH6e7tPXw==}
+  /@types/node/16.11.57:
+    resolution: {integrity: sha512-diBb5AE2V8h9Fs9zEDtBwSeLvIACng/aAkdZ3ujMV+cGuIQ9Nc/V+wQqurk9HJp8ni5roBxQHW21z/ZYbGDivg==}
     dev: true
 
   /@types/node/18.7.15:
@@ -680,7 +682,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 16.11.39
+      '@types/node': 18.7.15
     dev: true
 
   /@types/scheduler/0.16.2:
@@ -2653,17 +2655,6 @@ packages:
     resolution: {integrity: sha512-m5blUd3/OqDTWwzBBtWBPrGlAzatRywHameHeekAZyZrskYouOGdNB8T/q6JucucvJXtOuyHIn0/Yia7iDasDw==}
     dev: true
 
-  /glob/7.2.0:
-    resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
-    dev: true
-
   /glob/7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     dependencies:
@@ -2704,7 +2695,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       array-union: 1.0.2
-      glob: 7.2.0
+      glob: 7.2.3
       object-assign: 4.1.1
       pify: 2.3.0
       pinkie-promise: 2.0.1
@@ -3046,7 +3037,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.11.39
+      '@types/node': 18.7.15
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -3136,7 +3127,7 @@ packages:
     dev: true
 
   /jsonfile/4.0.0:
-    resolution: {integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=}
+    resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
       graceful-fs: 4.2.10
     dev: true
