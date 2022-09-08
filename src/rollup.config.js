@@ -41,23 +41,23 @@ const config = [
         plugins: [terser()],
       },
       {
-        file: `${dir}/index.cjs.js`,
+        file: `${dir}/index.cjs`,
         format: 'cjs',
         sourcemap: true,
       },
       {
-        file: `${dir}/index.cjs.min.js`,
+        file: `${dir}/index.min.cjs`,
         format: 'cjs',
         sourcemap: true,
         plugins: [terser()],
       },
       {
-        file: `${dir}/index.esm.mjs`,
+        file: `${dir}/index.js`,
         format: 'es',
         sourcemap: true,
       },
       {
-        file: `${dir}/index.esm.min.mjs`,
+        file: `${dir}/index.min.js`,
         format: 'es',
         sourcemap: true,
         plugins: [terser()],

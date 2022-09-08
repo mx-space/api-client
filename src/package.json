@@ -1,11 +1,12 @@
 {
   "name": "@mx-space/api-client",
   "version": "v1.0.0-alpha.0",
+  "type": "module",
   "description": "A api client for mx-space server@next",
   "author": "Innei",
   "license": "MIT",
-  "main": "build/index.cjs.js",
-  "module": "build/index.esm.mjs",
+  "main": "build/index.cjs",
+  "module": "build/index.js",
   "types": "types/index.d.ts",
   "unpkg": "build/index.umd.min.js",
   "husky": {
