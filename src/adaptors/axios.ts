@@ -40,3 +40,5 @@ export const axiosAdaptor: IRequestAdapter<
     return $http.patch(url, data, config)
   },
 })
+
+export default axiosAdaptor

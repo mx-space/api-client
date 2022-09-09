@@ -1,9 +1,26 @@
 // import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
 import { ApiView } from 'components/ApiView'
+import ky from 'ky'
 import React from 'react'
 
 import { allControllers, createClient } from '@mx-space/api-client/esm'
+import { createKyAdaptor } from '@mx-space/api-client/esm/adaptors/ky'
 import { umiAdaptor } from '@mx-space/api-client/esm/adaptors/umi-request'
+
+const kyInstance = ky.create({
+  hooks: {
+    beforeError: [
+      (err) => {
+        console.dir(err)
+        return err
+      },
+    ],
+  },
+})
+
+const client = createClient(createKyAdaptor(kyInstance))(
+  'https://api.innei.ren/v2',
+)
 
 // const axios = axiosAdaptor.default
 // const client = createClient(axiosAdaptor)('https://api.innei.ren/v2')
@@ -19,7 +36,7 @@ import { umiAdaptor } from '@mx-space/api-client/esm/adaptors/umi-request'
 // )
 
 const umi = umiAdaptor.default
-const client = createClient(umiAdaptor)('https://api.innei.ren/v2')
+// const client = createClient(umiAdaptor)('https://api.innei.ren/v2')
 client.injectControllers(allControllers)
 
 Object.defineProperty(window, 'client', {
@@ -91,6 +108,12 @@ function App() {
       <ApiView
         apiCallFn={() => client.say.getAllPaginated(1, 3)}
         desc="Get Say Paginated"
+      />
+
+      {/* 404 */}
+      <ApiView
+        apiCallFn={() => client.proxy.posts.a.a.a.a.get()}
+        desc="404 Error"
       />
     </div>
   )

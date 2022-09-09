@@ -50,11 +50,13 @@ importers:
       '@mx-space/api-client': workspace:*
       '@types/react': 18.0.18
       '@types/react-dom': 18.0.6
+      ky: 0.31.3
       react: 18.1.0
       react-dom: 18.1.0
       react-json-view: 1.21.3
     dependencies:
       '@mx-space/api-client': link:../src
+      ky: 0.31.3
     devDependencies:
       '@types/react': 18.0.18
       '@types/react-dom': 18.0.6
@@ -3115,7 +3117,6 @@ packages:
   /ky/0.31.3:
     resolution: {integrity: sha512-YDDQKG0Lt4PFSPZGJI8WKAm5y+1ebbeA306am+4nT7riX13wjNVD5sR/QOKtgsaQaARwrdUHlv0M9kJ1qv+Jug==}
     engines: {node: '>=14.16'}
-    dev: true
 
   /levn/0.3.0:
     resolution: {integrity: sha512-0OO4y2iOHix2W6ujICbKIaEQXvFQHue65vUG3pb5EUomzPI90z9hsA1VsO/dbIIpC53J8gxM9Q4Oho0jrCM/yA==}

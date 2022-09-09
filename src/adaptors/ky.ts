@@ -72,3 +72,5 @@ export const createKyAdaptor = (ky: KyInstance) => {
 }
 
 export const defaultKyAdaptor = createKyAdaptor($http)
+
+export default defaultKyAdaptor

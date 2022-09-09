@@ -34,3 +34,5 @@ export const umiAdaptor: IRequestAdapter<
     return $http.patch(url, options)
   },
 })
+
+export default umiAdaptor
