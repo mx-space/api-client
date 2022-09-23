@@ -49,7 +49,7 @@
     "@rollup/plugin-typescript": "8.5.0",
     "@types/cors": "2.8.12",
     "@types/lodash": "4.14.185",
-    "@types/node": "16.11.59",
+    "@types/node": "16.11.60",
     "abort-controller": "3.0.0",
     "axios": "0.27.2",
     "camelcase-keys": "8.0.2",
