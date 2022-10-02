@@ -55,7 +55,7 @@
     "camelcase-keys": "8.0.2",
     "gh-pages": "4.0.0",
     "isomorphic-unfetch": "3.1.0",
-    "jsdom": "20.0.0",
+    "jsdom": "20.0.1",
     "ky": "0.31.3",
     "lodash": "4.17.21",
     "node-fetch": "3.2.10",
