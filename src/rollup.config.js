@@ -18,7 +18,7 @@ const globals = {
   ...(packageJson.dependencies || []),
 }
 
-const dir = 'build'
+const dir = 'dist'
 
 /**
  * @type {Partial<import('rollup').RollupOptions>}

@@ -5,21 +5,37 @@
   "description": "A api client for mx-space server@next",
   "author": "Innei",
   "license": "MIT",
-  "main": "build/index.cjs",
-  "module": "build/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "types/index.d.ts",
-  "unpkg": "build/index.umd.min.js",
+  "unpkg": "dist/index.umd.min.js",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./types/index.d.ts"
+      ],
+      "./adaptors/*": [
+        "./types/adaptors/*.d.ts"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./build/index.js",
-      "require": "./build/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./package.json": "./package.json",
     "./adaptors/*": {
       "types": "./types/adaptors/*.d.ts",
-      "import": "./build/adaptors/*.js",
-      "require": "./build/adaptors/*.cjs"
+      "import": {
+        "type": "./types/adaptors/*.d.ts",
+        "default": "./dist/adaptors/*.js"
+      },
+      "require": {
+        "type": "./types/adaptors/*.d.ts",
+        "default": "./dist/adaptors/*.cjs"
+      }
     }
   },
   "husky": {
@@ -52,7 +68,7 @@
     "postbuild": "tsc-alias -p tsconfig.build.json && tsc-alias -p tsconfig.cjs.json && npm run types",
     "types": "rm -rf types && tsc --build tsconfig.types.json && tsc-alias -p tsconfig.types.json",
     "package": "NODE_ENV=production npm run build && rollup -c",
-    "prepackage": "rm -rf build",
+    "prepackage": "rm -rf dist",
     "test": "vitest",
     "dev": "vite"
   },

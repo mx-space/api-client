@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "NodeNext",
     "moduleResolution": "node",
     "strict": true,
     "resolveJsonModule": true,
@@ -12,7 +16,9 @@
     "sourceMap": true,
     "declaration": true,
     "paths": {
-      "~/*": ["*"]
+      "~/*": [
+        "./*"
+      ]
     }
   }
 }
