@@ -3,9 +3,9 @@ import { ApiView } from 'components/ApiView'
 import ky from 'ky'
 import React from 'react'
 
-import { allControllers, createClient } from '@mx-space/api-client/esm'
-import { createKyAdaptor } from '@mx-space/api-client/esm/adaptors/ky'
-import { umiAdaptor } from '@mx-space/api-client/esm/adaptors/umi-request'
+import { allControllers, createClient } from '@mx-space/api-client'
+import { createKyAdaptor } from '@mx-space/api-client/adaptors/ky'
+import { umiAdaptor } from '@mx-space/api-client/adaptors/umi-request'
 
 const kyInstance = ky.create({
   hooks: {

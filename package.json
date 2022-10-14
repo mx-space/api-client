@@ -6,7 +6,7 @@
     "test": "cd src && npm run test",
     "package": "cd src && npm run package",
     "build": "cd src && npm run build",
-    "dev": "pnpm run dev -C example",
+    "dev": "pnpm -C example run dev ",
     "publish": "pnpm publish --access public -C src",
     "pack": "pnpm pack -C src",
     "version": "pnpm run version -C src"
