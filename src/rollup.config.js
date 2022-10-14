@@ -1,4 +1,6 @@
 // @ts-check
+import globby from 'globby'
+import path from 'path'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import { terser } from 'rollup-plugin-terser'
 
@@ -12,10 +14,76 @@ const umdName = packageJson.name
 
 const globals = {
   ...packageJson.devDependencies,
-  ...packageJson.dependencies,
+  // @ts-ignore
+  ...(packageJson.dependencies || []),
 }
 
 const dir = 'build'
+
+/**
+ * @type {Partial<import('rollup').RollupOptions>}
+ */
+const baseRollupConfig = {
+  plugins: [
+    nodeResolve(),
+    commonjs({ include: 'node_modules/**' }),
+    typescript({ tsconfig: './tsconfig.json', declaration: false }),
+
+    // @ts-ignore
+    peerDepsExternal(),
+  ],
+  external: [...Object.keys(globals), 'lodash', 'lodash-es'],
+  treeshake: true,
+}
+
+/**
+ * @returns {import('rollup').RollupOptions[]}
+ */
+const buildAdaptorConfig = () => {
+  const paths = globby.sync('./adaptors/*.ts')
+  const filename = (path_) => path.parse(path_.split('/').pop()).name
+  return paths.map((path) => ({
+    input: path,
+    output: [
+      {
+        file: `${dir}/adaptors/${filename(path)}.umd.js`,
+        format: 'umd',
+        sourcemap: true,
+        name: umdName,
+      },
+      {
+        file: `${dir}/adaptors/${filename(path)}.umd.min.js`,
+        format: 'umd',
+        sourcemap: true,
+        name: umdName,
+        plugins: [terser()],
+      },
+      {
+        file: `${dir}/adaptors/${filename(path)}.cjs`,
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: `${dir}/adaptors/${filename(path)}.min.cjs`,
+        format: 'cjs',
+        sourcemap: true,
+        plugins: [terser()],
+      },
+      {
+        file: `${dir}/adaptors/${filename(path)}.js`,
+        format: 'es',
+        sourcemap: true,
+      },
+      {
+        file: `${dir}/adaptors/${filename(path)}.min.js`,
+        format: 'es',
+        sourcemap: true,
+        plugins: [terser()],
+      },
+    ],
+    ...baseRollupConfig,
+  }))
+}
 
 /**
  * @type {import('rollup').RollupOptions[]}
@@ -23,8 +91,6 @@ const dir = 'build'
 const config = [
   {
     input: './index.ts',
-    // ignore lib
-    external: ['lodash', 'lodash-es', ...Object.keys(globals)],
 
     output: [
       {
@@ -63,17 +129,9 @@ const config = [
         plugins: [terser()],
       },
     ],
-    plugins: [
-      nodeResolve(),
-      commonjs({ include: 'node_modules/**' }),
-      typescript({ tsconfig: './tsconfig.json', declaration: false }),
-
-      // @ts-ignore
-      peerDepsExternal(),
-    ],
-
-    treeshake: true,
+    ...baseRollupConfig,
   },
+  ...buildAdaptorConfig(),
 ]
 
 // eslint-disable-next-line import/no-default-export

@@ -76,6 +76,7 @@ importers:
       axios: 0.27.2
       camelcase-keys: 8.0.2
       gh-pages: 4.0.0
+      globby: '*'
       isomorphic-unfetch: 3.1.0
       jsdom: 20.0.1
       ky: 0.31.3
@@ -97,6 +98,7 @@ importers:
       axios: 0.27.2
       camelcase-keys: 8.0.2
       gh-pages: 4.0.0
+      globby: 11.1.0
       isomorphic-unfetch: 3.1.0
       jsdom: 20.0.1
       ky: 0.31.3
@@ -2457,7 +2459,7 @@ packages:
     dev: true
 
   /globby/6.1.0:
-    resolution: {integrity: sha1-9abXDoOV4hyFj7BInWTfAkJNUGw=}
+    resolution: {integrity: sha512-KVbFv2TQtbzCoxAnfD6JcHZTYCzyliEaaeM/gH8qQdkKr5s0OP9scEgvdcngyk7AVdY6YVW/TJHd+lQ/Df3Daw==}
     engines: {node: '>=0.10.0'}
     dependencies:
       array-union: 1.0.2

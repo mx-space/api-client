@@ -9,6 +9,19 @@
   "module": "build/index.js",
   "types": "types/index.d.ts",
   "unpkg": "build/index.umd.min.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./build/index.js",
+      "require": "./build/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./adaptors/*": {
+      "types": "./types/adaptors/*.d.ts",
+      "import": "./build/adaptors/*.js",
+      "require": "./build/adaptors/*.cjs"
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -54,6 +67,7 @@
     "axios": "0.27.2",
     "camelcase-keys": "8.0.2",
     "gh-pages": "4.0.0",
+    "globby": "*",
     "isomorphic-unfetch": "3.1.0",
     "jsdom": "20.0.1",
     "ky": "0.31.3",

@@ -20,9 +20,6 @@
 以 `axios` 为例。
 
 ```ts
-// esm format (spa recommend)
-// cjs format (ssr recommend)
-// import { axiosAdaptor } from '@mx-space/api-client/lib/adaptors/axios'
 import {
   AggregateController,
   CategoryController,
@@ -31,7 +28,7 @@ import {
   allControllers, // ...
   createClient,
 } from '@mx-space/api-client'
-import { axiosAdaptor } from '@mx-space/api-client/esm/adaptors/axios'
+import { axiosAdaptor } from '@mx-space/api-client/adaptors/axios'
 
 const endpoint = 'https://api.innei.dev/v2'
 const client = createClient(axiosAdaptor)(endpoint)
