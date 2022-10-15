@@ -10,6 +10,7 @@ export enum LinkState {
   Audit,
   Outdate,
   Banned,
+  Reject,
 }
 
 export interface LinkModel extends BaseModel {
