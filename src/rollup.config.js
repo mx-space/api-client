@@ -1,6 +1,7 @@
 // @ts-check
+import { execSync } from 'child_process'
 import globby from 'globby'
-import path from 'path'
+import path, { resolve } from 'path'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import { terser } from 'rollup-plugin-terser'
 
@@ -42,47 +43,63 @@ const baseRollupConfig = {
 const buildAdaptorConfig = () => {
   const paths = globby.sync('./adaptors/*.ts')
   const filename = (path_) => path.parse(path_.split('/').pop()).name
-  return paths.map((path) => ({
-    input: path,
-    output: [
-      {
-        file: `${dir}/adaptors/${filename(path)}.umd.js`,
-        format: 'umd',
-        sourcemap: true,
-        name: umdName,
-      },
-      {
-        file: `${dir}/adaptors/${filename(path)}.umd.min.js`,
-        format: 'umd',
-        sourcemap: true,
-        name: umdName,
-        plugins: [terser()],
-      },
-      {
-        file: `${dir}/adaptors/${filename(path)}.cjs`,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: `${dir}/adaptors/${filename(path)}.min.cjs`,
-        format: 'cjs',
-        sourcemap: true,
-        plugins: [terser()],
-      },
-      {
-        file: `${dir}/adaptors/${filename(path)}.js`,
-        format: 'es',
-        sourcemap: true,
-      },
-      {
-        file: `${dir}/adaptors/${filename(path)}.min.js`,
-        format: 'es',
-        sourcemap: true,
-        plugins: [terser()],
-      },
-    ],
-    ...baseRollupConfig,
-  }))
+
+  return paths.map((path) => {
+    const libName = filename(path)
+    execSync(
+      'npx dts-bundle-generator -o dist/adaptors/' +
+        libName +
+        '.d.ts ' +
+        resolve(__dirname, 'adaptors/') +
+        '/' +
+        libName +
+        '.ts' +
+        '  --external-types ' +
+        libName,
+    )
+
+    return {
+      input: path,
+      output: [
+        {
+          file: `${dir}/adaptors/${libName}.umd.js`,
+          format: 'umd',
+          sourcemap: true,
+          name: umdName,
+        },
+        {
+          file: `${dir}/adaptors/${libName}.umd.min.js`,
+          format: 'umd',
+          sourcemap: true,
+          name: umdName,
+          plugins: [terser()],
+        },
+        {
+          file: `${dir}/adaptors/${libName}.cjs`,
+          format: 'cjs',
+          sourcemap: true,
+        },
+        {
+          file: `${dir}/adaptors/${libName}.min.cjs`,
+          format: 'cjs',
+          sourcemap: true,
+          plugins: [terser()],
+        },
+        {
+          file: `${dir}/adaptors/${libName}.js`,
+          format: 'es',
+          sourcemap: true,
+        },
+        {
+          file: `${dir}/adaptors/${libName}.min.js`,
+          format: 'es',
+          sourcemap: true,
+          plugins: [terser()],
+        },
+      ],
+      ...baseRollupConfig,
+    }
+  })
 }
 
 /**
