@@ -25,6 +25,28 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./dist/*": {
+      "types": "./dist/*.d.ts",
+      "import": {
+        "type": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      },
+      "require": {
+        "type": "./dist/*.d.ts",
+        "default": "./dist/*.cjs"
+      }
+    },
+    "./dist/adaptors/*": {
+      "types": "./dist/adaptors/*.d.ts",
+      "import": {
+        "type": "./dist/adaptors/*.d.ts",
+        "default": "./dist/adaptors/*.js"
+      },
+      "require": {
+        "type": "./dist/adaptors/*.d.ts",
+        "default": "./dist/adaptors/*.cjs"
+      }
+    },
     "./package.json": "./package.json",
     "./adaptors/*": {
       "types": "./types/adaptors/*.d.ts",

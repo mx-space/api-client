@@ -4,9 +4,8 @@ import ky from 'ky'
 import React from 'react'
 
 import { allControllers, createClient } from '@mx-space/api-client'
-import { createKyAdaptor } from '@mx-space/api-client/adaptors/ky'
-// @ts-ignore
-import { umiAdaptor } from '@mx-space/api-client/adaptors/umi-request'
+import { createKyAdaptor } from '@mx-space/api-client/dist/adaptors/ky'
+import { umiAdaptor } from '@mx-space/api-client/dist/adaptors/umi-request'
 
 const kyInstance = ky.create({
   hooks: {
