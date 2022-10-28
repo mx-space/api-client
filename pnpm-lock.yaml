@@ -77,7 +77,7 @@ importers:
       '@rollup/plugin-typescript': 8.5.0
       '@types/cors': 2.8.12
       '@types/lodash': 4.14.186
-      '@types/node': 16.11.68
+      '@types/node': 16.18.2
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
@@ -99,7 +99,7 @@ importers:
       '@rollup/plugin-typescript': 8.5.0_rollup@2.79.1
       '@types/cors': 2.8.12
       '@types/lodash': 4.14.186
-      '@types/node': 16.11.68
+      '@types/node': 16.18.2
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
@@ -649,8 +649,8 @@ packages:
     resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
     dev: true
 
-  /@types/node/16.11.68:
-    resolution: {integrity: sha512-JkRpuVz3xCNCWaeQ5EHLR/6woMbHZz/jZ7Kmc63AkU+1HxnoUugzSWMck7dsR4DvNYX8jp9wTi9K7WvnxOIQZQ==}
+  /@types/node/16.18.2:
+    resolution: {integrity: sha512-KIGQJyya+opDCFvDSZMNNS899ov5jlNdtN7PypgHWeb8e+5vWISdwTRo/ClsNVlmDihzOGqFyNBDamUs7TQQCA==}
     dev: true
 
   /@types/node/18.7.23:
