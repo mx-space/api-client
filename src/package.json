@@ -108,7 +108,7 @@
     "gh-pages": "4.0.0",
     "isomorphic-unfetch": "3.1.0",
     "jsdom": "20.0.1",
-    "ky": "0.31.3",
+    "ky": "0.31.4",
     "lodash": "4.17.21",
     "node-fetch": "3.2.10",
     "rollup": "2.79.1",
