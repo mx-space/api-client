@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@mx-space/api-client": "workspace:*",
-    "ky": "0.31.3"
+    "ky": "0.31.4"
   },
   "devDependencies": {
     "@types/react": "18.0.24",
