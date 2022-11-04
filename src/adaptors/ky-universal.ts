@@ -1,5 +1,5 @@
-import ky from 'ky'
 import type { Options, ResponsePromise } from 'ky'
+import ky from 'ky-universal'
 import type { KyInstance } from 'ky/distribution/types/ky'
 
 import type { IRequestAdapter } from '~/interfaces/adapter'
