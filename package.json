@@ -34,7 +34,7 @@
     "execa": "*",
     "express": "4.18.2",
     "gh-pages": "4.0.0",
-    "husky": "8.0.1",
+    "husky": "8.0.2",
     "lint-staged": "13.0.3",
     "lodash": "4.17.21",
     "prettier": "2.7.1",
