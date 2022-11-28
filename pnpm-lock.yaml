@@ -92,7 +92,7 @@ importers:
       rollup: 2.79.1
       rollup-plugin-peer-deps-external: 2.2.4
       rollup-plugin-terser: 7.0.2
-      tsc-alias: 1.7.0
+      tsc-alias: 1.7.1
       umi-request: 1.4.0
     devDependencies:
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
@@ -115,7 +115,7 @@ importers:
       rollup: 2.79.1
       rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.1
       rollup-plugin-terser: 7.0.2_rollup@2.79.1
-      tsc-alias: 1.7.0
+      tsc-alias: 1.7.1
       umi-request: 1.4.0
 
 packages:
@@ -1304,11 +1304,6 @@ packages:
   /commander/4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
-    dev: true
-
-  /commander/9.4.0:
-    resolution: {integrity: sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==}
-    engines: {node: ^12.20.0 || >=14}
     dev: true
 
   /commander/9.4.1:
@@ -4176,12 +4171,12 @@ packages:
     resolution: {integrity: sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==}
     dev: true
 
-  /tsc-alias/1.7.0:
-    resolution: {integrity: sha512-n/K6g8S7Ec7Y/A2Z77Ikp2Uv1S1ERtT63ni69XV4W1YPT4rnNmz8ItgIiJYvKfFnKfqcZQ81UPjoKpMTxaC/rg==}
+  /tsc-alias/1.7.1:
+    resolution: {integrity: sha512-P4+0i+OB0hX17Ca+U6EJ4WZZ+OSupqW32VJ34N7g7+Ch+bwSx1AqYOvDdIVYEKymBh3dfG0t1qxbxPlBbtB1lQ==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
-      commander: 9.4.0
+      commander: 9.4.1
       globby: 11.1.0
       mylas: 2.1.11
       normalize-path: 3.0.0
