@@ -21,7 +21,7 @@
     }
   },
   "devDependencies": {
-    "@innei/bump-version": "0.2.6",
+    "@innei/bump-version": "1.5.4",
     "@innei/eslint-config-ts": "latest",
     "@innei/prettier": "latest",
     "@types/execa": "2.0.0",
