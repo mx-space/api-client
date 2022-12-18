@@ -104,7 +104,7 @@
     "abort-controller": "3.0.0",
     "axios": "0.27.2",
     "camelcase-keys": "8.0.2",
-    "dts-bundle-generator": "7.0.0",
+    "dts-bundle-generator": "7.1.0",
     "gh-pages": "4.0.0",
     "isomorphic-unfetch": "3.1.0",
     "jsdom": "20.0.3",

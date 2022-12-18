@@ -81,7 +81,7 @@ importers:
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
-      dts-bundle-generator: 7.0.0
+      dts-bundle-generator: 7.1.0
       gh-pages: 4.0.0
       isomorphic-unfetch: 3.1.0
       jsdom: 20.0.3
@@ -104,7 +104,7 @@ importers:
       abort-controller: 3.0.0
       axios: 0.27.2
       camelcase-keys: 8.0.2
-      dts-bundle-generator: 7.0.0
+      dts-bundle-generator: 7.1.0
       gh-pages: 4.0.0
       isomorphic-unfetch: 3.1.0
       jsdom: 20.0.3
@@ -1529,8 +1529,8 @@ packages:
       webidl-conversions: 7.0.0
     dev: true
 
-  /dts-bundle-generator/7.0.0:
-    resolution: {integrity: sha512-3mhkUvUsxYT5aK4NOJH9iCOMy04vLEeH2gemBD+rSAYn5x7OiLbzyAEzf6gix3jyx/0I9qjYJOja1pvnqBhKDQ==}
+  /dts-bundle-generator/7.1.0:
+    resolution: {integrity: sha512-RDm/HY6722PVWG3m+ZwLvD1TF9hNbDHoKeYwx1WmDo2So1eh4eRH2HTqxAmBiK0uQj7IogtxO6fyezQw3E793Q==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
